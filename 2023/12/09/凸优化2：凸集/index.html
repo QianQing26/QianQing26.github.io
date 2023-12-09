@@ -19,23 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="千顷&#x2F;QianQing26">
-<meta property="og:url" content="http://qianqing26.github.io/tags/%E5%87%B8%E9%9B%86/index.html">
+    <meta name="description" content="凸集如果集合$C$中任意两点间的线段仍然在$C$中，即对于任意$x_1,x_2\in C$和满足$0\leq\theta\leq1$的$\theta$都有$\theta x_1+(1-\theta)x_2\in C$，那么集合$C$被称为是凸集。容易知道，仿射集合是凸集。 称点$\theta_1x_1+\dots+\theta_kx_k$为点$x_1,\dots,x_k$的一个凸组合，其中$\th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="凸优化2：凸集">
+<meta property="og:url" content="http://qianqing26.github.io/2023/12/09/%E5%87%B8%E4%BC%98%E5%8C%962%EF%BC%9A%E5%87%B8%E9%9B%86/index.html">
 <meta property="og:site_name" content="千顷&#x2F;QianQing26">
+<meta property="og:description" content="凸集如果集合$C$中任意两点间的线段仍然在$C$中，即对于任意$x_1,x_2\in C$和满足$0\leq\theta\leq1$的$\theta$都有$\theta x_1+(1-\theta)x_2\in C$，那么集合$C$被称为是凸集。容易知道，仿射集合是凸集。 称点$\theta_1x_1+\dots+\theta_kx_k$为点$x_1,\dots,x_k$的一个凸组合，其中$\th">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-09T15:59:02.000Z">
+<meta property="article:modified_time" content="2023-12-09T16:19:52.855Z">
 <meta property="article:author" content="QianQing26">
+<meta property="article:tag" content="凸优化">
+<meta property="article:tag" content="凸集">
+<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qianqing26.github.io/tags/%E5%87%B8%E9%9B%86/">
+<link rel="canonical" href="http://qianqing26.github.io/2023/12/09/%E5%87%B8%E4%BC%98%E5%8C%962%EF%BC%9A%E5%87%B8%E9%9B%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/凸集/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2023/12/09/%E5%87%B8%E4%BC%98%E5%8C%962%EF%BC%9A%E5%87%B8%E9%9B%86/","path":"2023/12/09/凸优化2：凸集/","title":"凸优化2：凸集"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: 凸集 | 千顷/QianQing26</title>
+<title>凸优化2：凸集 | 千顷/QianQing26</title>
   
 
 
@@ -97,7 +104,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -110,6 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%B8%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">凸集</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -149,70 +157,132 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">凸集
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/09/%E5%87%B8%E4%BC%98%E5%8C%962%EF%BC%9A%E5%87%B8%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="凸优化2：凸集 | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          凸优化2：凸集
         </h1>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-09 23:59:02" itemprop="dateCreated datePublished" datetime="2023-12-09T23:59:02+08:00">2023-12-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-10 00:19:52" itemprop="dateModified" datetime="2023-12-10T00:19:52+08:00">2023-12-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="凸集"><a href="#凸集" class="headerlink" title="凸集"></a>凸集</h2><p>如果集合$C$中任意两点间的线段仍然在$C$中，即对于任意$x_1,x_2\in C$和满足$0\leq\theta\leq1$的$\theta$都有$\theta x_1+(1-\theta)x_2\in C$，那么集合$C$被称为是<strong>凸集</strong>。容易知道，仿射集合是凸集。</p>
+<p>称点$\theta_1x_1+\dots+\theta_kx_k$为点$x_1,\dots,x_k$的一个<strong>凸组合</strong>，其中$\theta_1+\dots+\theta_k=1$并且$\theta_i\geq0$。与仿射集合类似，一个集合是凸集等价于集合包含其中所有点的凸组合。点的凸组合可以看成是它们的加权平均。</p>
+<p>称集合$C$中所有点的凸组合的集合为其<strong>凸包</strong>，记为$\mathbf{conv}C$：</p>
+<p>$\mathbf{conv}C=\{\theta_1x_1+\dots+\theta_kx_k|x_i\in C,\theta_i\geq0,\theta_1+\dots+\theta_k=1\}$</p>
+<p>凸包$\mathbf{conv}C$总是凸的，其是包含$C$的最小的凸集。</p>
+<blockquote>
+<p>这里“最小的凸集”和上一节“最小的仿射集合”可以类比离散数学中的关系闭包。</p>
+</blockquote>
+<p>在上面的概念中，凸组合的定义可以从可数的组合拓展到无穷级数、积分等，假设有$\theta_i\geq0,\sum^{\infty}_{i=1}\theta_i=1$，并且$x_1,x_2,\dots\in C$，其中$C\subseteq \mathbf{R}^n$为凸集。如果接下来的级数收敛，那么我们就有$\sum^{\infty}_{i=1}\theta_ix_i\in C$</p>
+<p>更加一般地说，假设函数$p:\mathbf{R}^n\rightarrow\mathbf{R}$，对所有$x\in C$有$p(x)\geq0$且$\int_Cp(x)dx=1$，其中$C\subseteq\mathbf{R}^n$为凸集。如果接下来地积分存在，那么有$\int_Cp(x)xdx\in C$</p>
+<p>最一般地情况下，$C\subseteq \mathbf{R}^n$是凸集，$x$是随机变量，且$P(x\in C)=1$，那么$\mathbb{E}x\in C$. </p>
+<blockquote>
+<p>这一形式包含了前述地情况。如果随机变量$x$是两点分布，情况就退化到了两个点地简单凸组合</p>
+</blockquote>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-12-09T23:59:02+08:00"
-              content="2023-12-09">
-          12-09
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/12/09/%E5%87%B8%E4%BC%98%E5%8C%962%EF%BC%9A%E5%87%B8%E9%9B%86/" itemprop="url">
-          <span itemprop="name">凸优化2：凸集</span>
-        </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag"># 凸优化</a>
+              <a href="/tags/%E5%87%B8%E9%9B%86/" rel="tag"># 凸集</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/07/%E5%87%B8%E4%BC%98%E5%8C%961/" rel="prev" title="凸优化1：仿射集">
+                  <i class="fa fa-angle-left"></i> 凸优化1：仿射集
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-12-07T19:01:15+08:00"
-              content="2023-12-07">
-          12-07
-        </time>
-      </div>
 
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/12/07/%E5%87%B8%E4%BC%98%E5%8C%961/" itemprop="url">
-          <span itemprop="name">凸优化1：仿射集</span>
-        </a>
-      </div>
 
-      
-    </header>
-  </article>
 
-    </div>
-  </div>
-  
-  
-  
+
 
 </div>
   </main>
