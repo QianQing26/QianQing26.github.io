@@ -187,9 +187,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-12-07 19:01:15 / 修改时间：19:06:03" itemprop="dateCreated datePublished" datetime="2023-12-07T19:01:15+08:00">2023-12-07</time>
+      <time title="创建时间：2023-12-07 19:01:15" itemprop="dateCreated datePublished" datetime="2023-12-07T19:01:15+08:00">2023-12-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-09 23:58:07" itemprop="dateModified" datetime="2023-12-09T23:58:07+08:00">2023-12-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -215,7 +221,34 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="仿射集合"><a href="#仿射集合" class="headerlink" title="仿射集合"></a>仿射集合</h2>
+          <h2 id="仿射集合"><a href="#仿射集合" class="headerlink" title="仿射集合"></a>仿射集合</h2><p>如果通过集合$C\subseteq \mathbb{R}^n$中的任意两个不同点的直线仍在集合$C$中，那么称集合$C$是<strong>仿射</strong>的。也即，$\forall x_1,x_2\in C$及$\theta\in\mathbb{R}$，有$\theta x_1+(1-\theta)x_2\in C$</p>
+<p>$x_1,x_2,\dots,x_k$都是集合$C$中的点，$\theta_1,\theta_2,\dots,\theta_k$都为正数，且$\theta_1+\theta_2+\dots+\theta_k=1$，则称具有$\theta_1 x_1+\theta_2 x_2+\dots+\theta_kx_k$的点称为$x_1,x_2,\dots,x_k$的<strong>仿射组合</strong>。可以归纳得到，一个仿射集合包含其中任意多点的仿射组合。</p>
+<p>由于$\theta_1+\theta_2+\cdots+\theta_k=1$，很容易知道，对于$x_0\in C$集合$V=C-x_0=\{x-x_0|x\in C\}$对于加法和数乘是封闭的。我们称这样的集合$V$为仿射集合$C$的子空间。因此，仿射集合$C$可以表示为$C=V+x_0]\{v+x_0|v\in V\}$。即子空间加上一个偏置。</p>
+<p>定义仿射集合$C$的<strong>维数</strong>为子空间$V=C-x_0$的维数，其中$x_0$是$C$中的任意元素。</p>
+<blockquote>
+<p>以上的概念与线性方程组的解的结构很相似，由以上的概念很容易推出，任意仿射集合可以表示为一个线性方程组的解集。</p>
+<p>由上面的类比，仿射集合$C$的维数也可以类比为线性方程组中未知数的数量。</p>
+</blockquote>
+<p>我们称集合$C\subseteq \mathbf{R}^n$中的点的所有仿射组合组成的集合为$C$的<strong>仿射包</strong>，记为$\mathbf{aff}C=\{\theta_1x_1+\dots+\theta_kx_k|x_1,\dots,x_k \in C,\theta_1+\dots+\theta_k=1\}$</p>
+<p>仿射包是包含$C$的最下的仿射集合。</p>
+<h2 id="仿射维数与相对内部"><a href="#仿射维数与相对内部" class="headerlink" title="仿射维数与相对内部"></a>仿射维数与相对内部</h2><p>定义集合$C$的<strong>仿射维数</strong>为其仿射包的维数。</p>
+<blockquote>
+<p>通俗解释就是说，仿射组合得到的空间是几维，仿射包就是几维。</p>
+</blockquote>
+<p>若集合$C\subseteq \mathbf{R}^n$的仿射维数小于$n$，那么这个集合在仿射集合$\mathbf{aff}C\neq \mathbf{R}^n$中。定义集合$C$上的<strong>相对内部</strong>为$\mathbf{aff}C$的内部，记为$\mathbf{relint}C$。</p>
+<p>$\mathbf{relint}C=\{x\in C|B(x,r)\cap\mathbf{aff}C\subseteq C\text{ for some }r&gt;0\}$</p>
+<p>其中$B(x,r)=\{y|\left|\left|y-x\right|\right|\leq r\}$，即半径为$r$，中心为$x$并由范数$||\cdot||$定义的球。此处的范数可以是任意范数。 </p>
+<blockquote>
+<p>例如$\mathbf{R}^3$中的一个正方形，定义</p>
+<p>$C=\{x\in\mathbf{R}^3|-1\leq x_1\leq 1,-1\leq x_2\leq1,x_3=0\}$。</p>
+<p>其仿射包为$x_1,x_2$的平面，$C$的内部为空，但其相对内部</p>
+<p>$\mathbf{relint}C=\{x\in\mathbf{R}^3|-1&lt;x_1&lt;1,-1&lt;x_2&lt;1,x_3=0\}$</p>
+</blockquote>
+<p>可以定义<strong>相对边界</strong>$\mathbf{cl}C-\mathbf{relint}C$，此处$\mathbf{cl}C$表示$C$的闭包。</p>
+<blockquote>
+<p>在上面正方形的那个例子中，正方形（在$\mathbf{R}^3$中）的边界是其自身，而相对边界是其边框$\{x\in\mathbf{R}^3|max\{|x_1|,|x_2|\}=1,x_3=0\}$</p>
+</blockquote>
+
       
     </div>
 
