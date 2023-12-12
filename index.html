@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -150,6 +150,95 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/12/%E5%87%B8%E4%BC%98%E5%8C%967%EF%BC%9A%E5%8D%8A%E6%AD%A3%E5%AE%9A%E9%94%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/12/%E5%87%B8%E4%BC%98%E5%8C%967%EF%BC%9A%E5%8D%8A%E6%AD%A3%E5%AE%9A%E9%94%A5/" class="post-title-link" itemprop="url">凸优化7：半正定锥</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-12 23:20:29 / 修改时间：23:41:13" itemprop="dateCreated datePublished" datetime="2023-12-12T23:20:29+08:00">2023-12-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="半正定锥-the-positive-semidefinite-cone"><a href="#半正定锥-the-positive-semidefinite-cone" class="headerlink" title="半正定锥(the positive semidefinite cone)"></a>半正定锥(the positive semidefinite cone)</h2><p>使用记号$\mathbf{S}^n$表示对称$n\times n$矩阵的集合，也即$\mathbf{S}^n=\{X\in\mathbf{R}^n|X=X^T\}$</p>
+<p>这可以看成是一个维数为$n(n+1)/2$的向量空间。使用$\mathbf{S}^n_+$表示对称半正定矩阵的集合，$\mathbf{S}_+^n=\{X\in\mathbf{S}^n|X\succeq 0\}$。使用$\mathbf{S}^n_{++}$表示对称正定矩阵的集合$\mathbf{S}^n_{++}=\{X\in\mathbf{S}^n|X\succ0\}$</p>
+<p>集合$\mathbf{S}^n_+$是一个凸锥：如果$\theta_1,\theta_2\geq0$，并且$A,B\in \mathbf{S}^n_+$，那么$\theta_1A+\theta_2B\in\mathbf{S}^n_+$ 。由半正定矩阵的定义可知：$\forall x\in \mathbf{R}^n$，如果$A\succeq0,B\succeq0$并且$\theta_1,\theta_2\geq0$，那么$x^T(\theta_1A+\theta_2B)x=\theta_1x^TAx+\theta_2x^TBx\geq0$</p>
+<p>举个例子，对于$\mathbf{S}^2$上的半定锥</p>
+<p>$X=\begin{bmatrix}x &amp; y\\ y&amp; z\end{bmatrix}\in\mathbf{S}_+^2\Leftrightarrow\quad x\geq0,z\geq0,xz\geq y^2$</p>
+<p>下面的图显示了这个锥的边界</p>
+<p><img src="img/image-20231212234101929.png" alt="image-20231212234101929"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
