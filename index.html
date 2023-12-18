@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="千顷&#x2F;QianQing26">
@@ -78,6 +78,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -85,12 +86,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </header>
         
@@ -122,7 +149,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -138,6 +165,14 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/QianQing26" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;QianQing26" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:eevee_hbc@outlook.com" title="E-Mail → mailto:eevee_hbc@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
         </div>
       </div>
@@ -150,6 +185,94 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/18/Verilog%EF%BC%9A%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/18/Verilog%EF%BC%9A%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">Verilog：时序逻辑电路建模</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-18 13:59:59 / 修改时间：14:41:00" itemprop="dateCreated datePublished" datetime="2023-12-18T13:59:59+08:00">2023-12-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Verilog/" itemprop="url" rel="index"><span itemprop="name">Verilog</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>一些时序逻辑电路的行为级建模的例子</p>
+<h3 id="移位寄存器的Verilog建模"><a href="#移位寄存器的Verilog建模" class="headerlink" title="移位寄存器的Verilog建模"></a>移位寄存器的Verilog建模</h3><p>对于双向移位寄存器74HCT194，其建模时要实现的核心功能在于，$S_0,S_1$的四种值时的数据的不同操作，</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> shift74x194_beh(</span><br><span class="line">	<span class="keyword">input</span> S0,S1,</span><br><span class="line">    <span class="keyword">input</span> Dsl,Dsr,</span><br><span class="line">    <span class="keyword">input</span> CP,CR,</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">0</span>:<span class="number">3</span>]D,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">0</span>:<span class="number">3</span>]Q</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> CP,<span class="keyword">negedge</span> CR)</span><br><span class="line">        <span class="keyword">if</span>(!CR)Q&lt;=<span class="number">4&#x27;b0000</span>;</span><br><span class="line">    	<span class="keyword">else</span></span><br><span class="line">            <span class="keyword">case</span>(&#123;S1,S0&#125;)</span><br><span class="line">                <span class="number">2&#x27;b00</span>: Q&lt;=Q;			<span class="comment">//输出保持不变</span></span><br><span class="line">                <span class="number">2&#x27;b01</span>: Q&lt;=&#123;Dsr,Q[<span class="number">0</span>,<span class="number">2</span>]&#125;;	<span class="comment">//右移</span></span><br><span class="line">                <span class="number">2&#x27;b02</span>: Q&lt;=&#123;Q[<span class="number">1</span>,<span class="number">3</span>],Dsl&#125;;	<span class="comment">//左移</span></span><br><span class="line">                <span class="number">2&#x27;b03</span>: Q&lt;=D;			<span class="comment">//并行置数</span></span><br><span class="line">            <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h3 id="计数器的Verilog建模"><a href="#计数器的Verilog建模" class="headerlink" title="计数器的Verilog建模"></a>计数器的Verilog建模</h3><h6 id="带有使能端和同步置数端的可逆二进制计数器"><a href="#带有使能端和同步置数端的可逆二进制计数器" class="headerlink" title="带有使能端和同步置数端的可逆二进制计数器"></a>带有使能端和同步置数端的可逆二进制计数器</h6><p>参数n设置位数，Up_down为1/0控制计数器递增/递减</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> updowncount #(<span class="keyword">parameter</span> n=<span class="number">4</span>)</span><br><span class="line">    (</span><br><span class="line">    	<span class="keyword">input</span> Load,Up_down,En,CP,</span><br><span class="line">        <span class="keyword">input</span> [n-<span class="number">1</span>:<span class="number">0</span>]D,</span><br><span class="line">        <span class="keyword">output</span> <span class="keyword">reg</span> [n-<span class="number">1</span>:<span class="number">0</span>]Q</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">integer</span> direction;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> CP)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(Up_down)</span><br><span class="line">            direction&lt;=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            direction&lt;=-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(Load)</span><br><span class="line">            Q&lt;=D;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(En)</span><br><span class="line">            Q&lt;=Q+direction;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            Q&lt;=Q;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h6 id="带有异步清零功能的D触发器构成的4位二进制计数器"><a href="#带有异步清零功能的D触发器构成的4位二进制计数器" class="headerlink" title="带有异步清零功能的D触发器构成的4位二进制计数器"></a>带有异步清零功能的D触发器构成的4位二进制计数器</h6><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> D_FF(</span><br><span class="line">	<span class="keyword">output</span> <span class="keyword">reg</span> Q,</span><br><span class="line">    <span class="keyword">input</span> D,CP,Rd</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">negedge</span> CP,<span class="keyword">negedge</span> Rd)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(!Rd)Q&lt;=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> Q&lt;=D;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> rippecounter(</span><br><span class="line">    <span class="keyword">output</span> Q0,Q1,Q2,Q3,</span><br><span class="line">    <span class="keyword">input</span> CP,CR</span><br><span class="line">);</span><br><span class="line">    <span class="comment">//实例化引用触发器模块</span></span><br><span class="line">    D_FF FF0(Q0,~Q0,CP,CR);</span><br><span class="line">    D_FF FF1(Q1,~Q1,Q0,CR);</span><br><span class="line">    D_FF FF2(Q2,~Q2,Q1,CR);</span><br><span class="line">    D_FF FF3(Q3,~Q3,Q2,CR);</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h6 id="带有使能端和异步清零的模10计数器"><a href="#带有使能端和异步清零的模10计数器" class="headerlink" title="带有使能端和异步清零的模10计数器"></a>带有使能端和异步清零的模10计数器</h6><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> m10_counter(</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]Q,</span><br><span class="line">    <span class="keyword">input</span> CE,CP,CR</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> CP,<span class="keyword">negedge</span> CR)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(!CR)Q=<span class="number">4&#x27;b0000</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(CE)</span><br><span class="line">            <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">if</span>(Q&gt;=<span class="number">4&#x27;b1001</span>)</span><br><span class="line">                    Q&lt;=<span class="number">4&#x27;b0000</span></span><br><span class="line">                <span class="keyword">else</span> Q&lt;=Q+<span class="number">1</span>&#x27;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span> Q&lt;=Q;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，电路的功能描述和具体的硬件电路结构是无关的，从这个模10计数器的建模中可以看出这一点</p>
+<h3 id="状态转换图的Verilog建模"><a href="#状态转换图的Verilog建模" class="headerlink" title="状态转换图的Verilog建模"></a>状态转换图的Verilog建模</h3><p>以检测连续输入序列$\mathbf{110}$的电路为例</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Mealey_sequence_detector(</span><br><span class="line">	<span class="keyword">input</span> A,CP,CR,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> Y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>]current_state,next_state;<span class="comment">//中间变量</span></span><br><span class="line">    <span class="keyword">parameter</span> S0=<span class="number">2&#x27;b00</span>,S1=<span class="number">2</span>&#x27;<span class="number">01</span>,S2=<span class="number">2&#x27;b11</span>;</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">negedge</span> CP,<span class="keyword">negedge</span> CR)<span class="comment">//时序电路</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(~CR)	current_state&lt;=S0;</span><br><span class="line">        <span class="keyword">else</span>	current_state&lt;=next_state;	<span class="comment">//状态转换</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">always</span> @(current_state,A)<span class="comment">//组合电路</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">case</span>(current_state)<span class="comment">//准备下一状态</span></span><br><span class="line">            Y=<span class="number">0</span>;</span><br><span class="line">            S0:<span class="keyword">begin</span>	next_state=(A==<span class="number">1</span>)?S1:S0;	<span class="keyword">end</span></span><br><span class="line">            S1:<span class="keyword">begin</span>	next_state=(A==<span class="number">1</span>)?S2:S0;	<span class="keyword">end</span></span><br><span class="line">            S3:<span class="keyword">if</span>(A==<span class="number">1</span>)	<span class="keyword">begin</span>	next_state=S2;	<span class="keyword">end</span></span><br><span class="line">            	<span class="keyword">else</span>	<span class="keyword">begin</span> 	Y=<span class="number">1</span>;next_state=S0;	<span class="keyword">end</span></span><br><span class="line">            <span class="keyword">default</span>:	<span class="keyword">begin</span> next_state=S0;	<span class="keyword">end</span></span><br><span class="line">        <span class="keyword">endcase</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1079,95 +1202,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/06/hello/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/06/hello/" class="post-title-link" itemprop="url">hello</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-06 23:27:50" itemprop="dateCreated datePublished" datetime="2023-12-06T23:27:50+08:00">2023-12-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-07 00:31:53" itemprop="dateModified" datetime="2023-12-07T00:31:53+08:00">2023-12-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/test/" itemprop="url" rel="index"><span itemprop="name">test</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>你好，这是我的第一篇博客，用于测试网站的发布功能</p>
-<p>数学公式测试</p>
-<p>$L(w,b)=\cfrac1{N}\sum_{i=1}^N\left(y_i-f(wx_i+b)^2\right)$</p>
-<p>代码块测试</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line">start = <span class="number">0</span></span><br><span class="line">end = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 除了终止状态以外的状态数目</span></span><br><span class="line">N_STATES = <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 所有状态</span></span><br><span class="line">STATES = np.arange(<span class="number">1</span>, N_STATES + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从中间开始</span></span><br><span class="line">START_STATE = <span class="number">500</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 终止状态</span></span><br><span class="line">END_STATES = [<span class="number">0</span>, N_STATES + <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可能的行动</span></span><br><span class="line">ACTION_LEFT = -<span class="number">1</span></span><br><span class="line">ACTION_RIGHT = <span class="number">1</span></span><br><span class="line">ACTIONS = [ACTION_LEFT, ACTION_RIGHT]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一次行动的最大跨度</span></span><br><span class="line">STEP_RANGE = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_true_value</span>():</span><br><span class="line">    <span class="comment"># 对于真实价值函数的一个猜测</span></span><br><span class="line">    true_value = np.arange(-<span class="number">1001</span>, <span class="number">1003</span>, <span class="number">2</span>) / <span class="number">1001.0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 基于上面的猜测，使用动态规划计算真实的价值函数</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        old_value = np.copy(true_value)</span><br><span class="line">        <span class="keyword">for</span> state <span class="keyword">in</span> STATES:</span><br><span class="line">            true_value[state] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> action <span class="keyword">in</span> ACTIONS:</span><br><span class="line">                <span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, STEP_RANGE + <span class="number">1</span>):</span><br><span class="line">                    step *= action</span><br><span class="line">                    next_state = state + step</span><br><span class="line">                    next_state = <span class="built_in">max</span>(<span class="built_in">min</span>(next_state, N_STATES + <span class="number">1</span>), <span class="number">0</span>)</span><br><span class="line">                    <span class="comment"># 更新</span></span><br><span class="line">                    true_value[state] += <span class="number">1.0</span> / (<span class="number">2</span> * STEP_RANGE) * true_value[next_state]</span><br><span class="line">        error = np.<span class="built_in">sum</span>(np.<span class="built_in">abs</span>(old_value - true_value))</span><br><span class="line">        <span class="keyword">if</span> error &lt; <span class="number">1e-2</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    true_value[<span class="number">0</span>] = true_value[-<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> true_value</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1204,8 +1238,6 @@
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
 
     </div>
   </footer>
@@ -1226,7 +1258,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
 
 
 
