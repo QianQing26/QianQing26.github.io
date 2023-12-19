@@ -19,23 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="千顷&#x2F;QianQing26">
-<meta property="og:url" content="http://qianqing26.github.io/tags/test/index.html">
+    <meta name="description" content="本次我们来讨论一类叫线性分式的函数，其比仿射函数更加普遍，而且也是保凸的。 透视函数我们定义$P:\mathbf{R}^{n+1}\rightarrow\mathbf{R}^n，P(z,t)&#x3D;z&#x2F;t$为透视函数，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="凸优化9：保凸运算2：线性分式及透视函数">
+<meta property="og:url" content="http://qianqing26.github.io/2023/12/19/%E5%87%B8%E4%BC%98%E5%8C%969%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E5%BC%8F%E5%8F%8A%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="千顷&#x2F;QianQing26">
+<meta property="og:description" content="本次我们来讨论一类叫线性分式的函数，其比仿射函数更加普遍，而且也是保凸的。 透视函数我们定义$P:\mathbf{R}^{n+1}\rightarrow\mathbf{R}^n，P(z,t)&#x3D;z&#x2F;t$为透视函数，">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-18T16:31:49.000Z">
+<meta property="article:modified_time" content="2023-12-18T16:40:44.825Z">
 <meta property="article:author" content="QianQing26">
+<meta property="article:tag" content="凸优化">
+<meta property="article:tag" content="凸集">
+<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qianqing26.github.io/tags/test/">
+<link rel="canonical" href="http://qianqing26.github.io/2023/12/19/%E5%87%B8%E4%BC%98%E5%8C%969%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E5%BC%8F%E5%8F%8A%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/test/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2023/12/19/%E5%87%B8%E4%BC%98%E5%8C%969%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E5%BC%8F%E5%8F%8A%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/","path":"2023/12/19/凸优化9：保凸运算2：线性分式及透视函数/","title":"凸优化9：保凸运算2：线性分式及透视函数"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: test | 千顷/QianQing26</title>
+<title>凸优化9：保凸运算2：线性分式及透视函数 | 千顷/QianQing26</title>
   
 
 
@@ -97,7 +104,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -110,6 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">透视函数</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -157,50 +165,132 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">test
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/19/%E5%87%B8%E4%BC%98%E5%8C%969%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E5%BC%8F%E5%8F%8A%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="凸优化9：保凸运算2：线性分式及透视函数 | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          凸优化9：保凸运算2：线性分式及透视函数
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2023-12-19 00:31:49 / 修改时间：00:40:44" itemprop="dateCreated datePublished" datetime="2023-12-19T00:31:49+08:00">2023-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>本次我们来讨论一类叫<strong>线性分式</strong>的函数，其比仿射函数更加普遍，而且也是保凸的。</p>
+<h3 id="透视函数"><a href="#透视函数" class="headerlink" title="透视函数"></a>透视函数</h3><p>我们定义$P:\mathbf{R}^{n+1}\rightarrow\mathbf{R}^n，P(z,t)=z/t$为<strong>透视函数</strong>，</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-12-06T23:27:50+08:00"
-              content="2023-12-06">
-          12-06
-        </time>
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="QianQing26 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="QianQing26 支付宝">
+        <span>支付宝</span>
       </div>
 
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/12/06/hello/" itemprop="url">
-          <span itemprop="name">hello</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
   </div>
-  
-  
-  
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag"># 凸优化</a>
+              <a href="/tags/%E5%87%B8%E9%9B%86/" rel="tag"># 凸集</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/18/Verilog%EF%BC%9A%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1/" rel="prev" title="Verilog：时序逻辑电路建模">
+                  <i class="fa fa-angle-left"></i> Verilog：时序逻辑电路建模
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
 
 </div>
   </main>

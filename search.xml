@@ -285,7 +285,31 @@
   <entry>
     <title>凸优化8：保凸运算1</title>
     <url>/2023/12/13/%E5%87%B8%E4%BC%98%E5%8C%968%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%971/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>在之前的内容中我们讨论了一些凸集。接下来会讨论一些保凸运算，顾名思义，保凸运算会保持集合的凸的性质。研究保凸运算的意义在于，这样我们可以通过一些已知的凸集去构造新的凸集，同时也可以利用这些运算的保凸的性质去确定一些其他集合的凸性。</p>
+<h3 id="交集-Intersection"><a href="#交集-Intersection" class="headerlink" title="交集(Intersection)"></a>交集(Intersection)</h3><p>交集是保凸的，也就是说 ，如果$S_1,S_2$是凸集，那么$S_1\cap S_2$也是凸集。这个性质显然可以推广到无穷个集合的交运算：如果对于任意$\alpha \in \mathcal{A}$，$S_{\alpha}$都是凸的，那么$\bigcap_{\alpha\in\mathcal{A}}S_{\alpha}$也是凸的。</p>
+<p>一个简单的例子是，多面体是半空间和超平面的交集，因此多面体是空的。</p>
+<p>一个闭集$S$是包含它的所有半空间的叫交集：$S=\bigcap\{\mathcal{H}|\mathcal{H}是半空间，S\subseteq\mathcal{H}\}$</p>
+<p>与此同时，并集是不具有保凸性质的，容易举出的例子是：一般来说两条直线的并集不是凸集。</p>
+<h3 id="仿射函数-Affine-functions"><a href="#仿射函数-Affine-functions" class="headerlink" title="仿射函数(Affine functions)"></a>仿射函数(Affine functions)</h3><p>如果一个函数$f:\mathbf{R}^n\rightarrow\mathbf{R}^m$是一个线性函数和一个常数/常向量的和，即具有$f=Ax+b$的形式，其中$A\in\mathbf{R}^{m\times n},b\in\mathbf{R}^m$，那么我们说函数$f$是仿射的。</p>
+<p>假设$f:\mathbf{R}^n\rightarrow\mathbf{R}^m$是一个仿射函数，并且$S\subseteq\mathbf{R}^n$是凸的，那么$S$在$f$下的象$f(S)=\{f(x)|x\in S\}$也是凸的。</p>
+<p>上面的这个结论从几何上是容易解释的：一个点在一个线段上，那么经过$f$映射后，点的像还在线段的像上。</p>
+<p>由上面的结论，容易得出类似的：如果$f:\mathbf{R}^k\rightarrow\mathbf{R}^n$是仿射函数，那么$S$在$f$下的原像$f^{-1}(S)=\{x|f(x)\in S\}$是凸的。</p>
+<p>两个简单例子是<strong>伸缩和平移</strong>。还有例子是，一个凸集向某几个坐标的<strong>投影</strong>是凸的，即如果$S\subseteq\mathbf{R}^m\times\mathbf{R}^n$是凸集，那么$T=\{x_1\in\mathbf{R}^m|(x_1x_2)\in S,for some\quad x_2\in\mathbf{R}^n\}$是凸集。</p>
+<p>两个<strong>集合的和</strong>可以定义为：$S_1+S_2=\{x+y|x\in S_1,y\in S_2\}$. 如果$S_1$和$S_2$是凸集，那么$S_1+S_2$是凸的。</p>
+<p>如果$S_1,S_2$是凸的，那么他们的直积$S_1\times S_2=\{(x_1,x_2)|s_1\in S_1,x_2\in S_2\}$也是凸集。这个集合在线性函数$f(x_1.x_2)=x_1+x_2$的像下是和$S_1+S_2$。</p>
+<blockquote>
+<p>例如，椭球$\mathcal{E}=\{x|(x-x_0)^TP^{-1}(x-x_c)\leq 1\}$是单位Euclid球$\{u|||u||_2\leq1\}$在仿射映射$f(u)=P^{1/2}u+x_0$下的像。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸集</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>凸集</tag>
+        <tag>数学</tag>
+      </tags>
   </entry>
   <entry>
     <title>Verilog：锁存器与触发器建模</title>
@@ -335,6 +359,22 @@
       </categories>
       <tags>
         <tag>Verilog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凸优化9：保凸运算2：线性分式及透视函数</title>
+    <url>/2023/12/19/%E5%87%B8%E4%BC%98%E5%8C%969%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E5%BC%8F%E5%8F%8A%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>本次我们来讨论一类叫<strong>线性分式</strong>的函数，其比仿射函数更加普遍，而且也是保凸的。</p>
+<h3 id="透视函数"><a href="#透视函数" class="headerlink" title="透视函数"></a>透视函数</h3><p>我们定义$P:\mathbf{R}^{n+1}\rightarrow\mathbf{R}^n，P(z,t)=z/t$为<strong>透视函数</strong>，</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸集</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>凸集</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
 </search>
