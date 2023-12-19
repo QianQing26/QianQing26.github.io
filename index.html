@@ -197,7 +197,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-12-19 00:31:49 / 修改时间：00:40:44" itemprop="dateCreated datePublished" datetime="2023-12-19T00:31:49+08:00">2023-12-19</time>
+      <time title="创建时间：2023-12-19 00:31:49 / 修改时间：21:49:31" itemprop="dateCreated datePublished" datetime="2023-12-19T00:31:49+08:00">2023-12-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -224,7 +224,29 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>本次我们来讨论一类叫<strong>线性分式</strong>的函数，其比仿射函数更加普遍，而且也是保凸的。</p>
-<h3 id="透视函数"><a href="#透视函数" class="headerlink" title="透视函数"></a>透视函数</h3><p>我们定义$P:\mathbf{R}^{n+1}\rightarrow\mathbf{R}^n，P(z,t)=z/t$为<strong>透视函数</strong>，</p>
+<h3 id="透视函数-The-perspective-function"><a href="#透视函数-The-perspective-function" class="headerlink" title="透视函数(The perspective function)"></a>透视函数(The perspective function)</h3><p>我们定义$P:\mathbf{R}^{n+1}\rightarrow\mathbf{R}^n，P(z,t)=z/t$为<strong>透视函数</strong>，其定义域为$\mathbf{dom}P=\mathbf{R}^n\times\mathbf{R}_{++}$。此处$\mathbf{R}_{++}$表示正实数集合。</p>
+<p>透视函数可以理解为，对一个$n+1$维的向量，用最后一维除前$n$维，并且将最后一维舍去。也即对最后一维进行了规范化。</p>
+<blockquote>
+<p>可以用小孔成像来理解透视函数，如下图的小孔成像，$x_3=0$上方的一系列点透过小孔映射到了$x_3=-1$上。原来的点何其对应的像的映射就对应了透视函数。</p>
+</blockquote>
+<p><img src="img/透视函数.png" alt=""></p>
+<p><img src="透视函数.png" alt=""></p>
+<h4 id="透视函数的保凸性"><a href="#透视函数的保凸性" class="headerlink" title="透视函数的保凸性"></a>透视函数的保凸性</h4><p>通过小孔成像的例子，我们可以很直观地理解透视函数的一系列性质。</p>
+<p>如果$C\subseteq P$是凸集，那么它的像$P(C)\{P(x)|x\in C\}$也是凸集。这个结论很直观：通过小孔观察凸的物体还是凸的。</p>
+<p>更加严谨地，我们可以证明线段在透视函数地作用下会被映射为线段。假设$x=(\widetilde x,x_{n+1}),y=(\widetilde y,y_{n+1})$，并且$x_{n+1},y_{n+1}&gt;0$，那么对于$0\leq\theta\leq1$，就有：</p>
+<p>$P(\theta x+(1-\theta)y)=\cfrac{\theta\widetilde x+(1-\theta\widetilde )y}{\theta x_{n+1}+(1-\theta)y_{n+1}}=\mu P(x)+(1-\mu)P$，其中$\mu=\cfrac{\theta x_{n+1}}{\theta x_{n+1}+(1-\theta)y_{n+1}}\in\left[0,1\right]$</p>
+<p>容易知道其中$\mu,\theta$的关系是单调的：当$\theta$在0，1之间变化形成线段$[x,y]$时，$\mu$也在0，1之间形成线段$[P(x),P(y)]$，这说明$P([x,y])=[P(x),P(y)]$。</p>
+<p>接着，假设$C$是凸的，并且$C\subseteq \mathbf{dom}P,\quad x,y\in C$。为了显示$P(C)$的凸性，我们需要说明$[P(x),P(y)]$在$P(C)$中。而这是显然的，这条线段就是$[x,y]$在$P$的像，因为属于$P(C)$。</p>
+<h4 id="透视函数的反函数的保凸性"><a href="#透视函数的反函数的保凸性" class="headerlink" title="透视函数的反函数的保凸性"></a>透视函数的反函数的保凸性</h4><p>一个凸集在透视函数下面的原像也是凸的：如果$C\subseteq \mathbf{R}^n$是凸集，那么$P^{-1}(C)=\{(x,t)\in\mathbf{R}^{n+1}|x/t\in C,t&gt;0\}$也是凸的。证明如下，</p>
+<p>假设$(x,t)\in P^{-1}(C),(y,s)\in P^{-1}C,0\leq\theta\leq1$。需要说明$\theta(x,t)_(1-\theta)(y,s)\in P^{-1}(C)$，也即$\cfrac{\theta x+(1-\theta)y}{\theta t+(1-\theta)s}\in C$。</p>
+<p>显然，$\theta t+(1-\theta)s&gt;0$。可以从下式看出：</p>
+<p>$\cfrac{\theta x+(1-\theta)y}{\theta t+(1-\theta)s}=\mu(x/t)+(1-\mu)(y/s)$，其中$\mu=\cfrac{\theta t}{\theta t+(1-\theta)s}\in[0,1].$</p>
+<p>从而知道上面需要说明的结论是显然的。</p>
+<h3 id="线性分式函数-Linear-fractional-functions"><a href="#线性分式函数-Linear-fractional-functions" class="headerlink" title="线性分式函数(Linear-fractional functions)"></a>线性分式函数(Linear-fractional functions)</h3><p><strong>线性分式函数</strong>是由透视函数和仿射函数复合而成的。设$g:\mathbf{R}^n\rightarrow\mathbf{R}^{m+1}$是仿射的，即$g(x)=\begin{bmatrix}A\\c^T\end{bmatrix}x+\begin{bmatrix}b\\d\end{bmatrix}$，其中$A\in\mathbf{R}^{m\times n}$,$b\in\mathbf{R}^m$,$c\in\mathbf{R}^n$,$d\in\mathbf{R}$.</p>
+<p>则由$f=P\circ g$给出的函数$f:\mathbf{R}^n\rightarrow\mathbf{R}^m$ $f(x)=(Ax+b)/(c^Tx+d)$         $\mathbf{dom}f=\{x|c^Tx+d&gt;0\}$称为<strong>线性分式</strong>（或<strong>投射</strong>）函数。如果$c=0,d&gt;0$则$f$的定义域为$\mathbf{R}^n$，并且$f$是仿射函数。因此我们知道仿射函数和线性函数都是特殊的线性分式函数。</p>
+<h4 id="线性分式函数的投射解释"><a href="#线性分式函数的投射解释" class="headerlink" title="线性分式函数的投射解释"></a>线性分式函数的投射解释</h4><p>可以将线性分式函数表示为：将矩阵$Q=\begin{bmatrix}A &amp; b\\ c^T&amp; d\end{bmatrix}\in\mathbf{R}^{(m+1)\times(n+1)}$作用于（左乘）点$(x,1)$，得到$(Ax+b,c^Tx+d)$；然后将所得的结果进行归一化（伸缩变换）看，使得最后一个分量为1，得到$(f(x),1)$.</p>
+<h4 id="线性分式函数的保凸性"><a href="#线性分式函数的保凸性" class="headerlink" title="线性分式函数的保凸性"></a>线性分式函数的保凸性</h4><p>线性分式函数是保凸的。如果$C$是凸集并且在$f$的定义域中（即任意$x\in C$满足$c^T+d&gt;0$），那么$C$的像$f(x)$也是凸集。</p>
+<p>根据前面的结果可以知道线性分式函数的逆映射也是保凸的。</p>
 
       
     </div>
