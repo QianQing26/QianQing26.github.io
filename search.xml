@@ -387,7 +387,7 @@
 <p>则由$f=P\circ g$给出的函数$f:\mathbf{R}^n\rightarrow\mathbf{R}^m$ $f(x)=(Ax+b)/(c^Tx+d)$         $\mathbf{dom}f=\{x|c^Tx+d&gt;0\}$称为<strong>线性分式</strong>（或<strong>投射</strong>）函数。如果$c=0,d&gt;0$则$f$的定义域为$\mathbf{R}^n$，并且$f$是仿射函数。因此我们知道仿射函数和线性函数都是特殊的线性分式函数。</p>
 <h4 id="线性分式函数的投射解释"><a href="#线性分式函数的投射解释" class="headerlink" title="线性分式函数的投射解释"></a>线性分式函数的投射解释</h4><p>可以将线性分式函数表示为：将矩阵$Q=\begin{bmatrix}A &amp; b\\ c^T&amp; d\end{bmatrix}\in\mathbf{R}^{(m+1)\times(n+1)}$作用于（左乘）点$(x,1)$，得到$(Ax+b,c^Tx+d)$；然后将所得的结果进行归一化（伸缩变换）看，使得最后一个分量为1，得到$(f(x),1)$.</p>
 <h4 id="线性分式函数的保凸性"><a href="#线性分式函数的保凸性" class="headerlink" title="线性分式函数的保凸性"></a>线性分式函数的保凸性</h4><p>线性分式函数是保凸的。如果$C$是凸集并且在$f$的定义域中（即任意$x\in C$满足$c^T+d&gt;0$），那么$C$的像$f(x)$也是凸集。</p>
-<p>根据前面的结果可以知道线性分式函数的逆映射也是保凸的。</p>
+<p>根据前面的结果可以知道线性分式函数的逆映射也是保凸的</p>
 ]]></content>
       <categories>
         <category>凸优化</category>
@@ -397,6 +397,40 @@
         <tag>凸优化</tag>
         <tag>凸集</tag>
         <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Verilog：reg和wire的区别</title>
+    <url>/2023/12/22/Verilog%EF%BC%9Areg%E5%92%8Cwire%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h3 id="关于wire"><a href="#关于wire" class="headerlink" title="关于wire"></a>关于<code>wire</code></h3><p>在Verilog中，<code>wire</code>可以看作一个导线（或则任意位宽的总线），需要注意的几点是：</p>
+<ol>
+<li><code>wire</code>可以用于将实例化时的输入输出端口连接到电路的其他地方</li>
+<li><code>wire</code>类型必须被其他东西驱动而不能用于储存其他数据</li>
+<li><code>wire</code>类型在<code>always@</code>块中不能作为<code>=</code>和<code>&lt;=</code>的左值</li>
+<li><code>wire</code>是<code>assign</code>语句的左值唯一合法的类型</li>
+<li><code>wire</code>只能用于组合逻辑电路</li>
+</ol>
+<h3 id="关于reg"><a href="#关于reg" class="headerlink" title="关于reg"></a>关于<code>reg</code></h3><p><code>reg</code>和<code>wire</code>比较类似，但是能够储存信息，类似寄存器，需要注意的几点是：</p>
+<ol>
+<li><code>reg</code>可以在实例化模块时连接其输入</li>
+<li><code>reg</code>不可以再实例化模块时连接其输出</li>
+<li><code>reg</code>可以在声明模块时作为其输出</li>
+<li><code>reg</code>不可以在声明模块时作为其输入</li>
+<li><code>reg</code>类型时<code>always@</code>块中作为<code>=</code>,<code>&lt;=</code>左值的唯一合法类型</li>
+<li><code>reg</code>不能作为<code>assign</code>语句的左值</li>
+<li><code>reg</code>类型可以创建寄存器，以用于类似于<code>always@(posedge)</code>的块</li>
+<li><code>reg</code>可以描述组合逻辑也可以描述时序逻辑</li>
+</ol>
+<h3 id="reg和wire的共性"><a href="#reg和wire的共性" class="headerlink" title="reg和wire的共性"></a><code>reg</code>和<code>wire</code>的共性</h3><ol>
+<li>都可以作为实例化模块时的输入</li>
+<li>都可以作为<code>always@</code>块中<code>=</code>,<code>&lt;=</code>的右值以及<code>assign</code>的右值</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Verilog</category>
+      </categories>
+      <tags>
+        <tag>Verilog</tag>
       </tags>
   </entry>
 </search>
