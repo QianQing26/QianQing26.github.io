@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="仿射集合如果通过集合$C\subseteq \mathbb{R}^n$中的任意两个不同点的直线仍在集合$C$中，那么称集合$C$是仿射的。也即，$\forall x_1,x_2\in C$及$\theta\in\mathbb{R}$，有$\theta x_1+(1-\theta)x_2\in C$ $x_1,x_2,\dots,x_k$都是集合$C$中的点，$\theta_1,\theta_2,\">
+    <meta name="description" content="正常锥（Proper cones）我们称一个锥$K\subseteq \mathbf{R}^n$是正常锥如果其满足以下四个条件：  $K$是凸的 $K$是闭的 $K$是实的，即包含非空的内部 $K$是尖(pointed)的，即不包含直线，或者等价的说：$x\in K,-x\in K\Rightarrow x&#x3D;0$  广义不等式（Generalized inequality） 补充：偏序关系，$A\">
 <meta property="og:type" content="article">
-<meta property="og:title" content="凸优化1：仿射集">
-<meta property="og:url" content="http://qianqing26.github.io/2023/12/07/%E5%87%B8%E4%BC%98%E5%8C%961/index.html">
+<meta property="og:title" content="凸优化10：正常锥与广义不等式">
+<meta property="og:url" content="http://qianqing26.github.io/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/index.html">
 <meta property="og:site_name" content="千顷&#x2F;QianQing26">
-<meta property="og:description" content="仿射集合如果通过集合$C\subseteq \mathbb{R}^n$中的任意两个不同点的直线仍在集合$C$中，那么称集合$C$是仿射的。也即，$\forall x_1,x_2\in C$及$\theta\in\mathbb{R}$，有$\theta x_1+(1-\theta)x_2\in C$ $x_1,x_2,\dots,x_k$都是集合$C$中的点，$\theta_1,\theta_2,\">
+<meta property="og:description" content="正常锥（Proper cones）我们称一个锥$K\subseteq \mathbf{R}^n$是正常锥如果其满足以下四个条件：  $K$是凸的 $K$是闭的 $K$是实的，即包含非空的内部 $K$是尖(pointed)的，即不包含直线，或者等价的说：$x\in K,-x\in K\Rightarrow x&#x3D;0$  广义不等式（Generalized inequality） 补充：偏序关系，$A\">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-07T11:01:15.000Z">
-<meta property="article:modified_time" content="2023-12-10T08:44:01.306Z">
+<meta property="article:published_time" content="2023-12-24T15:30:02.000Z">
+<meta property="article:modified_time" content="2023-12-24T15:59:31.998Z">
 <meta property="article:author" content="QianQing26">
 <meta property="article:tag" content="凸优化">
 <meta property="article:tag" content="凸集">
@@ -35,14 +35,14 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qianqing26.github.io/2023/12/07/%E5%87%B8%E4%BC%98%E5%8C%961/">
+<link rel="canonical" href="http://qianqing26.github.io/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2023/12/07/%E5%87%B8%E4%BC%98%E5%8C%961/","path":"2023/12/07/凸优化1/","title":"凸优化1：仿射集"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/","path":"2023/12/24/凸优化10：正常锥与广义不等式/","title":"凸优化10：正常锥与广义不等式"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>凸优化1：仿射集 | 千顷/QianQing26</title>
+<title>凸优化10：正常锥与广义不等式 | 千顷/QianQing26</title>
   
 
 
@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BF%E5%B0%84%E9%9B%86%E5%90%88"><span class="nav-number">1.</span> <span class="nav-text">仿射集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BF%E5%B0%84%E7%BB%B4%E6%95%B0%E4%B8%8E%E7%9B%B8%E5%AF%B9%E5%86%85%E9%83%A8"><span class="nav-number">2.</span> <span class="nav-text">仿射维数与相对内部</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E9%94%A5%EF%BC%88Proper-cones%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">正常锥（Proper cones）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F%EF%BC%88Generalized-inequality%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">广义不等式（Generalized inequality）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">2.1.</span> <span class="nav-text">广义不等式的性质</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,7 +176,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/07/%E5%87%B8%E4%BC%98%E5%8C%961/">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -189,12 +189,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="凸优化1：仿射集 | 千顷/QianQing26">
+      <meta itemprop="name" content="凸优化10：正常锥与广义不等式 | 千顷/QianQing26">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          凸优化1：仿射集
+          凸优化10：正常锥与广义不等式
         </h1>
 
         <div class="post-meta-container">
@@ -204,15 +204,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-12-07 19:01:15" itemprop="dateCreated datePublished" datetime="2023-12-07T19:01:15+08:00">2023-12-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-10 16:44:01" itemprop="dateModified" datetime="2023-12-10T16:44:01+08:00">2023-12-10</time>
+      <time title="创建时间：2023-12-24 23:30:02 / 修改时间：23:59:31" itemprop="dateCreated datePublished" datetime="2023-12-24T23:30:02+08:00">2023-12-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -244,33 +238,38 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="仿射集合"><a href="#仿射集合" class="headerlink" title="仿射集合"></a>仿射集合</h2><p>如果通过集合$C\subseteq \mathbb{R}^n$中的任意两个不同点的直线仍在集合$C$中，那么称集合$C$是<strong>仿射</strong>的。也即，$\forall x_1,x_2\in C$及$\theta\in\mathbb{R}$，有$\theta x_1+(1-\theta)x_2\in C$</p>
-<p>$x_1,x_2,\dots,x_k$都是集合$C$中的点，$\theta_1,\theta_2,\dots,\theta_k$都为正数，且$\theta_1+\theta_2+\dots+\theta_k=1$，则称具有$\theta_1 x_1+\theta_2 x_2+\dots+\theta_kx_k$的点称为$x_1,x_2,\dots,x_k$的<strong>仿射组合</strong>。可以归纳得到，一个仿射集合包含其中任意多点的仿射组合。</p>
-<p>由于$\theta_1+\theta_2+\cdots+\theta_k=1$，很容易知道，对于$x_0\in C$集合$V=C-x_0=\{x-x_0|x\in C\}$对于加法和数乘是封闭的。我们称这样的集合$V$为仿射集合$C$的子空间。因此，仿射集合$C$可以表示为$C=V+x_0]\{v+x_0|v\in V\}$。即子空间加上一个偏置。</p>
-<p>定义仿射集合$C$的<strong>维数</strong>为子空间$V=C-x_0$的维数，其中$x_0$是$C$中的任意元素。</p>
-<blockquote>
-<p>以上的概念与线性方程组的解的结构很相似，由以上的概念很容易推出，任意仿射集合可以表示为一个线性方程组的解集。</p>
-<p>由上面的类比，仿射集合$C$的维数也可以类比为线性方程组中未知数的数量。</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="正常锥（Proper-cones）"><a href="#正常锥（Proper-cones）" class="headerlink" title="正常锥（Proper cones）"></a>正常锥（Proper cones）</h3><p>我们称一个锥$K\subseteq \mathbf{R}^n$是<strong>正常锥</strong>如果其满足以下四个条件：</p>
+<ol>
+<li>$K$是凸的</li>
+<li>$K$是闭的</li>
+<li>$K$是<strong>实</strong>的，即包含非空的内部</li>
+<li>$K$是<strong>尖</strong>(pointed)的，即不包含直线，或者等价的说：$x\in K,-x\in K\Rightarrow x=0$</li>
+</ol>
+<h3 id="广义不等式（Generalized-inequality）"><a href="#广义不等式（Generalized-inequality）" class="headerlink" title="广义不等式（Generalized inequality）"></a>广义不等式（Generalized inequality）</h3><blockquote>
+<p>补充：<strong>偏序关系</strong>，$A\neq \emptyset,R\subseteq A\times A$，如果关系$R$是自反、反对称、传递的，那么$R$是$A$上的偏序关系，$xRy$可以用$x\preceq y$表示。例如小于等于关系就是$\mathbf{R}$上的偏序关系</p>
 </blockquote>
-<p>我们称集合$C\subseteq \mathbf{R}^n$中的点的所有仿射组合组成的集合为$C$的<strong>仿射包</strong>，记为$\mathbf{aff}C=\{\theta_1x_1+\dots+\theta_kx_k|x_1,\dots,x_k \in C,\theta_1+\dots+\theta_k=1\}$</p>
-<p>仿射包是包含$C$的最小的仿射集合。</p>
-<h2 id="仿射维数与相对内部"><a href="#仿射维数与相对内部" class="headerlink" title="仿射维数与相对内部"></a>仿射维数与相对内部</h2><p>定义集合$C$的<strong>仿射维数</strong>为其仿射包的维数。</p>
+<p>正常锥$K$可以用来定义<strong>广义不等式</strong>，即$\mathbf{R}^n$上的偏序关系。正常锥可以定义$\mathbf{R}^n$上的偏序关系：$x\preceq_Ky\Leftrightarrow y-x\in K$</p>
+<p>$x\preceq_K y$也可以记作$y\succeq_K x$。类似地，可以定义严格偏序关系：$x\prec_Ky\Leftrightarrow y-x\in \mathbf{int}K$.</p>
 <blockquote>
-<p>通俗解释就是说，仿射组合得到的空间是几维，仿射包就是几维。</p>
+<p>当$K=\mathbf{R}_+$时，偏序关系$\preceq_K$就是通常意义上的$\leq$，相应的，严格偏序关系$\prec_K$与$\mathbf{R}$上的$&lt;$对应。因此，广义不等式包含了$\mathbf{R}$上的不等式，这是广义不等式的一种特殊情况</p>
 </blockquote>
-<p>若集合$C\subseteq \mathbf{R}^n$的仿射维数小于$n$，那么这个集合在仿射集合$\mathbf{aff}C\neq \mathbf{R}^n$中。定义集合$C$上的<strong>相对内部</strong>为$\mathbf{aff}C$的内部，记为$\mathbf{relint}C$。</p>
-<p>$\mathbf{relint}C=\{x\in C|B(x,r)\cap\mathbf{aff}C\subseteq C\text{ for some }r&gt;0\}$</p>
-<p>其中$B(x,r)=\{y|\left|\left|y-x\right|\right|\leq r\}$，即半径为$r$，中心为$x$并由范数$||\cdot||$定义的球。此处的范数可以是任意范数。 </p>
-<blockquote>
-<p>例如$\mathbf{R}^3$中的一个正方形，定义</p>
-<p>$C=\{x\in\mathbf{R}^3|-1\leq x_1\leq 1,-1\leq x_2\leq1,x_3=0\}$。</p>
-<p>其仿射包为$x_1,x_2$的平面，$C$的内部为空，但其相对内部</p>
-<p>$\mathbf{relint}C=\{x\in\mathbf{R}^3|-1&lt;x_1&lt;1,-1&lt;x_2&lt;1,x_3=0\}$</p>
-</blockquote>
-<p>可以定义<strong>相对边界</strong>$\mathbf{cl}C-\mathbf{relint}C$，此处$\mathbf{cl}C$表示$C$的闭包。</p>
-<blockquote>
-<p>在上面正方形的那个例子中，正方形（在$\mathbf{R}^3$中）的边界是其自身，而相对边界是其边框$\{x\in\mathbf{R}^3|max\{|x_1|,|x_2|\}=1,x_3=0\}$</p>
-</blockquote>
+<h4 id="广义不等式的性质"><a href="#广义不等式的性质" class="headerlink" title="广义不等式的性质"></a>广义不等式的性质</h4><ol>
+<li>$\preceq_K$对加法保序：如果$x\preceq_K y$并且$u\preceq_K v$，那么$x+u\preceq_K y+v$</li>
+<li>$\preceq_K$具有传递性</li>
+<li>$\preceq_K$对非负数乘是保序的：如果$x\preceq_K y,\alpha\geq0$，那么$\alpha x\preceq_K \alpha y$</li>
+<li>$\preceq_K$是自反的</li>
+<li>$\preceq_K$是反对称的</li>
+<li>$\preceq_K$对极限运算是保序的：如果对于$i=1,2,\dots$，均有$x_i\preceq_K y_i$，那么$i\rightarrow \infty,x_i\rightarrow x,y_i\rightarrow y$有$x\preceq_K y$</li>
+</ol>
+<p>相应的严格广义不等式$\prec_K$也有一些性质</p>
+<ol>
+<li>$x \prec_K y\Rightarrow x\preceq_K y$</li>
+<li>$\prec_K$对加法保序</li>
+<li>$\prec_K$对非负数乘保序</li>
+<li>$\prec_K$反自反：$x\nprec_K x$</li>
+<li>$x\prec_K y$，则存在足够小的$u,v$使得$x+u\prec_K y+v$</li>
+</ol>
+<p>以上这些性质从定义和正常锥、凸锥的知识很容易推出</p>
 
     </div>
 
@@ -307,14 +306,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/12/06/hello/" rel="prev" title="hello">
-                  <i class="fa fa-angle-left"></i> hello
+                <a href="/2023/12/22/Verilog%EF%BC%9Areg%E5%92%8Cwire%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="prev" title="Verilog：reg和wire的区别">
+                  <i class="fa fa-angle-left"></i> Verilog：reg和wire的区别
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/12/09/%E5%87%B8%E4%BC%98%E5%8C%962%EF%BC%9A%E5%87%B8%E9%9B%86/" rel="next" title="凸优化2：凸集">
-                  凸优化2：凸集 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

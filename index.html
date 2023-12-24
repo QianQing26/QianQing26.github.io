@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,6 +158,120 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/" class="post-title-link" itemprop="url">凸优化10：正常锥与广义不等式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-24 23:30:02 / 修改时间：23:59:31" itemprop="dateCreated datePublished" datetime="2023-12-24T23:30:02+08:00">2023-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="正常锥（Proper-cones）"><a href="#正常锥（Proper-cones）" class="headerlink" title="正常锥（Proper cones）"></a>正常锥（Proper cones）</h3><p>我们称一个锥$K\subseteq \mathbf{R}^n$是<strong>正常锥</strong>如果其满足以下四个条件：</p>
+<ol>
+<li>$K$是凸的</li>
+<li>$K$是闭的</li>
+<li>$K$是<strong>实</strong>的，即包含非空的内部</li>
+<li>$K$是<strong>尖</strong>(pointed)的，即不包含直线，或者等价的说：$x\in K,-x\in K\Rightarrow x=0$</li>
+</ol>
+<h3 id="广义不等式（Generalized-inequality）"><a href="#广义不等式（Generalized-inequality）" class="headerlink" title="广义不等式（Generalized inequality）"></a>广义不等式（Generalized inequality）</h3><blockquote>
+<p>补充：<strong>偏序关系</strong>，$A\neq \emptyset,R\subseteq A\times A$，如果关系$R$是自反、反对称、传递的，那么$R$是$A$上的偏序关系，$xRy$可以用$x\preceq y$表示。例如小于等于关系就是$\mathbf{R}$上的偏序关系</p>
+</blockquote>
+<p>正常锥$K$可以用来定义<strong>广义不等式</strong>，即$\mathbf{R}^n$上的偏序关系。正常锥可以定义$\mathbf{R}^n$上的偏序关系：$x\preceq_Ky\Leftrightarrow y-x\in K$</p>
+<p>$x\preceq_K y$也可以记作$y\succeq_K x$。类似地，可以定义严格偏序关系：$x\prec_Ky\Leftrightarrow y-x\in \mathbf{int}K$.</p>
+<blockquote>
+<p>当$K=\mathbf{R}_+$时，偏序关系$\preceq_K$就是通常意义上的$\leq$，相应的，严格偏序关系$\prec_K$与$\mathbf{R}$上的$&lt;$对应。因此，广义不等式包含了$\mathbf{R}$上的不等式，这是广义不等式的一种特殊情况</p>
+</blockquote>
+<h4 id="广义不等式的性质"><a href="#广义不等式的性质" class="headerlink" title="广义不等式的性质"></a>广义不等式的性质</h4><ol>
+<li>$\preceq_K$对加法保序：如果$x\preceq_K y$并且$u\preceq_K v$，那么$x+u\preceq_K y+v$</li>
+<li>$\preceq_K$具有传递性</li>
+<li>$\preceq_K$对非负数乘是保序的：如果$x\preceq_K y,\alpha\geq0$，那么$\alpha x\preceq_K \alpha y$</li>
+<li>$\preceq_K$是自反的</li>
+<li>$\preceq_K$是反对称的</li>
+<li>$\preceq_K$对极限运算是保序的：如果对于$i=1,2,\dots$，均有$x_i\preceq_K y_i$，那么$i\rightarrow \infty,x_i\rightarrow x,y_i\rightarrow y$有$x\preceq_K y$</li>
+</ol>
+<p>相应的严格广义不等式$\prec_K$也有一些性质</p>
+<ol>
+<li>$x \prec_K y\Rightarrow x\preceq_K y$</li>
+<li>$\prec_K$对加法保序</li>
+<li>$\prec_K$对非负数乘保序</li>
+<li>$\prec_K$反自反：$x\nprec_K x$</li>
+<li>$x\prec_K y$，则存在足够小的$u,v$使得$x+u\prec_K y+v$</li>
+</ol>
+<p>以上这些性质从定义和正常锥、凸锥的知识很容易推出</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1077,97 +1191,6 @@
 <p>椭球的方程：</p>
 <p>$\begin{aligned}&amp;\cfrac{x_1^2}{a_1^2}+\cfrac{x_2^2}{a_2^2}+\dots+\cfrac{x_n^2}{a_n^2}=1\\\Leftrightarrow&amp;x^Teye(\cfrac1{a_1^2},\cfrac{1}{a_2^2},\dots,\cfrac{1}{a_n^2})x=1\end{aligned}$</p>
 <p>取$P=eye(a_1^2,a_2^2,\dots,a_n^2)$，则每个轴的长度就为$\sqrt{\lambda_i}$</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%963%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E4%B8%8E%E5%8D%8A%E7%A9%BA%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%963%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E4%B8%8E%E5%8D%8A%E7%A9%BA%E9%97%B4/" class="post-title-link" itemprop="url">凸优化3：超平面与半空间</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-12-10 16:09:39 / 修改时间：16:41:43" itemprop="dateCreated datePublished" datetime="2023-12-10T16:09:39+08:00">2023-12-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="超平面-Hyperplanes"><a href="#超平面-Hyperplanes" class="headerlink" title="超平面(Hyperplanes)"></a>超平面(Hyperplanes)</h2><p><strong>超平面</strong>是具有如下形式的集合：$\{x|a^Tx=b\}$. 其中$a\in\mathbf{R}^n,a\neq 0,b\in\mathbf{R}$。</p>
-<p>解析上讲，超平面是关于$x$的非平凡线性方程的解空间，由之前的讨论，可以知道超平面是一个仿射集合。</p>
-<p>几何上讲，超平面$\{x|a^Tx=b\}$可以解释为与给定向量$a$的内积为常数的点的集合，或者法线方向为$a$的超平面，而常数$b\in\mathbf{R}$决定那个了这个平面从原点开始的偏移量。更直观地我们可以将超平面表现为以下形式$\{x|a^T(x-x_0)=0\}$. 其中$x_0$为超平面上任意一点（满足$a^Tx_0=b$）。进一步地，可以表示为$\{x|a^T(x-x_0)=0\}=x_0+a^{\perp}$，其中$a$的正交补$a^{\perp}=\{v|a^Tv=0\}$.</p>
-<p>从上面的这个表示可以看出，超平面有偏移$x_0$加上正交于向量$a$的向量构成。</p>
-<h2 id="半空间-Halfspaces"><a href="#半空间-Halfspaces" class="headerlink" title="半空间(Halfspaces)"></a>半空间(Halfspaces)</h2><p>一个超平面将$\mathbf{R}^n$划分为了两个<strong>半空间</strong>，半空间是具有以下形式的集合$\{x|a^Tx\leq b\}$. 也即一个线性不等式的解空间。</p>
-<p>半空间是凸的，但不是仿射的。</p>
-<p>半空间也可以表示为$\{x|a^T(x-x_0)\leq 0\}$.  其中$x_0$是相应超平面的任意一点。这个表达形式有个简单的几何解释：半空间由$x_0$加上任意与向量$a$呈钝角、直角的向量组成。</p>
-<p>半空间的边界就是相应的超平面。</p>
-<p>集合$\{x|a^Tx&lt;b\}$是半空间$\{x|a^Tx\leq b\}$的内部，称为<strong>半开空间</strong>。</p>
 
       
     </div>

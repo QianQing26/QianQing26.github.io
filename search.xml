@@ -433,4 +433,50 @@
         <tag>Verilog</tag>
       </tags>
   </entry>
+  <entry>
+    <title>凸优化10：正常锥与广义不等式</title>
+    <url>/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<h3 id="正常锥（Proper-cones）"><a href="#正常锥（Proper-cones）" class="headerlink" title="正常锥（Proper cones）"></a>正常锥（Proper cones）</h3><p>我们称一个锥$K\subseteq \mathbf{R}^n$是<strong>正常锥</strong>如果其满足以下四个条件：</p>
+<ol>
+<li>$K$是凸的</li>
+<li>$K$是闭的</li>
+<li>$K$是<strong>实</strong>的，即包含非空的内部</li>
+<li>$K$是<strong>尖</strong>(pointed)的，即不包含直线，或者等价的说：$x\in K,-x\in K\Rightarrow x=0$</li>
+</ol>
+<h3 id="广义不等式（Generalized-inequality）"><a href="#广义不等式（Generalized-inequality）" class="headerlink" title="广义不等式（Generalized inequality）"></a>广义不等式（Generalized inequality）</h3><blockquote>
+<p>补充：<strong>偏序关系</strong>，$A\neq \emptyset,R\subseteq A\times A$，如果关系$R$是自反、反对称、传递的，那么$R$是$A$上的偏序关系，$xRy$可以用$x\preceq y$表示。例如小于等于关系就是$\mathbf{R}$上的偏序关系</p>
+</blockquote>
+<p>正常锥$K$可以用来定义<strong>广义不等式</strong>，即$\mathbf{R}^n$上的偏序关系。正常锥可以定义$\mathbf{R}^n$上的偏序关系：$x\preceq_Ky\Leftrightarrow y-x\in K$</p>
+<p>$x\preceq_K y$也可以记作$y\succeq_K x$。类似地，可以定义严格偏序关系：$x\prec_Ky\Leftrightarrow y-x\in \mathbf{int}K$.</p>
+<blockquote>
+<p>当$K=\mathbf{R}_+$时，偏序关系$\preceq_K$就是通常意义上的$\leq$，相应的，严格偏序关系$\prec_K$与$\mathbf{R}$上的$&lt;$对应。因此，广义不等式包含了$\mathbf{R}$上的不等式，这是广义不等式的一种特殊情况</p>
+</blockquote>
+<h4 id="广义不等式的性质"><a href="#广义不等式的性质" class="headerlink" title="广义不等式的性质"></a>广义不等式的性质</h4><ol>
+<li>$\preceq_K$对加法保序：如果$x\preceq_K y$并且$u\preceq_K v$，那么$x+u\preceq_K y+v$</li>
+<li>$\preceq_K$具有传递性</li>
+<li>$\preceq_K$对非负数乘是保序的：如果$x\preceq_K y,\alpha\geq0$，那么$\alpha x\preceq_K \alpha y$</li>
+<li>$\preceq_K$是自反的</li>
+<li>$\preceq_K$是反对称的</li>
+<li>$\preceq_K$对极限运算是保序的：如果对于$i=1,2,\dots$，均有$x_i\preceq_K y_i$，那么$i\rightarrow \infty,x_i\rightarrow x,y_i\rightarrow y$有$x\preceq_K y$</li>
+</ol>
+<p>相应的严格广义不等式$\prec_K$也有一些性质</p>
+<ol>
+<li>$x \prec_K y\Rightarrow x\preceq_K y$</li>
+<li>$\prec_K$对加法保序</li>
+<li>$\prec_K$对非负数乘保序</li>
+<li>$\prec_K$反自反：$x\nprec_K x$</li>
+<li>$x\prec_K y$，则存在足够小的$u,v$使得$x+u\prec_K y+v$</li>
+</ol>
+<p>以上这些性质从定义和正常锥、凸锥的知识很容易推出</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸集</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>凸集</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
 </search>
