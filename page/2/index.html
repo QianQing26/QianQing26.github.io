@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,6 +158,108 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%964%EF%BC%9AEuclid%E7%90%83%E5%92%8C%E6%A4%AD%E7%90%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%964%EF%BC%9AEuclid%E7%90%83%E5%92%8C%E6%A4%AD%E7%90%83/" class="post-title-link" itemprop="url">凸优化4：Euclid球和椭球</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-10 22:50:44" itemprop="dateCreated datePublished" datetime="2023-12-10T22:50:44+08:00">2023-12-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-11 00:06:54" itemprop="dateModified" datetime="2023-12-11T00:06:54+08:00">2023-12-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Euclid球-Euclidean-balls"><a href="#Euclid球-Euclidean-balls" class="headerlink" title="Euclid球(Euclidean balls)"></a>Euclid球(Euclidean balls)</h2><p>$\mathbf{R}^n$中的<strong>Euclid球</strong>（简称为球）具有下面的形式：</p>
+<p>$B(x_c,r)=\{x|\left|\left|x-x_c\right|\right|_2\leq r\}=\{x|(x-x_c)^T(x-x_c)\leq r^2\}$</p>
+<p>其中$r&gt;0$，$\left|\left|\cdot|\right|\right|_2$表示Euclid范数，即$||u||_2=(u^Tu)^{1/2}$. 向量$x_c$是球心，标量$r$为半径。$B(x_c,r)$是距离球心$x_c$不超过$r$的所有点组成。Euclid球的另一个常见的表达式为$B(x_c,r)=\{x_c+ru|||u||_2\leq1\}$.</p>
+<p>Euclid球是凸集，即若$||x_1-x_c||_2\leq r$，$||x_2-x_c||_2\leq r$，对于$\theta\in[0,1]$</p>
+<p>$\begin{aligned}||\theta x_1+(1-\theta)x_2-x_c||_2&amp;=||\theta(x_1-x_c)+(1-\theta)(x_2-x_c)||_2\\&amp;\leq \theta||x_1-x_c||_2+(1-\theta)||x_2-x_c||_2\\&amp;\leq r\end{aligned}$</p>
+<h2 id="椭球-Ellipsoids"><a href="#椭球-Ellipsoids" class="headerlink" title="椭球(Ellipsoids)"></a>椭球(Ellipsoids)</h2><p>另一类相关的凸集为<strong>椭球</strong>，其具有如下的形式</p>
+<p>$\mathcal{E}=\{x|(x-x_c)^TP^{-1}(x-x_c)\leq1\}$.</p>
+<p>其中$P=P^{-1}\succ0$，即$P$是对称正定矩阵。向量$x_c$是椭球的中心。矩阵$P$决定了椭球从$x_c$向各个方向拓展的幅度。椭球的半轴长度由$\sqrt{\lambda_i}$给出，这里$\lambda_i$为$P$的特征值。球可以堪称是一个$P=r^2I$。</p>
+<p>椭球的另一个表示形式为$\mathcal{E}=\{x_c+Au|||u||_2\leq1\}$,</p>
+<p>其中$A$是非奇异的方阵。我们可以不失一般性地假设$A$对称正定，取$A=P^{1/2}$。这个式子就类似于第一种表示形式。当$A$为对称半正定矩阵但是奇异时，这个式子表示一个退化地椭球。其仿射维数等于$A$的秩，退化的椭球也是凸的。</p>
+<h5 id="椭球公式的推导"><a href="#椭球公式的推导" class="headerlink" title="椭球公式的推导"></a>椭球公式的推导</h5><p>只考虑正椭球（椭球的轴为坐标轴，中心在原点），其他形式可以通过线性变换来实现。</p>
+<p>椭球的方程：</p>
+<p>$\begin{aligned}&amp;\cfrac{x_1^2}{a_1^2}+\cfrac{x_2^2}{a_2^2}+\dots+\cfrac{x_n^2}{a_n^2}=1\\\Leftrightarrow&amp;x^Teye(\cfrac1{a_1^2},\cfrac{1}{a_2^2},\dots,\cfrac{1}{a_n^2})x=1\end{aligned}$</p>
+<p>取$P=eye(a_1^2,a_2^2,\dots,a_n^2)$，则每个轴的长度就为$\sqrt{\lambda_i}$</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
