@@ -579,4 +579,28 @@
         <tag>Python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SymPy方程求解</title>
+    <url>/2023/12/27/SymPy%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/</url>
+    <content><![CDATA[<p>在数学研究中，解方程首先需要确定解的范围，在SymPy中解方程也首先需要确定解的范围是实数集<code>sympy.S.Reals</code>或者复数集<code>sympy.S.Complexes</code>。定义域不同，得到的解集也是不同的。</p>
+<p>在SymPy中使用函数<code>sympy.solveset</code>来求解方程的解集。</p>
+<p>例如依次求解以下五个方程</p>
+<p>$\begin{aligned}&amp;\{x\in\mathbb{R}|x^3-1=0\}\\&amp;\{x\in\mathbb{C}|x^3-1=0\}\\&amp;\{x\in\mathbb{R}|e^x=0\}\\&amp;\{x\in\mathbb{R}|e^x-1=0\}\\&amp;\{x\in\mathbb{C}|e^x-1=0\}\\\end{aligned}$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.Eq(x**<span class="number">3</span>,<span class="number">1</span>),x,domain=sympy.S.Reals)</span><br><span class="line">&#123;<span class="number">1</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.Eq(x**<span class="number">3</span>,<span class="number">1</span>),x,domain=sympy.S.Complexes)</span><br><span class="line">&#123;<span class="number">1</span>, -<span class="number">1</span>/<span class="number">2</span> - sqrt(<span class="number">3</span>)*I/<span class="number">2</span>, -<span class="number">1</span>/<span class="number">2</span> + sqrt(<span class="number">3</span>)*I/<span class="number">2</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.exp(x),x)</span><br><span class="line">EmptySet</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.exp(x)-<span class="number">1</span>,x,domain=sympy.S.Reals)</span><br><span class="line">&#123;<span class="number">0</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.exp(x)-<span class="number">1</span>,x,domain=sympy.S.Complexes)</span><br><span class="line">ImageSet(Lambda(_n, <span class="number">2</span>*_n*I*pi), Integers)</span><br></pre></td></tr></table></figure>
+<p>其中<code>Lambda()</code>表示函数，<code>_n</code>是自变量，<code>Integers</code>是自变量的定义域</p>
+<p>在线性代数中，有多元一次方程组，可以使用<code>sympy.solve()</code>函数，例如</p>
+<p>$\begin{cases}x+y-10\\x-y-2=0\end{cases}$</p>
+<p>$\begin{cases}\sin(x-y)=0\\\cos(x+y)=0\end{cases}$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solve([x+y-<span class="number">10</span>,x-y-<span class="number">2</span>],[x,y])</span><br><span class="line">&#123;x: <span class="number">6</span>, y: <span class="number">4</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solve([sympy.sin(x-y),sympy.cos(x+y)],[x,y])</span><br><span class="line">[(-pi/<span class="number">4</span>, <span class="number">3</span>*pi/<span class="number">4</span>), (pi/<span class="number">4</span>, pi/<span class="number">4</span>), (<span class="number">3</span>*pi/<span class="number">4</span>, <span class="number">3</span>*pi/<span class="number">4</span>), (<span class="number">5</span>*pi/<span class="number">4</span>, pi/<span class="number">4</span>)]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>SymPy</category>
+      </categories>
+      <tags>
+        <tag>科学计算</tag>
+        <tag>SymPy</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
 </search>
