@@ -122,18 +122,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -158,6 +158,120 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/27/SymPy%E5%9F%BA%E7%A1%80%E8%AE%A1%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/27/SymPy%E5%9F%BA%E7%A1%80%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">SymPy基础计算</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-27 12:47:32 / 修改时间：12:50:47" itemprop="dateCreated datePublished" datetime="2023-12-27T12:47:32+08:00">2023-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/SymPy/" itemprop="url" rel="index"><span itemprop="name">SymPy</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>使用SymPy，需要先</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sympy</span><br></pre></td></tr></table></figure>
+<h3 id="基础常数"><a href="#基础常数" class="headerlink" title="基础常数"></a>基础常数</h3><p>$e,i,\pi,\infty$在SymPy中可以使用以下代码来表示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sympy.exp(<span class="number">1</span>), sympy.I, sympy.pi, sympy.oo</span><br></pre></td></tr></table></figure>
+<p>这样，我们可以计算欧拉公式$e^{i\pi}+1=0$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sympy.exp(sympy.I*sympy.pi)+<span class="number">1</span>	<span class="comment"># 输出0</span></span><br></pre></td></tr></table></figure>
+<p>如果想查看某个常数或变量具体的值，可以使用<code>evalf()</code>函数。例如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sympy.E.evalf(<span class="number">10</span>)	<span class="comment"># 2.718281828</span></span><br><span class="line">sympy.E.evalf()		<span class="comment"># 2.71828182845905</span></span><br><span class="line">sympy.pi.evalf(<span class="number">10</span>)	<span class="comment"># 3.141592654</span></span><br><span class="line">sympy.pi.evalf()	<span class="comment"># 3.14159265358979</span></span><br><span class="line"></span><br><span class="line">expr = sympy.sqrt(<span class="number">8</span>)</span><br><span class="line">expr				<span class="comment"># 2*sqrt(2)</span></span><br><span class="line">expr.evalf()		<span class="comment"># 2.82842712474619</span></span><br></pre></td></tr></table></figure>
+<h3 id="基础符号运算"><a href="#基础符号运算" class="headerlink" title="基础符号运算"></a>基础符号运算</h3><p>可以使用如下代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var_x = sympy.symbols(‘x’)</span><br></pre></td></tr></table></figure>
+<p>可以创建一个值为<code>&#39;x&#39;</code>的符号变量<code>var_x</code></p>
+<p>符号之间可以创建各种运算公式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>var_x, var_y = sympy.symbols(<span class="string">&quot;x y&quot;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>var_x + var_y</span><br><span class="line">x + y</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>var_x - var_y</span><br><span class="line">x - y</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>var_x * var_y</span><br><span class="line">x*y</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>var_x / var_y</span><br><span class="line">x/y</span><br></pre></td></tr></table></figure>
+<p>同样的，我们可以创建复数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x1, y1, x2, y2 = sympy.symbols(<span class="string">&quot;x1 y1 x2 y2&quot;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z1 = x1 + y1*sympy.I</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z2 = x2 + y2*sympy.I</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z1, z2</span><br><span class="line">(x1 + I*y1, x2 + I*y2)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z1+z2</span><br><span class="line">x1 + x2 + I*y1 + I*y2</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z1-z2</span><br><span class="line">x1 - x2 + I*y1 - I*y2</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z1*z2</span><br><span class="line">(x1 + I*y1)*(x2 + I*y2)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z1/z2</span><br><span class="line">(x1 + I*y1)/(x2 + I*y2)</span><br></pre></td></tr></table></figure>
+<h3 id="多项式计算"><a href="#多项式计算" class="headerlink" title="多项式计算"></a>多项式计算</h3><p>SymPy中还可以计算多项式，可以进行展开、因式分解或者化简：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = sympy.symbols(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.expand((x+<span class="number">1</span>)**<span class="number">2</span>)	<span class="comment"># sympy.expand()进行展开</span></span><br><span class="line">x**<span class="number">2</span> + <span class="number">2</span>*x + <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.expand((x+<span class="number">2</span>)**<span class="number">4</span>)</span><br><span class="line">x**<span class="number">4</span> + <span class="number">8</span>*x**<span class="number">3</span> + <span class="number">24</span>*x**<span class="number">2</span> + <span class="number">32</span>*x + <span class="number">16</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.factor(x**<span class="number">3</span>+<span class="number">1</span>)	<span class="comment"># sympy.factor()因式分解</span></span><br><span class="line">(x + <span class="number">1</span>)*(x**<span class="number">2</span> - x + <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.simplify(x**<span class="number">2</span>+x+<span class="number">1</span>-x)	<span class="comment"># sympy.simplify()进行化简</span></span><br><span class="line">x**<span class="number">2</span> + <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.simplify(sympy.sin(x)**<span class="number">2</span>+sympy.cos(x)**<span class="number">2</span>)</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>上面是单变量的式子。此外，在多变量的情况下，SymPy可以对其中的某个变量进行合并同类项或者计算某个次数的系数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = x*y +x -<span class="number">3</span> +<span class="number">2</span>*x**<span class="number">2</span> -x**<span class="number">2</span> +x**<span class="number">3</span> + y**<span class="number">2</span> +x**<span class="number">2</span>*y**<span class="number">2</span>	<span class="comment"># 创建多项式</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.collect(expr,x)	<span class="comment"># sympy.collect(expr,x)对expr的x变量进行合并同类项</span></span><br><span class="line">x**<span class="number">3</span> + x**<span class="number">2</span>*(y**<span class="number">2</span> + <span class="number">1</span>) + x*(y + <span class="number">1</span>) + y**<span class="number">2</span> - <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.collect(expr,y)</span><br><span class="line">x**<span class="number">3</span> + x**<span class="number">2</span> + x*y + x + y**<span class="number">2</span>*(x**<span class="number">2</span> + <span class="number">1</span>) - <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.coeff(x,<span class="number">2</span>)		<span class="comment"># 计算expr中x的二次项的系数</span></span><br><span class="line">y**<span class="number">2</span> + <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.coeff(y,<span class="number">1</span>)		<span class="comment"># 计算expr中y的一次项的系数</span></span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<p>对于形如$f(x)=\cfrac{p(x)}{q(x)},(p(x),q(x)\text{都是多项式})$的有理函数。SymPy也可以进行有关的化简、合并、分解：</p>
+<p>在需要合并的情况下，如果想把有理函数处理成$\cfrac{p(x)}{q(x)}$的标准形式并且去除公因式，可以使用<code>cancel()</code>函数，与之类似的是<code>together()</code>函数，不同的是<code>together()</code>函数不会约去公因式；</p>
+<p>例如对于函数$expr = \cfrac{x^2+3x+2}{x^2+x}$：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = (x**<span class="number">2</span>+<span class="number">3</span>*x+<span class="number">2</span>)/(x**<span class="number">2</span>+x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.cancel(expr)</span><br><span class="line">(x + <span class="number">2</span>)/x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.together(expr)</span><br><span class="line">(x**<span class="number">2</span> + <span class="number">3</span>*x + <span class="number">2</span>)/(x*(x + <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>与此同时，我们还可以对有理函数的分子分母进行因式分解，还是使用<code>factor()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = (x**<span class="number">2</span>+<span class="number">3</span>*x+<span class="number">2</span>)/(x**<span class="number">2</span>+x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.factor(expr)</span><br><span class="line">(x + <span class="number">2</span>)/x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = (x**<span class="number">3</span>+ <span class="number">3</span>*x**<span class="number">2</span> +<span class="number">2</span>*x)/(x**<span class="number">5</span>+x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.factor(expr)</span><br><span class="line">(x + <span class="number">1</span>)*(x + <span class="number">2</span>)/(x**<span class="number">4</span> + <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = x**<span class="number">2</span> + (<span class="number">2</span>*x+<span class="number">1</span>)/(x**<span class="number">3</span>+<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.factor(expr)</span><br><span class="line">(x**<span class="number">5</span> + x**<span class="number">2</span> + <span class="number">2</span>*x + <span class="number">1</span>)/((x + <span class="number">1</span>)*(x**<span class="number">2</span> - x + <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>合并的反面是<strong>部分分式展开</strong>，也就是常用的分离常数法，这里需要使用<code>apart()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = (x**<span class="number">4</span>+<span class="number">3</span>*x**<span class="number">2</span>+<span class="number">2</span>*x)/(x**<span class="number">2</span>+x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.apart(expr)</span><br><span class="line">x**<span class="number">2</span> - x + <span class="number">4</span> - <span class="number">2</span>/(x + <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = (x**<span class="number">5</span>+<span class="number">1</span>)/(x**<span class="number">3</span>+<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.apart(expr)</span><br><span class="line">x**<span class="number">2</span> - (x - <span class="number">1</span>)/(x**<span class="number">2</span> - x + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="初等函数计算"><a href="#初等函数计算" class="headerlink" title="初等函数计算"></a>初等函数计算</h3><p>SymPy支持三角函数的计算<code>trigsimp()</code>、展开<code>expand_trig()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = sympy.sin(x)**<span class="number">2</span> + sympy.cos(x)**<span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.trigsimp(expr)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.expand_trig(sympy.sin(x+y))</span><br><span class="line">sin(x)*cos(y) + sin(y)*cos(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.expand_trig(sympy.cos(x+y))</span><br><span class="line">-sin(x)*sin(y) + cos(x)*cos(y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.trigsimp(sympy.sin(x)*sympy.cos(y)+sympy.cos(x)*sympy.sin(y))</span><br><span class="line">sin(x + y)</span><br></pre></td></tr></table></figure>
+<p>对幂的函数，可以化简<code>powsimp()</code>（与<code>simplify()</code>类似）、根据底数进行合并，可以使用<code>expand_power_exp()</code>和<code>expand_power_base()</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>z = sympy.symbols(<span class="string">&#x27;z&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.powsimp(x**z * y**z * x**z)</span><br><span class="line">x**(<span class="number">2</span>*z)*y**z</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.simplify(x**z * y**z * x**z)</span><br><span class="line">x**(<span class="number">2</span>*z)*y**z</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.expand_power_exp(x**(y+z))</span><br><span class="line">x**(y + z)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.expand_power_base(x**(y+z))</span><br><span class="line">x**(y + z)</span><br></pre></td></tr></table></figure>
+<p>SymPy中可以计算对数函数，使用<code>expand_log()</code>和<code>logcombine()</code>可以进行以下的操作：$\ln(xy)=\ln(x)+\ln(y)\qquad$  $\ln(x/y)=\ln(x)-\ln(y)$</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1070,118 +1184,6 @@
 <p>凸包的一个扩展表示是$\{\theta_1v_1+\dots+\theta_kv_k|\theta_1+\dots+\theta_m=1,\theta_i\geq0,i=1,\dots,k\}$。其中$m\leq k$。此处考虑$v_i$的非负线性组合，但是仅仅要求前$m$个系数之和为1。此外，还可以将上式解释为点$v_1,\dots,v_m$的凸包加上$v_{m+1},\dots,v_k$的锥包。上面这个凸包的表示定义了一个多面体。反之也成立，任意多面体可以表示为这样的形式</p>
 <p>“如何表示多面体”这一问题有一些非常实用的结果，一个简单的例子是定义在$\mathscr{l}_{\infty}$范数空间的$\mathbf{R}^n$上的单位球$C=\{x||x_i|\leq1\}$</p>
 <p>$C$可以由$2n$个线性不等式$\pm e_i^Tx\leq1$(其中$e_i$表示第$i$维的单位向量)表示为多面体的形式。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%965%EF%BC%9A%E8%8C%83%E6%95%B0%E7%90%83%E5%92%8C%E8%8C%83%E6%95%B0%E9%94%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%965%EF%BC%9A%E8%8C%83%E6%95%B0%E7%90%83%E5%92%8C%E8%8C%83%E6%95%B0%E9%94%A5/" class="post-title-link" itemprop="url">凸优化5：范数球和范数锥</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-10 23:59:22" itemprop="dateCreated datePublished" datetime="2023-12-10T23:59:22+08:00">2023-12-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-11 13:47:25" itemprop="dateModified" datetime="2023-12-11T13:47:25+08:00">2023-12-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="范数知识的补充"><a href="#范数知识的补充" class="headerlink" title="范数知识的补充"></a>范数知识的补充</h2><p>满足以下条件的函数$f:\mathbf{R}^n\rightarrow\mathbf{R},\mathbf{dom}f=\mathbf{R}^n$称为<strong>范数</strong></p>
-<ol>
-<li>$f$是非负的：$\forall x\in\mathbf{R}^n,f(x)\geq0$</li>
-<li>$f$是正定的：仅对$x=0$，$f(x)=0$成立</li>
-<li>$f$是齐次的：对所有的$x\in\mathbf{R}^n$和$t\in\mathbf{R}$有$f(tx)=|t|f(x)$</li>
-<li>$f$满足三角不等式：对所有的$x,y\in\mathbf{R}^n$有$f(x+y)\leq f(x)+f(y)$</li>
-</ol>
-<p>用符号$f(x)=||x||$，意味着范数是$\mathbf{R}$上的绝对值的推广。范数是对向量$x$长度的一种度量，可以用两向量$x,y$的差异的长度度量它们之间的距离，即$\mathbf{dist}(x,y)=||x-y||$。</p>
-<p>范数小于或等于1的所有向量的集合$\mathcal{B}=\{x\in\mathbf{R}^n|||x||\leq 1\}$称为范数$||\cdot||$的<strong>单位球</strong>，单位球具有如下的性质</p>
-<ol>
-<li>$\mathcal{B}$关于原点对称，即当且仅当$-x\in \mathcal{B}$时$x\in\mathcal{B}$</li>
-<li>$\mathcal{B}$是凸集</li>
-<li>$\mathcal{B}$是有界闭集，内部非空</li>
-</ol>
-<p>最常见的范数是$\mathbf{R}^n$上的Euclid范数/$\mathscr{l}_2$范数：$||x||_2=(x_1^2+\dots+x_n^2)^{1/2}$</p>
-<p>$\mathscr{l}_1$范数：$||x||_{1}=|x_1|+\dots+|x_n|$</p>
-<p>Chebyshev范数/$\mathscr{l}_{\infty}$范数：$||x||_{\infty}=\max\{|x_1|,\dots,|x_n|\}$</p>
-<p>对于$p\geq1$，定义$\mathscr{l}_p$范数：$||x||_p=(|x_1|^p+\dots+|x_n|^p)^{1/p}$</p>
-<h2 id="范数球和范数锥"><a href="#范数球和范数锥" class="headerlink" title="范数球和范数锥"></a>范数球和范数锥</h2><p>由上述的范数的一般性质可以知道，以$r$为半径，$x_c$为球心的<strong>范数球</strong>$\{x|||x-x_c||\leq r\}$是凸的。</p>
-<p><strong>范数锥</strong>是指集合$C=\{(x,t)|||x||\leq t\}\subseteq\mathbf{R}^{n+1}$，是一个凸锥</p>
-<blockquote>
-<p>例如二阶锥是由Euclid范数定义的范数锥，</p>
-<p>$\begin{aligned}C&amp;=\{(x,t)\in \mathbf{R}^{n+1}|||x||_2\leq t\}\\&amp;=\{[x,t]^T|[x,t]eye(I,-1)[x,t]^t\leq0,t\geq 0\}\end{aligned}$</p>
-</blockquote>
 
       
     </div>
