@@ -603,4 +603,38 @@
         <tag>Python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>凸优化12：超平面分离定理</title>
+    <url>/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/</url>
+    <content><![CDATA[<h3 id="超平面分离定理"><a href="#超平面分离定理" class="headerlink" title="超平面分离定理"></a>超平面分离定理</h3><p>假设$C$和$D$是两个不相交的凸集，即$C\cap D=\emptyset$，那么存在$a\neq0$和$b$使得对于所有的$x\in C$有$a^Tx\leq b$、对于所有$x\in D$有$a^Tx\geq b$。</p>
+<p>换言之，仿射函数$a^Tx-b$在$C$中为非正，而在$D$中为非负。</p>
+<p>超平面$\{x|a^Tx=b\}$称为$C$和$D$的<strong>分离超平面</strong>，或称超平面<strong>分离</strong>了集合$C$和$D$。</p>
+<p><img src="img/image-20231225160044481.png" alt=""></p>
+<p><img src="超平面分离定理.png" alt=""></p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>这里只考虑特殊情况。使用$Euclid$距离，将集合$C$和$D$的距离定义为$\mathbf{dist}(C,D)=\inf\{||u-v||_2|u\in C,v\in D\}.\quad$并且存在$c\in D,d\in D$达到这个最小距离，即$||c-d||_2=\mathbf{dist}(C,D)$.</p>
+<p>定义$a=d-c,\qquad$$b=\cfrac{||d||_2^2-||c||_2^2}{2}$</p>
+<p>我们将会得到一个仿射函数$f(x)=a^Tx-b=(d-c)^T(x-\frac12(d+c))$</p>
+<p>在$C$中非正而在$D$中非负，即$\{x|a^Tx=b\}$分离了$C$和$D$。这个超平面是连接$c,d$之间的线段的中垂面（如同上面的图中的形状），直觉上来讲是成立的。</p>
+<p>我们首先来证明$f$在$D$中非负。关于$f$在$C$中非正的证明是相似的。</p>
+<p>假设存在点$u\in D$，且$f(u)=(d-c)^T(u-\frac12(d+c))&lt;0$.这意味着$(d-c)^T(u-d)&lt;0$</p>
+<p>可以将$f(u)$表示为:</p>
+<p>$f(u)=(d-c)^T(u-\frac12(d+c))=(d-c)^T(u-d)+\frac12||d-c||_2^2$.</p>
+<p>结合上面的两个式子，可以观察到$\cfrac{d}{dt}||d+t(u-d)-c||_2^2\bigg|_{t=0}=2(d-c)^T(u-d)&lt;0.$</p>
+<p>因此对于足够小的$t&gt;0$及$t\leq1$，我们有$||d+t(u-d)-c||_2&lt;||d-c||_2$</p>
+<p>即$d+t(u-d)$比$d$更加靠近$c$。因为$D$是包含$d,u$的凸集，我们有$d+t(u-d)\in D$，但这和我们的假设是相违背的。</p>
+<h3 id="严格分离"><a href="#严格分离" class="headerlink" title="严格分离"></a>严格分离</h3><p>如果之前构造的分离超平面满足更强的条件，即对于任意$x\in C$有$a^Tx<b$并且对于$x\in D$有$a^Tx>b$，则称其为集合$C$和$D$的<strong>严格分离</strong>。</p>
+<h3 id="超平面分离定理的逆定理"><a href="#超平面分离定理的逆定理" class="headerlink" title="超平面分离定理的逆定理"></a>超平面分离定理的逆定理</h3><p>超平面分离定理的逆定理（即分离超平面的存在表明$C$和$D$不相交）是不成立的，除非在凸性之外在给这两个集合附加其他约束。一个反例是$C=D=\{0\}\subseteq \mathbf{R}$，超平面$x=0$可以分离$C$和$D$。</p>
+<p>给$C,D$增加条件后，可以得到超平面分离定理的一些逆定理。例如，设$C,D$是凸集，$C$是开集，若存在一个仿射函数$f$，其在$C$中非正而在$D$中非负，那么$C,D$不相交。</p>
+<p>将逆定理和原定理相结合，可以得到如下结论：任何两个凸集$C,D$如果其中至少有一个是开集，那么当且仅当存在分离超平面的时候，它们不相交。</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸集</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>凸集</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
 </search>
