@@ -609,7 +609,7 @@
     <content><![CDATA[<h3 id="超平面分离定理"><a href="#超平面分离定理" class="headerlink" title="超平面分离定理"></a>超平面分离定理</h3><p>假设$C$和$D$是两个不相交的凸集，即$C\cap D=\emptyset$，那么存在$a\neq0$和$b$使得对于所有的$x\in C$有$a^Tx\leq b$、对于所有$x\in D$有$a^Tx\geq b$。</p>
 <p>换言之，仿射函数$a^Tx-b$在$C$中为非正，而在$D$中为非负。</p>
 <p>超平面$\{x|a^Tx=b\}$称为$C$和$D$的<strong>分离超平面</strong>，或称超平面<strong>分离</strong>了集合$C$和$D$。</p>
-<p><img src="img/image-20231225160044481.png" alt=""></p>
+<p><img src="img/超平面分离定理.png" alt=""></p>
 <p><img src="超平面分离定理.png" alt=""></p>
 <h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>这里只考虑特殊情况。使用$Euclid$距离，将集合$C$和$D$的距离定义为$\mathbf{dist}(C,D)=\inf\{||u-v||_2|u\in C,v\in D\}.\quad$并且存在$c\in D,d\in D$达到这个最小距离，即$||c-d||_2=\mathbf{dist}(C,D)$.</p>
 <p>定义$a=d-c,\qquad$$b=\cfrac{||d||_2^2-||c||_2^2}{2}$</p>
