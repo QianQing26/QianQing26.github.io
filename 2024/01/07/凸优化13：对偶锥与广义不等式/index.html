@@ -19,30 +19,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="范数知识的补充满足以下条件的函数$f:\mathbf{R}^n\rightarrow\mathbf{R},\mathbf{dom}f&#x3D;\mathbf{R}^n$称为范数  $f$是非负的：$\forall x\in\mathbf{R}^n,f(x)\geq0$ $f$是正定的：仅对$x&#x3D;0$，$f(x)&#x3D;0$成立 $f$是齐次的：对所有的$x\in\mathbf{R}^n$和$t\in\mathb">
+    <meta name="description" content="对偶锥定义令$K$为一个锥，则集合$K^{\ast}&#x3D;\{y|x^Ty\geq0,\forall x\in K\}$称为$K$的对偶锥。顾名思义，$K^{\ast}$是一个锥，且其总是凸的，即使$K$不是凸锥。 从几何上看，$y\in K^{\ast}$当且仅当$-y$是$K$在原点的一个支撑超平面的法线，如下图所示   上面的左图中，以$y$为法向量的半平面包含锥$K$，因此$y\in K^{\">
 <meta property="og:type" content="article">
-<meta property="og:title" content="凸优化5：范数球和范数锥">
-<meta property="og:url" content="http://qianqing26.github.io/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%965%EF%BC%9A%E8%8C%83%E6%95%B0%E7%90%83%E5%92%8C%E8%8C%83%E6%95%B0%E9%94%A5/index.html">
+<meta property="og:title" content="凸优化13：对偶锥与广义不等式">
+<meta property="og:url" content="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/index.html">
 <meta property="og:site_name" content="千顷&#x2F;QianQing26">
-<meta property="og:description" content="范数知识的补充满足以下条件的函数$f:\mathbf{R}^n\rightarrow\mathbf{R},\mathbf{dom}f&#x3D;\mathbf{R}^n$称为范数  $f$是非负的：$\forall x\in\mathbf{R}^n,f(x)\geq0$ $f$是正定的：仅对$x&#x3D;0$，$f(x)&#x3D;0$成立 $f$是齐次的：对所有的$x\in\mathbf{R}^n$和$t\in\mathb">
+<meta property="og:description" content="对偶锥定义令$K$为一个锥，则集合$K^{\ast}&#x3D;\{y|x^Ty\geq0,\forall x\in K\}$称为$K$的对偶锥。顾名思义，$K^{\ast}$是一个锥，且其总是凸的，即使$K$不是凸锥。 从几何上看，$y\in K^{\ast}$当且仅当$-y$是$K$在原点的一个支撑超平面的法线，如下图所示   上面的左图中，以$y$为法向量的半平面包含锥$K$，因此$y\in K^{\">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-10T15:59:22.000Z">
-<meta property="article:modified_time" content="2023-12-11T05:47:25.951Z">
+<meta property="og:image" content="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/img/%E5%AF%B9%E5%81%B6%E9%94%A5.png">
+<meta property="og:image" content="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/%E5%AF%B9%E5%81%B6%E9%94%A5.png">
+<meta property="article:published_time" content="2024-01-07T07:29:21.000Z">
+<meta property="article:modified_time" content="2024-01-07T08:56:27.183Z">
 <meta property="article:author" content="QianQing26">
 <meta property="article:tag" content="凸优化">
 <meta property="article:tag" content="凸集">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/img/%E5%AF%B9%E5%81%B6%E9%94%A5.png">
 
 
-<link rel="canonical" href="http://qianqing26.github.io/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%965%EF%BC%9A%E8%8C%83%E6%95%B0%E7%90%83%E5%92%8C%E8%8C%83%E6%95%B0%E9%94%A5/">
+<link rel="canonical" href="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%965%EF%BC%9A%E8%8C%83%E6%95%B0%E7%90%83%E5%92%8C%E8%8C%83%E6%95%B0%E9%94%A5/","path":"2023/12/10/凸优化5：范数球和范数锥/","title":"凸优化5：范数球和范数锥"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/","path":"2024/01/07/凸优化13：对偶锥与广义不等式/","title":"凸优化13：对偶锥与广义不等式"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>凸优化5：范数球和范数锥 | 千顷/QianQing26</title>
+<title>凸优化13：对偶锥与广义不等式 | 千顷/QianQing26</title>
   
 
 
@@ -117,7 +120,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E6%95%B0%E7%9F%A5%E8%AF%86%E7%9A%84%E8%A1%A5%E5%85%85"><span class="nav-number">1.</span> <span class="nav-text">范数知识的补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E6%95%B0%E7%90%83%E5%92%8C%E8%8C%83%E6%95%B0%E9%94%A5"><span class="nav-number">2.</span> <span class="nav-text">范数球和范数锥</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6%E9%94%A5"><span class="nav-number">1.</span> <span class="nav-text">对偶锥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">性质</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F%E7%9A%84%E5%AF%B9%E5%81%B6"><span class="nav-number">2.</span> <span class="nav-text">广义不等式的对偶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6%E4%B8%8D%E7%AD%89%E5%BC%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E6%9C%80%E5%B0%8F%E5%85%83%E5%92%8C%E6%9E%81%E5%B0%8F%E5%85%83"><span class="nav-number">3.</span> <span class="nav-text">对偶不等式定义的最小元和极小元</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%85%83%E7%9A%84%E5%AF%B9%E5%81%B6"><span class="nav-number">3.1.</span> <span class="nav-text">最小元的对偶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%81%E5%B0%8F%E5%85%83%E7%9A%84%E5%AF%B9%E5%81%B6%E6%80%A7%E8%B4%A8"><span class="nav-number">3.2.</span> <span class="nav-text">极小元的对偶性质</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,7 +179,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%965%EF%BC%9A%E8%8C%83%E6%95%B0%E7%90%83%E5%92%8C%E8%8C%83%E6%95%B0%E9%94%A5/">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -189,12 +192,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="凸优化5：范数球和范数锥 | 千顷/QianQing26">
+      <meta itemprop="name" content="凸优化13：对偶锥与广义不等式 | 千顷/QianQing26">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          凸优化5：范数球和范数锥
+          凸优化13：对偶锥与广义不等式
         </h1>
 
         <div class="post-meta-container">
@@ -204,15 +207,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-12-10 23:59:22" itemprop="dateCreated datePublished" datetime="2023-12-10T23:59:22+08:00">2023-12-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-11 13:47:25" itemprop="dateModified" datetime="2023-12-11T13:47:25+08:00">2023-12-11</time>
+      <time title="创建时间：2024-01-07 15:29:21 / 修改时间：16:56:27" itemprop="dateCreated datePublished" datetime="2024-01-07T15:29:21+08:00">2024-01-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -244,30 +241,28 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="范数知识的补充"><a href="#范数知识的补充" class="headerlink" title="范数知识的补充"></a>范数知识的补充</h2><p>满足以下条件的函数$f:\mathbf{R}^n\rightarrow\mathbf{R},\mathbf{dom}f=\mathbf{R}^n$称为<strong>范数</strong></p>
+    <div class="post-body" itemprop="articleBody"><h3 id="对偶锥"><a href="#对偶锥" class="headerlink" title="对偶锥"></a>对偶锥</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>令$K$为一个锥，则集合$K^{\ast}=\{y|x^Ty\geq0,\forall x\in K\}$称为$K$的<strong>对偶锥</strong>。顾名思义，$K^{\ast}$是一个锥，且其总是凸的，即使$K$不是凸锥。</p>
+<p>从几何上看，$y\in K^{\ast}$当且仅当$-y$是$K$在原点的一个支撑超平面的法线，如下图所示</p>
+<p><img src="img/对偶锥.png" alt=""></p>
+<p><img src="对偶锥.png" alt=""></p>
+<p>上面的左图中，以$y$为法向量的半平面包含锥$K$，因此$y\in K^{\ast}$；右图中，以$z$为内法向量的半空间不包含$K$，因此$z\not\in K^{\ast}$</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><p>可以导出对偶锥满足下面的性质</p>
 <ol>
-<li>$f$是非负的：$\forall x\in\mathbf{R}^n,f(x)\geq0$</li>
-<li>$f$是正定的：仅对$x=0$，$f(x)=0$成立</li>
-<li>$f$是齐次的：对所有的$x\in\mathbf{R}^n$和$t\in\mathbf{R}$有$f(tx)=|t|f(x)$</li>
-<li>$f$满足三角不等式：对所有的$x,y\in\mathbf{R}^n$有$f(x+y)\leq f(x)+f(y)$</li>
+<li>$K^*$是闭凸锥</li>
+<li>$K_1\subseteq K_2$可以导出$K_2^{\ast}\subseteq K_1^{\ast}$</li>
+<li>如果$K$有非空内部，那么$K^{\ast}$是尖的</li>
+<li>如果$K$的闭包是尖的，那么$K^{\ast}$有非空内部</li>
+<li>$K^{\ast\ast}$是$K$的凸包的闭包。因此如果$K$是凸的、闭的，那么$K^{\ast\ast}=K$</li>
 </ol>
-<p>用符号$f(x)=||x||$，意味着范数是$\mathbf{R}$上的绝对值的推广。范数是对向量$x$长度的一种度量，可以用两向量$x,y$的差异的长度度量它们之间的距离，即$\mathbf{dist}(x,y)=||x-y||$。</p>
-<p>范数小于或等于1的所有向量的集合$\mathcal{B}=\{x\in\mathbf{R}^n|||x||\leq 1\}$称为范数$||\cdot||$的<strong>单位球</strong>，单位球具有如下的性质</p>
+<h3 id="广义不等式的对偶"><a href="#广义不等式的对偶" class="headerlink" title="广义不等式的对偶"></a>广义不等式的对偶</h3><p>假设凸锥$K$是正常锥，则可以导出一个广义不等式$\preceq_K$。其对偶锥$K^{\ast}$也是正常的，所以也能导出一个广义不等式，称$\preceq_{K^\ast}$为广义不等式$\preceq_K$的<strong>对偶</strong>。</p>
+<p>关于广义不等式及其对偶也有重要的性质</p>
 <ol>
-<li>$\mathcal{B}$关于原点对称，即当且仅当$-x\in \mathcal{B}$时$x\in\mathcal{B}$</li>
-<li>$\mathcal{B}$是凸集</li>
-<li>$\mathcal{B}$是有界闭集，内部非空</li>
+<li>$x\preceq_K y$当且仅当任意$\lambda\succeq_{K^\ast}0$有$\lambda^Tx\leq \lambda^Ty$</li>
+<li>$x\prec_Ky$当且仅当任意$\lambda\succeq_{K^\ast}0$和$\lambda\neq0$有$\lambda^Tx&lt;\lambda^Ty$</li>
 </ol>
-<p>最常见的范数是$\mathbf{R}^n$上的Euclid范数/$\mathscr{l}_2$范数：$||x||_2=(x_1^2+\dots+x_n^2)^{1/2}$</p>
-<p>$\mathscr{l}_1$范数：$||x||_{1}=|x_1|+\dots+|x_n|$</p>
-<p>Chebyshev范数/$\mathscr{l}_{\infty}$范数：$||x||_{\infty}=\max\{|x_1|,\dots,|x_n|\}$</p>
-<p>对于$p\geq1$，定义$\mathscr{l}_p$范数：$||x||_p=(|x_1|^p+\dots+|x_n|^p)^{1/p}$</p>
-<h2 id="范数球和范数锥"><a href="#范数球和范数锥" class="headerlink" title="范数球和范数锥"></a>范数球和范数锥</h2><p>由上述的范数的一般性质可以知道，以$r$为半径，$x_c$为球心的<strong>范数球</strong>$\{x|||x-x_c||\leq r\}$是凸的。</p>
-<p><strong>范数锥</strong>是指集合$C=\{(x,t)|||x||\leq t\}\subseteq\mathbf{R}^{n+1}$，是一个凸锥</p>
-<blockquote>
-<p>例如二阶锥是由Euclid范数定义的范数锥，</p>
-<p>$\begin{aligned}C&amp;=\{(x,t)\in \mathbf{R}^{n+1}|||x||_2\leq t\}\\&amp;=\{[x,t]^T|[x,t]eye(I,-1)[x,t]^t\leq0,t\geq 0\}\end{aligned}$</p>
-</blockquote>
+<h3 id="对偶不等式定义的最小元和极小元"><a href="#对偶不等式定义的最小元和极小元" class="headerlink" title="对偶不等式定义的最小元和极小元"></a>对偶不等式定义的最小元和极小元</h3><h4 id="最小元的对偶"><a href="#最小元的对偶" class="headerlink" title="最小元的对偶"></a>最小元的对偶</h4><p>首先考虑最小元的性质，$x$是$S$上关于广义不等式$\preceq_K$的最小元的充要条件是对于$\lambda\succ_{K^\ast}0$，$x$是在$z\in S$上极小化$\lambda^Tz$的唯一最优解。几何上看，这意味着对于任意$\lambda\succ_{K^\ast}0$，超平面$\{z|\lambda^T(z-x)=0\}$是在$x$处对$S$的一个严格支撑超平面（严格支撑表示超平面与$S$只相交于$x$）。这里没有要求$S$是凸集。</p>
+<h4 id="极小元的对偶性质"><a href="#极小元的对偶性质" class="headerlink" title="极小元的对偶性质"></a>极小元的对偶性质</h4><p>如果$\lambda\succ_{K^\ast}0$并且$x$在$z\in S$上极小化$\lambda^Tz$，那么$x$是极小的。</p>
+<p>其逆定理在一般情况下不成立：$S$上的极小元$x$可以对于任何$\lambda$都不是$z\in S$上极小化$\lambda^Tz$的解。</p>
 
     </div>
 
@@ -304,14 +299,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%964%EF%BC%9AEuclid%E7%90%83%E5%92%8C%E6%A4%AD%E7%90%83/" rel="prev" title="凸优化4：Euclid球和椭球">
-                  <i class="fa fa-angle-left"></i> 凸优化4：Euclid球和椭球
+                <a href="/2024/01/01/SymPy%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97/" rel="prev" title="SymPy矩阵运算">
+                  <i class="fa fa-angle-left"></i> SymPy矩阵运算
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/12/11/%E5%87%B8%E4%BC%98%E5%8C%966%EF%BC%9A%E5%A4%9A%E9%9D%A2%E4%BD%93/" rel="next" title="凸优化6：多面体">
-                  凸优化6：多面体 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

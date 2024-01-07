@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,6 +158,110 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/" class="post-title-link" itemprop="url">凸优化13：对偶锥与广义不等式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-01-07 15:29:21 / 修改时间：16:56:27" itemprop="dateCreated datePublished" datetime="2024-01-07T15:29:21+08:00">2024-01-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="对偶锥"><a href="#对偶锥" class="headerlink" title="对偶锥"></a>对偶锥</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>令$K$为一个锥，则集合$K^{\ast}=\{y|x^Ty\geq0,\forall x\in K\}$称为$K$的<strong>对偶锥</strong>。顾名思义，$K^{\ast}$是一个锥，且其总是凸的，即使$K$不是凸锥。</p>
+<p>从几何上看，$y\in K^{\ast}$当且仅当$-y$是$K$在原点的一个支撑超平面的法线，如下图所示</p>
+<p><img src="img/对偶锥.png" alt=""></p>
+<p><img src="对偶锥.png" alt=""></p>
+<p>上面的左图中，以$y$为法向量的半平面包含锥$K$，因此$y\in K^{\ast}$；右图中，以$z$为内法向量的半空间不包含$K$，因此$z\not\in K^{\ast}$</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><p>可以导出对偶锥满足下面的性质</p>
+<ol>
+<li>$K^*$是闭凸锥</li>
+<li>$K_1\subseteq K_2$可以导出$K_2^{\ast}\subseteq K_1^{\ast}$</li>
+<li>如果$K$有非空内部，那么$K^{\ast}$是尖的</li>
+<li>如果$K$的闭包是尖的，那么$K^{\ast}$有非空内部</li>
+<li>$K^{\ast\ast}$是$K$的凸包的闭包。因此如果$K$是凸的、闭的，那么$K^{\ast\ast}=K$</li>
+</ol>
+<h3 id="广义不等式的对偶"><a href="#广义不等式的对偶" class="headerlink" title="广义不等式的对偶"></a>广义不等式的对偶</h3><p>假设凸锥$K$是正常锥，则可以导出一个广义不等式$\preceq_K$。其对偶锥$K^{\ast}$也是正常的，所以也能导出一个广义不等式，称$\preceq_{K^\ast}$为广义不等式$\preceq_K$的<strong>对偶</strong>。</p>
+<p>关于广义不等式及其对偶也有重要的性质</p>
+<ol>
+<li>$x\preceq_K y$当且仅当任意$\lambda\succeq_{K^\ast}0$有$\lambda^Tx\leq \lambda^Ty$</li>
+<li>$x\prec_Ky$当且仅当任意$\lambda\succeq_{K^\ast}0$和$\lambda\neq0$有$\lambda^Tx&lt;\lambda^Ty$</li>
+</ol>
+<h3 id="对偶不等式定义的最小元和极小元"><a href="#对偶不等式定义的最小元和极小元" class="headerlink" title="对偶不等式定义的最小元和极小元"></a>对偶不等式定义的最小元和极小元</h3><h4 id="最小元的对偶"><a href="#最小元的对偶" class="headerlink" title="最小元的对偶"></a>最小元的对偶</h4><p>首先考虑最小元的性质，$x$是$S$上关于广义不等式$\preceq_K$的最小元的充要条件是对于$\lambda\succ_{K^\ast}0$，$x$是在$z\in S$上极小化$\lambda^Tz$的唯一最优解。几何上看，这意味着对于任意$\lambda\succ_{K^\ast}0$，超平面$\{z|\lambda^T(z-x)=0\}$是在$x$处对$S$的一个严格支撑超平面（严格支撑表示超平面与$S$只相交于$x$）。这里没有要求$S$是凸集。</p>
+<h4 id="极小元的对偶性质"><a href="#极小元的对偶性质" class="headerlink" title="极小元的对偶性质"></a>极小元的对偶性质</h4><p>如果$\lambda\succ_{K^\ast}0$并且$x$在$z\in S$上极小化$\lambda^Tz$，那么$x$是极小的。</p>
+<p>其逆定理在一般情况下不成立：$S$上的极小元$x$可以对于任何$\lambda$都不是$z\in S$上极小化$\lambda^Tz$的解。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1072,94 +1176,6 @@
 <h4 id="线性分式函数的投射解释"><a href="#线性分式函数的投射解释" class="headerlink" title="线性分式函数的投射解释"></a>线性分式函数的投射解释</h4><p>可以将线性分式函数表示为：将矩阵$Q=\begin{bmatrix}A &amp; b\\ c^T&amp; d\end{bmatrix}\in\mathbf{R}^{(m+1)\times(n+1)}$作用于（左乘）点$(x,1)$，得到$(Ax+b,c^Tx+d)$；然后将所得的结果进行归一化（伸缩变换）看，使得最后一个分量为1，得到$(f(x),1)$.</p>
 <h4 id="线性分式函数的保凸性"><a href="#线性分式函数的保凸性" class="headerlink" title="线性分式函数的保凸性"></a>线性分式函数的保凸性</h4><p>线性分式函数是保凸的。如果$C$是凸集并且在$f$的定义域中（即任意$x\in C$满足$c^T+d&gt;0$），那么$C$的像$f(x)$也是凸集。</p>
 <p>根据前面的结果可以知道线性分式函数的逆映射也是保凸的</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/18/Verilog%EF%BC%9A%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/18/Verilog%EF%BC%9A%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">Verilog：时序逻辑电路建模</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-12-18 13:59:59 / 修改时间：14:41:00" itemprop="dateCreated datePublished" datetime="2023-12-18T13:59:59+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Verilog/" itemprop="url" rel="index"><span itemprop="name">Verilog</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>一些时序逻辑电路的行为级建模的例子</p>
-<h3 id="移位寄存器的Verilog建模"><a href="#移位寄存器的Verilog建模" class="headerlink" title="移位寄存器的Verilog建模"></a>移位寄存器的Verilog建模</h3><p>对于双向移位寄存器74HCT194，其建模时要实现的核心功能在于，$S_0,S_1$的四种值时的数据的不同操作，</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> shift74x194_beh(</span><br><span class="line">	<span class="keyword">input</span> S0,S1,</span><br><span class="line">    <span class="keyword">input</span> Dsl,Dsr,</span><br><span class="line">    <span class="keyword">input</span> CP,CR,</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">0</span>:<span class="number">3</span>]D,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">0</span>:<span class="number">3</span>]Q</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> CP,<span class="keyword">negedge</span> CR)</span><br><span class="line">        <span class="keyword">if</span>(!CR)Q&lt;=<span class="number">4&#x27;b0000</span>;</span><br><span class="line">    	<span class="keyword">else</span></span><br><span class="line">            <span class="keyword">case</span>(&#123;S1,S0&#125;)</span><br><span class="line">                <span class="number">2&#x27;b00</span>: Q&lt;=Q;			<span class="comment">//输出保持不变</span></span><br><span class="line">                <span class="number">2&#x27;b01</span>: Q&lt;=&#123;Dsr,Q[<span class="number">0</span>,<span class="number">2</span>]&#125;;	<span class="comment">//右移</span></span><br><span class="line">                <span class="number">2&#x27;b02</span>: Q&lt;=&#123;Q[<span class="number">1</span>,<span class="number">3</span>],Dsl&#125;;	<span class="comment">//左移</span></span><br><span class="line">                <span class="number">2&#x27;b03</span>: Q&lt;=D;			<span class="comment">//并行置数</span></span><br><span class="line">            <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<h3 id="计数器的Verilog建模"><a href="#计数器的Verilog建模" class="headerlink" title="计数器的Verilog建模"></a>计数器的Verilog建模</h3><h6 id="带有使能端和同步置数端的可逆二进制计数器"><a href="#带有使能端和同步置数端的可逆二进制计数器" class="headerlink" title="带有使能端和同步置数端的可逆二进制计数器"></a>带有使能端和同步置数端的可逆二进制计数器</h6><p>参数n设置位数，Up_down为1/0控制计数器递增/递减</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> updowncount #(<span class="keyword">parameter</span> n=<span class="number">4</span>)</span><br><span class="line">    (</span><br><span class="line">    	<span class="keyword">input</span> Load,Up_down,En,CP,</span><br><span class="line">        <span class="keyword">input</span> [n-<span class="number">1</span>:<span class="number">0</span>]D,</span><br><span class="line">        <span class="keyword">output</span> <span class="keyword">reg</span> [n-<span class="number">1</span>:<span class="number">0</span>]Q</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">integer</span> direction;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> CP)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(Up_down)</span><br><span class="line">            direction&lt;=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            direction&lt;=-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(Load)</span><br><span class="line">            Q&lt;=D;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(En)</span><br><span class="line">            Q&lt;=Q+direction;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            Q&lt;=Q;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<h6 id="带有异步清零功能的D触发器构成的4位二进制计数器"><a href="#带有异步清零功能的D触发器构成的4位二进制计数器" class="headerlink" title="带有异步清零功能的D触发器构成的4位二进制计数器"></a>带有异步清零功能的D触发器构成的4位二进制计数器</h6><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> D_FF(</span><br><span class="line">	<span class="keyword">output</span> <span class="keyword">reg</span> Q,</span><br><span class="line">    <span class="keyword">input</span> D,CP,Rd</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">negedge</span> CP,<span class="keyword">negedge</span> Rd)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(!Rd)Q&lt;=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> Q&lt;=D;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> rippecounter(</span><br><span class="line">    <span class="keyword">output</span> Q0,Q1,Q2,Q3,</span><br><span class="line">    <span class="keyword">input</span> CP,CR</span><br><span class="line">);</span><br><span class="line">    <span class="comment">//实例化引用触发器模块</span></span><br><span class="line">    D_FF FF0(Q0,~Q0,CP,CR);</span><br><span class="line">    D_FF FF1(Q1,~Q1,Q0,CR);</span><br><span class="line">    D_FF FF2(Q2,~Q2,Q1,CR);</span><br><span class="line">    D_FF FF3(Q3,~Q3,Q2,CR);</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<h6 id="带有使能端和异步清零的模10计数器"><a href="#带有使能端和异步清零的模10计数器" class="headerlink" title="带有使能端和异步清零的模10计数器"></a>带有使能端和异步清零的模10计数器</h6><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> m10_counter(</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]Q,</span><br><span class="line">    <span class="keyword">input</span> CE,CP,CR</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> CP,<span class="keyword">negedge</span> CR)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(!CR)Q=<span class="number">4&#x27;b0000</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(CE)</span><br><span class="line">            <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">if</span>(Q&gt;=<span class="number">4&#x27;b1001</span>)</span><br><span class="line">                    Q&lt;=<span class="number">4&#x27;b0000</span></span><br><span class="line">                <span class="keyword">else</span> Q&lt;=Q+<span class="number">1</span>&#x27;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span> Q&lt;=Q;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>需要注意的是，电路的功能描述和具体的硬件电路结构是无关的，从这个模10计数器的建模中可以看出这一点</p>
-<h3 id="状态转换图的Verilog建模"><a href="#状态转换图的Verilog建模" class="headerlink" title="状态转换图的Verilog建模"></a>状态转换图的Verilog建模</h3><p>以检测连续输入序列$\mathbf{110}$的电路为例</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Mealey_sequence_detector(</span><br><span class="line">	<span class="keyword">input</span> A,CP,CR,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> Y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>]current_state,next_state;<span class="comment">//中间变量</span></span><br><span class="line">    <span class="keyword">parameter</span> S0=<span class="number">2&#x27;b00</span>,S1=<span class="number">2</span>&#x27;<span class="number">01</span>,S2=<span class="number">2&#x27;b11</span>;</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">negedge</span> CP,<span class="keyword">negedge</span> CR)<span class="comment">//时序电路</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(~CR)	current_state&lt;=S0;</span><br><span class="line">        <span class="keyword">else</span>	current_state&lt;=next_state;	<span class="comment">//状态转换</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">always</span> @(current_state,A)<span class="comment">//组合电路</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">case</span>(current_state)<span class="comment">//准备下一状态</span></span><br><span class="line">            Y=<span class="number">0</span>;</span><br><span class="line">            S0:<span class="keyword">begin</span>	next_state=(A==<span class="number">1</span>)?S1:S0;	<span class="keyword">end</span></span><br><span class="line">            S1:<span class="keyword">begin</span>	next_state=(A==<span class="number">1</span>)?S2:S0;	<span class="keyword">end</span></span><br><span class="line">            S3:<span class="keyword">if</span>(A==<span class="number">1</span>)	<span class="keyword">begin</span>	next_state=S2;	<span class="keyword">end</span></span><br><span class="line">            	<span class="keyword">else</span>	<span class="keyword">begin</span> 	Y=<span class="number">1</span>;next_state=S0;	<span class="keyword">end</span></span><br><span class="line">            <span class="keyword">default</span>:	<span class="keyword">begin</span> next_state=S0;	<span class="keyword">end</span></span><br><span class="line">        <span class="keyword">endcase</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
