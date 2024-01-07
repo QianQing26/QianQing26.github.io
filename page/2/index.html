@@ -122,18 +122,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -158,6 +158,118 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/19/%E5%87%B8%E4%BC%98%E5%8C%969%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E5%BC%8F%E5%8F%8A%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/19/%E5%87%B8%E4%BC%98%E5%8C%969%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E5%BC%8F%E5%8F%8A%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">凸优化9：保凸运算2：线性分式及透视函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-19 00:31:49" itemprop="dateCreated datePublished" datetime="2023-12-19T00:31:49+08:00">2023-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-20 00:09:27" itemprop="dateModified" datetime="2023-12-20T00:09:27+08:00">2023-12-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本次我们来讨论一类叫<strong>线性分式</strong>的函数，其比仿射函数更加普遍，而且也是保凸的。</p>
+<h3 id="透视函数-The-perspective-function"><a href="#透视函数-The-perspective-function" class="headerlink" title="透视函数(The perspective function)"></a>透视函数(The perspective function)</h3><p>我们定义$P:\mathbf{R}^{n+1}\rightarrow\mathbf{R}^n，P(z,t)=z/t$为<strong>透视函数</strong>，其定义域为$\mathbf{dom}P=\mathbf{R}^n\times\mathbf{R}_{++}$。此处$\mathbf{R}_{++}$表示正实数集合。</p>
+<p>透视函数可以理解为，对一个$n+1$维的向量，用最后一维除前$n$维，并且将最后一维舍去。也即对最后一维进行了规范化。</p>
+<blockquote>
+<p>可以用小孔成像来理解透视函数，如下图的小孔成像，$x_3=0$上方的一系列点透过小孔映射到了$x_3=-1$上。原来的点何其对应的像的映射就对应了透视函数。</p>
+</blockquote>
+<p><img src="img/透视函数.png" alt=""></p>
+<p><img src="透视函数.png" alt=""></p>
+<h4 id="透视函数的保凸性"><a href="#透视函数的保凸性" class="headerlink" title="透视函数的保凸性"></a>透视函数的保凸性</h4><p>通过小孔成像的例子，我们可以很直观地理解透视函数的一系列性质。</p>
+<p>如果$C\subseteq P$是凸集，那么它的像$P(C)\{P(x)|x\in C\}$也是凸集。这个结论很直观：通过小孔观察凸的物体还是凸的。</p>
+<p>更加严谨地，我们可以证明线段在透视函数地作用下会被映射为线段。假设$x=(\widetilde x,x_{n+1}),y=(\widetilde y,y_{n+1})$，并且$x_{n+1},y_{n+1}&gt;0$，那么对于$0\leq\theta\leq1$，就有：</p>
+<p>$P(\theta x+(1-\theta)y)=\cfrac{\theta\widetilde x+(1-\theta\widetilde )y}{\theta x_{n+1}+(1-\theta)y_{n+1}}=\mu P(x)+(1-\mu)P$，其中$\mu=\cfrac{\theta x_{n+1}}{\theta x_{n+1}+(1-\theta)y_{n+1}}\in\left[0,1\right]$</p>
+<p>容易知道其中$\mu,\theta$的关系是单调的：当$\theta$在0，1之间变化形成线段$[x,y]$时，$\mu$也在0，1之间形成线段$[P(x),P(y)]$，这说明$P([x,y])=[P(x),P(y)]$。</p>
+<p>接着，假设$C$是凸的，并且$C\subseteq \mathbf{dom}P,\quad x,y\in C$。为了显示$P(C)$的凸性，我们需要说明$[P(x),P(y)]$在$P(C)$中。而这是显然的，这条线段就是$[x,y]$在$P$的像，因为属于$P(C)$。</p>
+<h4 id="透视函数的反函数的保凸性"><a href="#透视函数的反函数的保凸性" class="headerlink" title="透视函数的反函数的保凸性"></a>透视函数的反函数的保凸性</h4><p>一个凸集在透视函数下面的原像也是凸的：如果$C\subseteq \mathbf{R}^n$是凸集，那么$P^{-1}(C)=\{(x,t)\in\mathbf{R}^{n+1}|x/t\in C,t&gt;0\}$也是凸的。证明如下，</p>
+<p>假设$(x,t)\in P^{-1}(C),(y,s)\in P^{-1}C,0\leq\theta\leq1$。需要说明$\theta(x,t)_(1-\theta)(y,s)\in P^{-1}(C)$，也即$\cfrac{\theta x+(1-\theta)y}{\theta t+(1-\theta)s}\in C$。</p>
+<p>显然，$\theta t+(1-\theta)s&gt;0$。可以从下式看出：</p>
+<p>$\cfrac{\theta x+(1-\theta)y}{\theta t+(1-\theta)s}=\mu(x/t)+(1-\mu)(y/s)$，其中$\mu=\cfrac{\theta t}{\theta t+(1-\theta)s}\in[0,1].$</p>
+<p>从而知道上面需要说明的结论是显然的。</p>
+<h3 id="线性分式函数-Linear-fractional-functions"><a href="#线性分式函数-Linear-fractional-functions" class="headerlink" title="线性分式函数(Linear-fractional functions)"></a>线性分式函数(Linear-fractional functions)</h3><p><strong>线性分式函数</strong>是由透视函数和仿射函数复合而成的。设$g:\mathbf{R}^n\rightarrow\mathbf{R}^{m+1}$是仿射的，即$g(x)=\begin{bmatrix}A\\c^T\end{bmatrix}x+\begin{bmatrix}b\\d\end{bmatrix}$，其中$A\in\mathbf{R}^{m\times n}$,$b\in\mathbf{R}^m$,$c\in\mathbf{R}^n$,$d\in\mathbf{R}$.</p>
+<p>则由$f=P\circ g$给出的函数$f:\mathbf{R}^n\rightarrow\mathbf{R}^m$ $f(x)=(Ax+b)/(c^Tx+d)$         $\mathbf{dom}f=\{x|c^Tx+d&gt;0\}$称为<strong>线性分式</strong>（或<strong>投射</strong>）函数。如果$c=0,d&gt;0$则$f$的定义域为$\mathbf{R}^n$，并且$f$是仿射函数。因此我们知道仿射函数和线性函数都是特殊的线性分式函数。</p>
+<h4 id="线性分式函数的投射解释"><a href="#线性分式函数的投射解释" class="headerlink" title="线性分式函数的投射解释"></a>线性分式函数的投射解释</h4><p>可以将线性分式函数表示为：将矩阵$Q=\begin{bmatrix}A &amp; b\\ c^T&amp; d\end{bmatrix}\in\mathbf{R}^{(m+1)\times(n+1)}$作用于（左乘）点$(x,1)$，得到$(Ax+b,c^Tx+d)$；然后将所得的结果进行归一化（伸缩变换）看，使得最后一个分量为1，得到$(f(x),1)$.</p>
+<h4 id="线性分式函数的保凸性"><a href="#线性分式函数的保凸性" class="headerlink" title="线性分式函数的保凸性"></a>线性分式函数的保凸性</h4><p>线性分式函数是保凸的。如果$C$是凸集并且在$f$的定义域中（即任意$x\in C$满足$c^T+d&gt;0$），那么$C$的像$f(x)$也是凸集。</p>
+<p>根据前面的结果可以知道线性分式函数的逆映射也是保凸的</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1077,121 +1189,6 @@
 <li>一条射线，即$\{x_0+\theta v|\theta\ge 0 ,v\neq 0\}$是凸的。但不是仿射的。如果$x_0=0$，那么这个集合是凸锥</li>
 <li>任意子空间都是仿射的，并且是凸锥</li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/07/%E5%87%B8%E4%BC%98%E5%8C%961/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/07/%E5%87%B8%E4%BC%98%E5%8C%961/" class="post-title-link" itemprop="url">凸优化1：仿射集</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-07 19:01:15" itemprop="dateCreated datePublished" datetime="2023-12-07T19:01:15+08:00">2023-12-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-10 16:44:01" itemprop="dateModified" datetime="2023-12-10T16:44:01+08:00">2023-12-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="仿射集合"><a href="#仿射集合" class="headerlink" title="仿射集合"></a>仿射集合</h2><p>如果通过集合$C\subseteq \mathbb{R}^n$中的任意两个不同点的直线仍在集合$C$中，那么称集合$C$是<strong>仿射</strong>的。也即，$\forall x_1,x_2\in C$及$\theta\in\mathbb{R}$，有$\theta x_1+(1-\theta)x_2\in C$</p>
-<p>$x_1,x_2,\dots,x_k$都是集合$C$中的点，$\theta_1,\theta_2,\dots,\theta_k$都为正数，且$\theta_1+\theta_2+\dots+\theta_k=1$，则称具有$\theta_1 x_1+\theta_2 x_2+\dots+\theta_kx_k$的点称为$x_1,x_2,\dots,x_k$的<strong>仿射组合</strong>。可以归纳得到，一个仿射集合包含其中任意多点的仿射组合。</p>
-<p>由于$\theta_1+\theta_2+\cdots+\theta_k=1$，很容易知道，对于$x_0\in C$集合$V=C-x_0=\{x-x_0|x\in C\}$对于加法和数乘是封闭的。我们称这样的集合$V$为仿射集合$C$的子空间。因此，仿射集合$C$可以表示为$C=V+x_0]\{v+x_0|v\in V\}$。即子空间加上一个偏置。</p>
-<p>定义仿射集合$C$的<strong>维数</strong>为子空间$V=C-x_0$的维数，其中$x_0$是$C$中的任意元素。</p>
-<blockquote>
-<p>以上的概念与线性方程组的解的结构很相似，由以上的概念很容易推出，任意仿射集合可以表示为一个线性方程组的解集。</p>
-<p>由上面的类比，仿射集合$C$的维数也可以类比为线性方程组中未知数的数量。</p>
-</blockquote>
-<p>我们称集合$C\subseteq \mathbf{R}^n$中的点的所有仿射组合组成的集合为$C$的<strong>仿射包</strong>，记为$\mathbf{aff}C=\{\theta_1x_1+\dots+\theta_kx_k|x_1,\dots,x_k \in C,\theta_1+\dots+\theta_k=1\}$</p>
-<p>仿射包是包含$C$的最小的仿射集合。</p>
-<h2 id="仿射维数与相对内部"><a href="#仿射维数与相对内部" class="headerlink" title="仿射维数与相对内部"></a>仿射维数与相对内部</h2><p>定义集合$C$的<strong>仿射维数</strong>为其仿射包的维数。</p>
-<blockquote>
-<p>通俗解释就是说，仿射组合得到的空间是几维，仿射包就是几维。</p>
-</blockquote>
-<p>若集合$C\subseteq \mathbf{R}^n$的仿射维数小于$n$，那么这个集合在仿射集合$\mathbf{aff}C\neq \mathbf{R}^n$中。定义集合$C$上的<strong>相对内部</strong>为$\mathbf{aff}C$的内部，记为$\mathbf{relint}C$。</p>
-<p>$\mathbf{relint}C=\{x\in C|B(x,r)\cap\mathbf{aff}C\subseteq C\text{ for some }r&gt;0\}$</p>
-<p>其中$B(x,r)=\{y|\left|\left|y-x\right|\right|\leq r\}$，即半径为$r$，中心为$x$并由范数$||\cdot||$定义的球。此处的范数可以是任意范数。 </p>
-<blockquote>
-<p>例如$\mathbf{R}^3$中的一个正方形，定义</p>
-<p>$C=\{x\in\mathbf{R}^3|-1\leq x_1\leq 1,-1\leq x_2\leq1,x_3=0\}$。</p>
-<p>其仿射包为$x_1,x_2$的平面，$C$的内部为空，但其相对内部</p>
-<p>$\mathbf{relint}C=\{x\in\mathbf{R}^3|-1&lt;x_1&lt;1,-1&lt;x_2&lt;1,x_3=0\}$</p>
-</blockquote>
-<p>可以定义<strong>相对边界</strong>$\mathbf{cl}C-\mathbf{relint}C$，此处$\mathbf{cl}C$表示$C$的闭包。</p>
-<blockquote>
-<p>在上面正方形的那个例子中，正方形（在$\mathbf{R}^3$中）的边界是其自身，而相对边界是其边框$\{x\in\mathbf{R}^3|max\{|x_1|,|x_2|\}=1,x_3=0\}$</p>
-</blockquote>
 
       
     </div>

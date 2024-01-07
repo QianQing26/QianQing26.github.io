@@ -19,30 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="在数学研究中，解方程首先需要确定解的范围，在SymPy中解方程也首先需要确定解的范围是实数集sympy.S.Reals或者复数集sympy.S.Complexes。定义域不同，得到的解集也是不同的。 在SymPy中使用函数sympy.solveset来求解方程的解集。 例如依次求解以下五个方程 $\begin{aligned}&amp;\{x\in\mathbb{R}|x^3-1&#x3D;0\}\\&amp;am">
+    <meta name="description" content="凸函数的定义函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$是凸的：如果$\mathbf{dom}f$是凸集，且对于任意$x,y\in\mathbf{dom}f$和任意$0\leq\theta\leq1$有$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$ 从几何上看，上述不等式意味着点$(x,f(x)),(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SymPy方程求解">
-<meta property="og:url" content="http://qianqing26.github.io/2023/12/27/SymPy%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/index.html">
+<meta property="og:title" content="凸优化14：凸函数的基本定义">
+<meta property="og:url" content="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9614%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89/index.html">
 <meta property="og:site_name" content="千顷&#x2F;QianQing26">
-<meta property="og:description" content="在数学研究中，解方程首先需要确定解的范围，在SymPy中解方程也首先需要确定解的范围是实数集sympy.S.Reals或者复数集sympy.S.Complexes。定义域不同，得到的解集也是不同的。 在SymPy中使用函数sympy.solveset来求解方程的解集。 例如依次求解以下五个方程 $\begin{aligned}&amp;\{x\in\mathbb{R}|x^3-1&#x3D;0\}\\&amp;am">
+<meta property="og:description" content="凸函数的定义函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$是凸的：如果$\mathbf{dom}f$是凸集，且对于任意$x,y\in\mathbf{dom}f$和任意$0\leq\theta\leq1$有$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$ 从几何上看，上述不等式意味着点$(x,f(x)),(">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-27T15:57:38.000Z">
-<meta property="article:modified_time" content="2023-12-27T15:58:25.754Z">
+<meta property="article:published_time" content="2024-01-07T09:00:50.000Z">
+<meta property="article:modified_time" content="2024-01-07T15:47:11.436Z">
 <meta property="article:author" content="QianQing26">
-<meta property="article:tag" content="科学计算">
-<meta property="article:tag" content="SymPy">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="凸优化">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="凸函数">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qianqing26.github.io/2023/12/27/SymPy%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/">
+<link rel="canonical" href="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9614%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2023/12/27/SymPy%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/","path":"2023/12/27/SymPy方程求解/","title":"SymPy方程求解"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9614%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89/","path":"2024/01/07/凸优化14：凸函数的基本定义/","title":"凸优化14：凸函数的基本定义"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>SymPy方程求解 | 千顷/QianQing26</title>
+<title>凸优化14：凸函数的基本定义 | 千顷/QianQing26</title>
   
 
 
@@ -104,7 +104,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -117,6 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">凸函数的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E5%80%BC%E5%BB%B6%E4%BC%B8"><span class="nav-number">2.</span> <span class="nav-text">扩展值延伸</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -175,7 +176,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/27/SymPy%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9614%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -188,12 +189,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="SymPy方程求解 | 千顷/QianQing26">
+      <meta itemprop="name" content="凸优化14：凸函数的基本定义 | 千顷/QianQing26">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SymPy方程求解
+          凸优化14：凸函数的基本定义
         </h1>
 
         <div class="post-meta-container">
@@ -205,7 +206,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-12-27 23:57:38 / 修改时间：23:58:25" itemprop="dateCreated datePublished" datetime="2023-12-27T23:57:38+08:00">2023-12-27</time>
+      <time title="创建时间：2024-01-07 17:00:50 / 修改时间：23:47:11" itemprop="dateCreated datePublished" datetime="2024-01-07T17:00:50+08:00">2024-01-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -213,11 +214,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/SymPy/" itemprop="url" rel="index"><span itemprop="name">SymPy</span></a>
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">凸函数</span></a>
         </span>
     </span>
 
@@ -237,16 +238,16 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>在数学研究中，解方程首先需要确定解的范围，在SymPy中解方程也首先需要确定解的范围是实数集<code>sympy.S.Reals</code>或者复数集<code>sympy.S.Complexes</code>。定义域不同，得到的解集也是不同的。</p>
-<p>在SymPy中使用函数<code>sympy.solveset</code>来求解方程的解集。</p>
-<p>例如依次求解以下五个方程</p>
-<p>$\begin{aligned}&amp;\{x\in\mathbb{R}|x^3-1=0\}\\&amp;\{x\in\mathbb{C}|x^3-1=0\}\\&amp;\{x\in\mathbb{R}|e^x=0\}\\&amp;\{x\in\mathbb{R}|e^x-1=0\}\\&amp;\{x\in\mathbb{C}|e^x-1=0\}\\\end{aligned}$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.Eq(x**<span class="number">3</span>,<span class="number">1</span>),x,domain=sympy.S.Reals)</span><br><span class="line">&#123;<span class="number">1</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.Eq(x**<span class="number">3</span>,<span class="number">1</span>),x,domain=sympy.S.Complexes)</span><br><span class="line">&#123;<span class="number">1</span>, -<span class="number">1</span>/<span class="number">2</span> - sqrt(<span class="number">3</span>)*I/<span class="number">2</span>, -<span class="number">1</span>/<span class="number">2</span> + sqrt(<span class="number">3</span>)*I/<span class="number">2</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.exp(x),x)</span><br><span class="line">EmptySet</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.exp(x)-<span class="number">1</span>,x,domain=sympy.S.Reals)</span><br><span class="line">&#123;<span class="number">0</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.exp(x)-<span class="number">1</span>,x,domain=sympy.S.Complexes)</span><br><span class="line">ImageSet(Lambda(_n, <span class="number">2</span>*_n*I*pi), Integers)</span><br></pre></td></tr></table></figure>
-<p>其中<code>Lambda()</code>表示函数，<code>_n</code>是自变量，<code>Integers</code>是自变量的定义域</p>
-<p>在线性代数中，有多元一次方程组，可以使用<code>sympy.solve()</code>函数，例如</p>
-<p>$\begin{cases}x+y-10\\x-y-2=0\end{cases}$</p>
-<p>$\begin{cases}\sin(x-y)=0\\\cos(x+y)=0\end{cases}$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solve([x+y-<span class="number">10</span>,x-y-<span class="number">2</span>],[x,y])</span><br><span class="line">&#123;x: <span class="number">6</span>, y: <span class="number">4</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solve([sympy.sin(x-y),sympy.cos(x+y)],[x,y])</span><br><span class="line">[(-pi/<span class="number">4</span>, <span class="number">3</span>*pi/<span class="number">4</span>), (pi/<span class="number">4</span>, pi/<span class="number">4</span>), (<span class="number">3</span>*pi/<span class="number">4</span>, <span class="number">3</span>*pi/<span class="number">4</span>), (<span class="number">5</span>*pi/<span class="number">4</span>, pi/<span class="number">4</span>)]</span><br></pre></td></tr></table></figure>
+    <div class="post-body" itemprop="articleBody"><h3 id="凸函数的定义"><a href="#凸函数的定义" class="headerlink" title="凸函数的定义"></a>凸函数的定义</h3><p>函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$是凸的：如果$\mathbf{dom}f$是凸集，且对于任意$x,y\in\mathbf{dom}f$和任意$0\leq\theta\leq1$有$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$</p>
+<p>从几何上看，上述不等式意味着点$(x,f(x)),(y,f(y))$之间的线段（即$x,y$之间的弦）在$f$图像的上方。如果定义中的不等式当$x\neq y $以及$0&lt;\theta&lt;1$时严格成立，那么称$f$时严格凸的。如果函数$-f$是凸的，那么称函数$f$是凹的。如果$-f$是严格凸的，那么称$f$是严格凹的。</p>
+<p>对于仿射函数，定义中的不等式始终成立。仿射函数既凸又凹；反过来说，如果一个函数既凸又凹，则称其为仿射函数。</p>
+<p>一个函数，当且仅当其在与其定义域相交的任何直线上都是凸的，这个函数是凸函数。换言之，当且仅当对于任意$x\in\mathbf{dom}f$和任意向量$v$，函数$g(t)=f(x+tv)$，函数$f$是凸的。</p>
+<h3 id="扩展值延伸"><a href="#扩展值延伸" class="headerlink" title="扩展值延伸"></a>扩展值延伸</h3><p>通常定义凸函数$f$在定义域外的值为$\infty$，从而将这个凸函数延伸到$\mathbf{R}^n$。如果$f$是凸函数，我们定义其<strong>扩展值延伸</strong>：$\widetilde{f}:\mathbf{R}^n\rightarrow\mathbf{R}\cup\{\infty\}$如下：</p>
+<p>$\widetilde{f}(x)\left\{\begin{aligned}f(x),&amp;x\in\mathbf{dom}f\\\infty,&amp;x\not\in\mathbf{dom}f\end{aligned}\right.$</p>
+<p>可以从扩展值延伸之中确定原函数$f$的定义域：$\mathbf{dom}f=\{x|\widetilde f(x)&lt;\infty\}$</p>
+<p>有了扩展值延伸的概念，就不需要每次都描述定义域了，以至于凸函数的定义式可以描述为：对于任意$x,y$以及$0&lt;\theta&lt;1$有：$\widetilde f(\theta x+(1-\theta)x)\leq\theta\widetilde f(x)+(1-\theta)\widetilde f(y)$</p>
+<p>由于定义域外的值被设定为了$\infty$，则对于两个凸函数$f_1,f_2$，其逐点求和函数$f=f_1+f_2$的定义域为$\mathbf{dom}f=\mathbf{dom}f_1\cap\mathbf{dom}f_2$</p>
+<p>类似地，对于凹函数，可以定义其定义域外部的值为$-\infty$.</p>
 
     </div>
 
@@ -274,23 +275,20 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 科学计算</a>
-              <a href="/tags/SymPy/" rel="tag"><i class="fa fa-tag"></i> SymPy</a>
-              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 凸优化</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+              <a href="/tags/%E5%87%B8%E5%87%BD%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 凸函数</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/12/27/SymPy%E5%BE%AE%E7%A7%AF%E5%88%86%E8%AE%A1%E7%AE%97/" rel="prev" title="SymPy微积分计算">
-                  <i class="fa fa-angle-left"></i> SymPy微积分计算
+                <a href="/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9613%EF%BC%9A%E5%AF%B9%E5%81%B6%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/" rel="prev" title="凸优化13：对偶锥与广义不等式">
+                  <i class="fa fa-angle-left"></i> 凸优化13：对偶锥与广义不等式
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/" rel="next" title="凸优化12：超平面分离定理">
-                  凸优化12：超平面分离定理 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

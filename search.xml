@@ -705,4 +705,28 @@
         <tag>数学</tag>
       </tags>
   </entry>
+  <entry>
+    <title>凸优化14：凸函数的基本定义</title>
+    <url>/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9614%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89/</url>
+    <content><![CDATA[<h3 id="凸函数的定义"><a href="#凸函数的定义" class="headerlink" title="凸函数的定义"></a>凸函数的定义</h3><p>函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$是凸的：如果$\mathbf{dom}f$是凸集，且对于任意$x,y\in\mathbf{dom}f$和任意$0\leq\theta\leq1$有$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$</p>
+<p>从几何上看，上述不等式意味着点$(x,f(x)),(y,f(y))$之间的线段（即$x,y$之间的弦）在$f$图像的上方。如果定义中的不等式当$x\neq y $以及$0&lt;\theta&lt;1$时严格成立，那么称$f$时严格凸的。如果函数$-f$是凸的，那么称函数$f$是凹的。如果$-f$是严格凸的，那么称$f$是严格凹的。</p>
+<p>对于仿射函数，定义中的不等式始终成立。仿射函数既凸又凹；反过来说，如果一个函数既凸又凹，则称其为仿射函数。</p>
+<p>一个函数，当且仅当其在与其定义域相交的任何直线上都是凸的，这个函数是凸函数。换言之，当且仅当对于任意$x\in\mathbf{dom}f$和任意向量$v$，函数$g(t)=f(x+tv)$，函数$f$是凸的。</p>
+<h3 id="扩展值延伸"><a href="#扩展值延伸" class="headerlink" title="扩展值延伸"></a>扩展值延伸</h3><p>通常定义凸函数$f$在定义域外的值为$\infty$，从而将这个凸函数延伸到$\mathbf{R}^n$。如果$f$是凸函数，我们定义其<strong>扩展值延伸</strong>：$\widetilde{f}:\mathbf{R}^n\rightarrow\mathbf{R}\cup\{\infty\}$如下：</p>
+<p>$\widetilde{f}(x)\left\{\begin{aligned}f(x),&amp;x\in\mathbf{dom}f\\\infty,&amp;x\not\in\mathbf{dom}f\end{aligned}\right.$</p>
+<p>可以从扩展值延伸之中确定原函数$f$的定义域：$\mathbf{dom}f=\{x|\widetilde f(x)&lt;\infty\}$</p>
+<p>有了扩展值延伸的概念，就不需要每次都描述定义域了，以至于凸函数的定义式可以描述为：对于任意$x,y$以及$0&lt;\theta&lt;1$有：$\widetilde f(\theta x+(1-\theta)x)\leq\theta\widetilde f(x)+(1-\theta)\widetilde f(y)$</p>
+<p>由于定义域外的值被设定为了$\infty$，则对于两个凸函数$f_1,f_2$，其逐点求和函数$f=f_1+f_2$的定义域为$\mathbf{dom}f=\mathbf{dom}f_1\cap\mathbf{dom}f_2$</p>
+<p>类似地，对于凹函数，可以定义其定义域外部的值为$-\infty$.</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸函数</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>数学</tag>
+        <tag>凸函数</tag>
+      </tags>
+  </entry>
 </search>
