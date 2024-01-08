@@ -19,23 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="千顷&#x2F;QianQing26">
-<meta property="og:url" content="http://qianqing26.github.io/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/index.html">
+    <meta name="description" content="Jensen不等式基本不等式$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$有时也称为Jensen不等式。 此不等式可以拓展到更多点的凸组合：如果函数$f$是凸函数，$x_1,\dots,x_k\in\mathbf{dom}f$，$\theta_1,\dots,\theta_k\geq0$且$\theta_1+\dots+\theta_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="凸优化17：凸函数与不等式">
+<meta property="og:url" content="http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9617%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E4%B8%8E%E4%B8%8D%E7%AD%89%E5%BC%8F/index.html">
 <meta property="og:site_name" content="千顷&#x2F;QianQing26">
+<meta property="og:description" content="Jensen不等式基本不等式$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$有时也称为Jensen不等式。 此不等式可以拓展到更多点的凸组合：如果函数$f$是凸函数，$x_1,\dots,x_k\in\mathbf{dom}f$，$\theta_1,\dots,\theta_k\geq0$且$\theta_1+\dots+\theta_">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-08T02:52:12.000Z">
+<meta property="article:modified_time" content="2024-01-08T03:20:19.015Z">
 <meta property="article:author" content="QianQing26">
+<meta property="article:tag" content="凸优化">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="凸函数">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qianqing26.github.io/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/">
+<link rel="canonical" href="http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9617%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E4%B8%8E%E4%B8%8D%E7%AD%89%E5%BC%8F/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/凸优化/凸函数/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9617%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E4%B8%8E%E4%B8%8D%E7%AD%89%E5%BC%8F/","path":"2024/01/08/凸优化17：凸函数与不等式/","title":"凸优化17：凸函数与不等式"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: 凸函数 | 千顷/QianQing26</title>
+<title>凸优化17：凸函数与不等式 | 千顷/QianQing26</title>
   
 
 
@@ -97,7 +104,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -110,6 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jensen%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">Jensen不等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">其他不等式</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -157,110 +165,142 @@
 
     </div>
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">凸函数
-          <small>分类</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9617%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E4%B8%8E%E4%B8%8D%E7%AD%89%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="凸优化17：凸函数与不等式 | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          凸优化17：凸函数与不等式
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+
+      <time title="创建时间：2024-01-08 10:52:12 / 修改时间：11:20:19" itemprop="dateCreated datePublished" datetime="2024-01-08T10:52:12+08:00">2024-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">凸函数</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Jensen不等式"><a href="#Jensen不等式" class="headerlink" title="Jensen不等式"></a>Jensen不等式</h3><p>基本不等式$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$有时也称为<strong>Jensen不等式</strong>。</p>
+<p>此不等式可以拓展到更多点的凸组合：如果函数$f$是凸函数，$x_1,\dots,x_k\in<script type="math/tex">\mathbf{dom}f$，$\theta_1,\dots,\theta_k\geq0$且$\theta_1+\dots+\theta_k=1$，则下面的不等式成立：$f(\theta_1x_1+\dots+\theta_kx_k)</script>\leq$$\theta_1f(x_1)+\dots+\theta_kf(x_k)$</p>
+<p>考虑凸集的时候，这个不等式可以拓展为无穷级数、积分、期望。</p>
+<p>例如下面由形式如下的不等式：$f\left(\int_Sp(x)xdx\right)&lt;\int_Sf(x)p(x)dx$以及$f(\mathbf{E}x)&lt;\mathbf{E}f(x)$</p>
+<p>实际上Jensen不等式最初的形式是：$f(\cfrac{x+y}{2}）\leq\cfrac{f(x)+f(y)}2$</p>
+<h3 id="其他不等式"><a href="#其他不等式" class="headerlink" title="其他不等式"></a>其他不等式</h3><p>很多不等式都可以将Jensen不等式应用到合适的凸函数中得到。</p>
+<p>例如，对凸函数$-\log x$使用Jensen不等式，可以得到$\sqrt{ab}\leq\cfrac{a+b}{2}$</p>
+<p>例如Hölder不等式：对$p&gt;1,\cfrac1p+\cfrac1q=1$以及$x,y\in\mathbf{R}^n$有：</p>
+<p>$\qquad\qquad\qquad \sum_{i=1}^nx_iy_i\leq\left(\sum_{i=1}^n|x_i|^p\right)^{1/p}\left(\sum_{i=1}^n|y_i|^q\right)^{1/q}$</p>
+<p>由$-\log x$的凸性可以得到更为一般的均值不等式：$a^{\theta}b^{1-\theta}\leq\theta a+(1-\theta)b$</p>
+<p>其中$a,b\geq0,\quad 0\leq\theta\leq1$，令$a=\cfrac{|x_i|^p}{\sum_{j=1}^n|x_j|^p},\quad b=\cfrac{|y_i|^q}{\sum_{j=1}^n|y_i|^q},\quad \theta=\cfrac1p$</p>
+<p>然后对$i$求和，可以得到Hölder不等式。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-01-08T10:52:12+08:00"
-              content="2024-01-08">
-          01-08
-        </time>
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="QianQing26 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="QianQing26 支付宝">
+        <span>支付宝</span>
       </div>
 
-      <div class="post-title">
-        <a class="post-title-link" href="/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9617%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E4%B8%8E%E4%B8%8D%E7%AD%89%E5%BC%8F/" itemprop="url">
-          <span itemprop="name">凸优化17：凸函数与不等式</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-01-08T10:30:23+08:00"
-              content="2024-01-08">
-          01-08
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9616%EF%BC%9A%E4%B8%8B%E6%B0%B4%E5%B9%B3%E9%9B%86%E4%B8%8E%E4%B8%8A%E5%A2%83%E5%9B%BE/" itemprop="url">
-          <span itemprop="name">凸优化16：下水平集与上境图</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-01-07T23:49:46+08:00"
-              content="2024-01-07">
-          01-07
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9615%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E9%98%B6%E3%80%81%E4%BA%8C%E9%98%B6%E6%9D%A1%E4%BB%B6/" itemprop="url">
-          <span itemprop="name">凸优化15：凸函数的一阶、二阶条件</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-01-07T17:00:50+08:00"
-              content="2024-01-07">
-          01-07
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9614%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89/" itemprop="url">
-          <span itemprop="name">凸优化14：凸函数的基本定义</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
   </div>
-  
-  
-  
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 凸优化</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+              <a href="/tags/%E5%87%B8%E5%87%BD%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 凸函数</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9616%EF%BC%9A%E4%B8%8B%E6%B0%B4%E5%B9%B3%E9%9B%86%E4%B8%8E%E4%B8%8A%E5%A2%83%E5%9B%BE/" rel="prev" title="凸优化16：下水平集与上境图">
+                  <i class="fa fa-angle-left"></i> 凸优化16：下水平集与上境图
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
 
 </div>
   </main>

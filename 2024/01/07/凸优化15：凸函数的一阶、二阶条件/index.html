@@ -19,28 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="关于wire在Verilog中，wire可以看作一个导线（或则任意位宽的总线），需要注意的几点是：  wire可以用于将实例化时的输入输出端口连接到电路的其他地方 wire类型必须被其他东西驱动而不能用于储存其他数据 wire类型在always@块中不能作为&#x3D;和&lt;&#x3D;的左值 wire是assign语句的左值唯一合法的类型 wire只能用于组合逻辑电路  关于regreg和wire比较类似，但是">
+    <meta name="description" content="一阶条件假设$f$可微，即梯度$\nabla f$在开集$\mathbf{dom}f$内处处存在，则函数$f$是凸函数的充要条件：$\mathbf{dom}f$是凸集且任意$x,y\in \mathbf{dom}f$，下式成立：$f(y)\geq f(x)+\nabla f(x)^T(y-x)$ 由$f(x)+\nabla f(x)^T(y-x)$得出的仿射函数$y$即为函数$f$在点$x$附近的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Verilog：reg和wire的区别">
-<meta property="og:url" content="http://qianqing26.github.io/2023/12/22/Verilog%EF%BC%9Areg%E5%92%8Cwire%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:title" content="凸优化15：凸函数的一阶、二阶条件">
+<meta property="og:url" content="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9615%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E9%98%B6%E3%80%81%E4%BA%8C%E9%98%B6%E6%9D%A1%E4%BB%B6/index.html">
 <meta property="og:site_name" content="千顷&#x2F;QianQing26">
-<meta property="og:description" content="关于wire在Verilog中，wire可以看作一个导线（或则任意位宽的总线），需要注意的几点是：  wire可以用于将实例化时的输入输出端口连接到电路的其他地方 wire类型必须被其他东西驱动而不能用于储存其他数据 wire类型在always@块中不能作为&#x3D;和&lt;&#x3D;的左值 wire是assign语句的左值唯一合法的类型 wire只能用于组合逻辑电路  关于regreg和wire比较类似，但是">
+<meta property="og:description" content="一阶条件假设$f$可微，即梯度$\nabla f$在开集$\mathbf{dom}f$内处处存在，则函数$f$是凸函数的充要条件：$\mathbf{dom}f$是凸集且任意$x,y\in \mathbf{dom}f$，下式成立：$f(y)\geq f(x)+\nabla f(x)^T(y-x)$ 由$f(x)+\nabla f(x)^T(y-x)$得出的仿射函数$y$即为函数$f$在点$x$附近的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-22T01:06:39.000Z">
-<meta property="article:modified_time" content="2023-12-22T01:21:48.623Z">
+<meta property="article:published_time" content="2024-01-07T15:49:46.000Z">
+<meta property="article:modified_time" content="2024-01-07T16:44:52.404Z">
 <meta property="article:author" content="QianQing26">
-<meta property="article:tag" content="Verilog">
+<meta property="article:tag" content="凸优化">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="凸函数">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qianqing26.github.io/2023/12/22/Verilog%EF%BC%9Areg%E5%92%8Cwire%E7%9A%84%E5%8C%BA%E5%88%AB/">
+<link rel="canonical" href="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9615%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E9%98%B6%E3%80%81%E4%BA%8C%E9%98%B6%E6%9D%A1%E4%BB%B6/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2023/12/22/Verilog%EF%BC%9Areg%E5%92%8Cwire%E7%9A%84%E5%8C%BA%E5%88%AB/","path":"2023/12/22/Verilog：reg和wire的区别/","title":"Verilog：reg和wire的区别"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9615%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E9%98%B6%E3%80%81%E4%BA%8C%E9%98%B6%E6%9D%A1%E4%BB%B6/","path":"2024/01/07/凸优化15：凸函数的一阶、二阶条件/","title":"凸优化15：凸函数的一阶、二阶条件"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Verilog：reg和wire的区别 | 千顷/QianQing26</title>
+<title>凸优化15：凸函数的一阶、二阶条件 | 千顷/QianQing26</title>
   
 
 
@@ -115,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Ewire"><span class="nav-number">1.</span> <span class="nav-text">关于wire</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Ereg"><span class="nav-number">2.</span> <span class="nav-text">关于reg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reg%E5%92%8Cwire%E7%9A%84%E5%85%B1%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">reg和wire的共性</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">一阶条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E9%98%B6%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">二阶条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text">凸函数的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mathbf-R-%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">$\mathbf{R}$上的一些例子：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mathbf-R-n-%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90"><span class="nav-number">3.2.</span> <span class="nav-text">$\mathbf{R}^n$上的一些例子</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -174,7 +176,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/22/Verilog%EF%BC%9Areg%E5%92%8Cwire%E7%9A%84%E5%8C%BA%E5%88%AB/">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9615%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E9%98%B6%E3%80%81%E4%BA%8C%E9%98%B6%E6%9D%A1%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,12 +189,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Verilog：reg和wire的区别 | 千顷/QianQing26">
+      <meta itemprop="name" content="凸优化15：凸函数的一阶、二阶条件 | 千顷/QianQing26">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Verilog：reg和wire的区别
+          凸优化15：凸函数的一阶、二阶条件
         </h1>
 
         <div class="post-meta-container">
@@ -202,9 +204,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-12-22 09:06:39 / 修改时间：09:21:48" itemprop="dateCreated datePublished" datetime="2023-12-22T09:06:39+08:00">2023-12-22</time>
+      <time title="创建时间：2024-01-07 23:49:46" itemprop="dateCreated datePublished" datetime="2024-01-07T23:49:46+08:00">2024-01-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-08 00:44:52" itemprop="dateModified" datetime="2024-01-08T00:44:52+08:00">2024-01-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -212,7 +220,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Verilog/" itemprop="url" rel="index"><span itemprop="name">Verilog</span></a>
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">凸函数</span></a>
         </span>
     </span>
 
@@ -232,29 +244,22 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="关于wire"><a href="#关于wire" class="headerlink" title="关于wire"></a>关于<code>wire</code></h3><p>在Verilog中，<code>wire</code>可以看作一个导线（或则任意位宽的总线），需要注意的几点是：</p>
-<ol>
-<li><code>wire</code>可以用于将实例化时的输入输出端口连接到电路的其他地方</li>
-<li><code>wire</code>类型必须被其他东西驱动而不能用于储存其他数据</li>
-<li><code>wire</code>类型在<code>always@</code>块中不能作为<code>=</code>和<code>&lt;=</code>的左值</li>
-<li><code>wire</code>是<code>assign</code>语句的左值唯一合法的类型</li>
-<li><code>wire</code>只能用于组合逻辑电路</li>
-</ol>
-<h3 id="关于reg"><a href="#关于reg" class="headerlink" title="关于reg"></a>关于<code>reg</code></h3><p><code>reg</code>和<code>wire</code>比较类似，但是能够储存信息，类似寄存器，需要注意的几点是：</p>
-<ol>
-<li><code>reg</code>可以在实例化模块时连接其输入</li>
-<li><code>reg</code>不可以再实例化模块时连接其输出</li>
-<li><code>reg</code>可以在声明模块时作为其输出</li>
-<li><code>reg</code>不可以在声明模块时作为其输入</li>
-<li><code>reg</code>类型时<code>always@</code>块中作为<code>=</code>,<code>&lt;=</code>左值的唯一合法类型</li>
-<li><code>reg</code>不能作为<code>assign</code>语句的左值</li>
-<li><code>reg</code>类型可以创建寄存器，以用于类似于<code>always@(posedge)</code>的块</li>
-<li><code>reg</code>可以描述组合逻辑也可以描述时序逻辑</li>
-</ol>
-<h3 id="reg和wire的共性"><a href="#reg和wire的共性" class="headerlink" title="reg和wire的共性"></a><code>reg</code>和<code>wire</code>的共性</h3><ol>
-<li>都可以作为实例化模块时的输入</li>
-<li>都可以作为<code>always@</code>块中<code>=</code>,<code>&lt;=</code>的右值以及<code>assign</code>的右值</li>
-</ol>
+    <div class="post-body" itemprop="articleBody"><h3 id="一阶条件"><a href="#一阶条件" class="headerlink" title="一阶条件"></a>一阶条件</h3><p>假设$f$可微，即梯度$\nabla f$在开集$\mathbf{dom}f$内处处存在，则函数$f$是凸函数的充要条件：$\mathbf{dom}f$是凸集且任意$x,y\in \mathbf{dom}f$，下式成立：$f(y)\geq f(x)+\nabla f(x)^T(y-x)$</p>
+<p>由$f(x)+\nabla f(x)^T(y-x)$得出的仿射函数$y$即为函数$f$在点$x$附近的$Taylor$近似。</p>
+<p>这个不等式说明从一个凸函数的局部信息可以得到一些全局信息。</p>
+<p>同理，严格凸性也可以用一节条件刻画，只需要去掉凸性的一节条件的定义式中的取等即可。对于凹函数，只需要将$\geq$改为$\leq$即可。</p>
+<h3 id="二阶条件"><a href="#二阶条件" class="headerlink" title="二阶条件"></a>二阶条件</h3><p>假设函数$f$二阶可导，即对于开集$\mathbf{dom}f$内的任意一点，其$\mathbf{Hessian}$矩阵或者二阶导数$\nabla^2f$存在，则函数$f$是凸函数的充要条件是，其Hessian矩阵是半正定的，也即对于所有的$x\in\mathbf{dom}f$有$\nabla^2f(x)\succeq0$.</p>
+<p>在$\mathbf{R}$上，这个条件退化为$f^{\prime\prime}(x)\geq0$. 此条件说明$f$的导数是非减的。条件$\nabla^2f(x)\succeq0$从几何上可以立即为函数图像在点$x$处有向上的曲率。</p>
+<p>类似地，函数$f$是凹的的充要条件是。$\mathbf{dom}f$是凸集且对于任意$x\in\mathbf{dom}f$有$\nabla^2f(x)\preceq0$.</p>
+<p>严格凸的条件可以部分由二阶条件来刻画，如果对于任意$x\in\mathbf{dom}f$有$\nabla^2f(x)\succ0$，则函数$f$严格凸。反过来不一定成立，例如$f(x)=x^4$严格凸，但是在$x=0$处其二阶导数为0.</p>
+<h3 id="凸函数的例子"><a href="#凸函数的例子" class="headerlink" title="凸函数的例子"></a>凸函数的例子</h3><p>首先，前面所有提到过的线性函数、仿射函数都为凸函数（同时也是凹函数）。</p>
+<h4 id="mathbf-R-上的一些例子："><a href="#mathbf-R-上的一些例子：" class="headerlink" title="$\mathbf{R}$上的一些例子："></a>$\mathbf{R}$上的一些例子：</h4><p>指数函数，幂函数，绝对值的幂函数</p>
+<p>负熵：函数$x\log x$在其定义域上是凸函数（定义域为$\mathbf{R}_+$）</p>
+<h4 id="mathbf-R-n-上的一些例子"><a href="#mathbf-R-n-上的一些例子" class="headerlink" title="$\mathbf{R}^n$上的一些例子"></a>$\mathbf{R}^n$上的一些例子</h4><p>范数是凸函数</p>
+<p>最大值函数：$f(x)=\max\{x_1,\dots,x_n\}$在$\mathbf{R}^n$上是凸的。</p>
+<p>二次-线性分式函数，例如$f(x,y)=x^2/y$是凸的，其定义域为$\mathbf{dom}f=\mathbf{R}\times\mathbf{R}_{++}$</p>
+<p>指数和的对数：$f(x)=\log(e^{x_1}+\dots+e^{x_n})$在$\mathbf{R}^n$。这个函数可以看成时最大值函数的近似，因为总有：$\max\{x_1\dots\}\leq f(x)\leq\max\{x_1,\dots\}+\log n$</p>
+<p>几何平均：几何平均函数$f(x)=\left(\Pi^n_{i+1}x_i\right)^{1/n}$在定义域$\mathbf{R}^n_{++}$上是凹函数</p>
 
     </div>
 
@@ -282,20 +287,22 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Verilog/" rel="tag"><i class="fa fa-tag"></i> Verilog</a>
+              <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 凸优化</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+              <a href="/tags/%E5%87%B8%E5%87%BD%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 凸函数</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/12/19/%E5%87%B8%E4%BC%98%E5%8C%969%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E5%BC%8F%E5%8F%8A%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/" rel="prev" title="凸优化9：保凸运算2：线性分式及透视函数">
-                  <i class="fa fa-angle-left"></i> 凸优化9：保凸运算2：线性分式及透视函数
+                <a href="/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9614%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89/" rel="prev" title="凸优化14：凸函数的基本定义">
+                  <i class="fa fa-angle-left"></i> 凸优化14：凸函数的基本定义
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/" rel="next" title="凸优化10：正常锥与广义不等式">
-                  凸优化10：正常锥与广义不等式 <i class="fa fa-angle-right"></i>
+                <a href="/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9616%EF%BC%9A%E4%B8%8B%E6%B0%B4%E5%B9%B3%E9%9B%86%E4%B8%8E%E4%B8%8A%E5%A2%83%E5%9B%BE/" rel="next" title="凸优化16：下水平集与上境图">
+                  凸优化16：下水平集与上境图 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

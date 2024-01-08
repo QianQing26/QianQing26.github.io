@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,6 +158,314 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/25/%E5%87%B8%E4%BC%98%E5%8C%9611%EF%BC%9A%E6%9C%80%E5%B0%8F%E4%B8%8E%E6%9E%81%E5%B0%8F%E5%85%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/25/%E5%87%B8%E4%BC%98%E5%8C%9611%EF%BC%9A%E6%9C%80%E5%B0%8F%E4%B8%8E%E6%9E%81%E5%B0%8F%E5%85%83/" class="post-title-link" itemprop="url">凸优化11：最小与极小元</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-25 15:14:22 / 修改时间：16:02:24" itemprop="dateCreated datePublished" datetime="2023-12-25T15:14:22+08:00">2023-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>广义不等式使用符号$\preceq_K,\prec_K$，似乎意味着这与$\mathbf{R}$上的$\leq,&lt;$有相似的性质。但是一个很明显区别在于，$\mathbf{R}$上的$\leq$是一个<strong>线性序</strong>，即任意两点都是可比的（对于$x,y\in\mathbf{R},x\leq y,y\leq x$至少有一个成立）。但是这个性质对于其他广义不等式并不一定成立，这导致最小、最大这些概念在广义不等式的研究中变得更加复杂。</p>
+<p>如果$\forall y\in S,x\preceq_K y$，那么称$x\in S$是$S$关于广义不等式$\preceq_K$的<strong>最小元</strong>，以同样的方式也可以定义<strong>最大元</strong>。如果一个集合有最小（或最大）元，那么它们是唯一的。</p>
+<p>与之相对的是<strong>极小元</strong>。如果$y\in S,y\preceq_K x$可以推得$y=x$，那么称$x\in S$是$S$上关于广义不等式$\preceq_K$得<strong>极小元</strong>。以同样的方式可以定义极大元。</p>
+<p>用集合符号可以描述最小元和极小元。元素$x\in S$是$S$中的一个最小元，当且仅当$S\subseteq x+K$. 这里$x+K$就表示了与$x$相比大于或等于的所有元素（$x\preceq_K y$）。</p>
+<p>元素$x\in S$是$S$中的一个极小元，当且仅当$(x-K)\cap S=\{x\}$. 这里$x-K$表示与$x$相比小于或者等于的所有元素（$y \preceq_K x$），其与$S$的唯一共同点是$x$</p>
+<blockquote>
+<p>当$K=\mathbf{R}_+$，导出的偏序关系就是$\mathbf{R}$上一般的序，此时，极小和最小的概念是一致的。</p>
+<p>例：考虑锥$\mathbf{R}^2_+$，其导出的是关于$\mathbf{R}$上的不等式。可以给出关于极小元、最小元的集合描述。此时广义不等式$x\preceq y$的含义是$y$在$x$的右方、上方。$x\in S$是集合$S$的极小元，表示$S$中其他所有点都在其右方、上方。$x\in S$为集合$S$的极小元，说明$S$中没有任何一个点在$x$的左方、下方。可以参考下图，$A$和$B$分别是其所在多边形的最小元、极小元</p>
+</blockquote>
+<p><img src="img/image-20231225160044481.png" alt=""></p>
+<p><img src="image-20231225160044481.png" alt=""></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/24/%E5%87%B8%E4%BC%98%E5%8C%9610%EF%BC%9A%E6%AD%A3%E5%B8%B8%E9%94%A5%E4%B8%8E%E5%B9%BF%E4%B9%89%E4%B8%8D%E7%AD%89%E5%BC%8F/" class="post-title-link" itemprop="url">凸优化10：正常锥与广义不等式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-24 23:30:02 / 修改时间：23:59:31" itemprop="dateCreated datePublished" datetime="2023-12-24T23:30:02+08:00">2023-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="正常锥（Proper-cones）"><a href="#正常锥（Proper-cones）" class="headerlink" title="正常锥（Proper cones）"></a>正常锥（Proper cones）</h3><p>我们称一个锥$K\subseteq \mathbf{R}^n$是<strong>正常锥</strong>如果其满足以下四个条件：</p>
+<ol>
+<li>$K$是凸的</li>
+<li>$K$是闭的</li>
+<li>$K$是<strong>实</strong>的，即包含非空的内部</li>
+<li>$K$是<strong>尖</strong>(pointed)的，即不包含直线，或者等价的说：$x\in K,-x\in K\Rightarrow x=0$</li>
+</ol>
+<h3 id="广义不等式（Generalized-inequality）"><a href="#广义不等式（Generalized-inequality）" class="headerlink" title="广义不等式（Generalized inequality）"></a>广义不等式（Generalized inequality）</h3><blockquote>
+<p>补充：<strong>偏序关系</strong>，$A\neq \emptyset,R\subseteq A\times A$，如果关系$R$是自反、反对称、传递的，那么$R$是$A$上的偏序关系，$xRy$可以用$x\preceq y$表示。例如小于等于关系就是$\mathbf{R}$上的偏序关系</p>
+</blockquote>
+<p>正常锥$K$可以用来定义<strong>广义不等式</strong>，即$\mathbf{R}^n$上的偏序关系。正常锥可以定义$\mathbf{R}^n$上的偏序关系：$x\preceq_Ky\Leftrightarrow y-x\in K$</p>
+<p>$x\preceq_K y$也可以记作$y\succeq_K x$。类似地，可以定义严格偏序关系：$x\prec_Ky\Leftrightarrow y-x\in \mathbf{int}K$.</p>
+<blockquote>
+<p>当$K=\mathbf{R}_+$时，偏序关系$\preceq_K$就是通常意义上的$\leq$，相应的，严格偏序关系$\prec_K$与$\mathbf{R}$上的$&lt;$对应。因此，广义不等式包含了$\mathbf{R}$上的不等式，这是广义不等式的一种特殊情况</p>
+</blockquote>
+<h4 id="广义不等式的性质"><a href="#广义不等式的性质" class="headerlink" title="广义不等式的性质"></a>广义不等式的性质</h4><ol>
+<li>$\preceq_K$对加法保序：如果$x\preceq_K y$并且$u\preceq_K v$，那么$x+u\preceq_K y+v$</li>
+<li>$\preceq_K$具有传递性</li>
+<li>$\preceq_K$对非负数乘是保序的：如果$x\preceq_K y,\alpha\geq0$，那么$\alpha x\preceq_K \alpha y$</li>
+<li>$\preceq_K$是自反的</li>
+<li>$\preceq_K$是反对称的</li>
+<li>$\preceq_K$对极限运算是保序的：如果对于$i=1,2,\dots$，均有$x_i\preceq_K y_i$，那么$i\rightarrow \infty,x_i\rightarrow x,y_i\rightarrow y$有$x\preceq_K y$</li>
+</ol>
+<p>相应的严格广义不等式$\prec_K$也有一些性质</p>
+<ol>
+<li>$x \prec_K y\Rightarrow x\preceq_K y$</li>
+<li>$\prec_K$对加法保序</li>
+<li>$\prec_K$对非负数乘保序</li>
+<li>$\prec_K$反自反：$x\nprec_K x$</li>
+<li>$x\prec_K y$，则存在足够小的$u,v$使得$x+u\prec_K y+v$</li>
+</ol>
+<p>以上这些性质从定义和正常锥、凸锥的知识很容易推出</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/22/Verilog%EF%BC%9Areg%E5%92%8Cwire%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/22/Verilog%EF%BC%9Areg%E5%92%8Cwire%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">Verilog：reg和wire的区别</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-22 09:06:39 / 修改时间：09:21:48" itemprop="dateCreated datePublished" datetime="2023-12-22T09:06:39+08:00">2023-12-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Verilog/" itemprop="url" rel="index"><span itemprop="name">Verilog</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="关于wire"><a href="#关于wire" class="headerlink" title="关于wire"></a>关于<code>wire</code></h3><p>在Verilog中，<code>wire</code>可以看作一个导线（或则任意位宽的总线），需要注意的几点是：</p>
+<ol>
+<li><code>wire</code>可以用于将实例化时的输入输出端口连接到电路的其他地方</li>
+<li><code>wire</code>类型必须被其他东西驱动而不能用于储存其他数据</li>
+<li><code>wire</code>类型在<code>always@</code>块中不能作为<code>=</code>和<code>&lt;=</code>的左值</li>
+<li><code>wire</code>是<code>assign</code>语句的左值唯一合法的类型</li>
+<li><code>wire</code>只能用于组合逻辑电路</li>
+</ol>
+<h3 id="关于reg"><a href="#关于reg" class="headerlink" title="关于reg"></a>关于<code>reg</code></h3><p><code>reg</code>和<code>wire</code>比较类似，但是能够储存信息，类似寄存器，需要注意的几点是：</p>
+<ol>
+<li><code>reg</code>可以在实例化模块时连接其输入</li>
+<li><code>reg</code>不可以再实例化模块时连接其输出</li>
+<li><code>reg</code>可以在声明模块时作为其输出</li>
+<li><code>reg</code>不可以在声明模块时作为其输入</li>
+<li><code>reg</code>类型时<code>always@</code>块中作为<code>=</code>,<code>&lt;=</code>左值的唯一合法类型</li>
+<li><code>reg</code>不能作为<code>assign</code>语句的左值</li>
+<li><code>reg</code>类型可以创建寄存器，以用于类似于<code>always@(posedge)</code>的块</li>
+<li><code>reg</code>可以描述组合逻辑也可以描述时序逻辑</li>
+</ol>
+<h3 id="reg和wire的共性"><a href="#reg和wire的共性" class="headerlink" title="reg和wire的共性"></a><code>reg</code>和<code>wire</code>的共性</h3><ol>
+<li>都可以作为实例化模块时的输入</li>
+<li>都可以作为<code>always@</code>块中<code>=</code>,<code>&lt;=</code>的右值以及<code>assign</code>的右值</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -874,321 +1182,6 @@
 <p>例如二阶锥是由Euclid范数定义的范数锥，</p>
 <p>$\begin{aligned}C&amp;=\{(x,t)\in \mathbf{R}^{n+1}|||x||_2\leq t\}\\&amp;=\{[x,t]^T|[x,t]eye(I,-1)[x,t]^t\leq0,t\geq 0\}\end{aligned}$</p>
 </blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%964%EF%BC%9AEuclid%E7%90%83%E5%92%8C%E6%A4%AD%E7%90%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%964%EF%BC%9AEuclid%E7%90%83%E5%92%8C%E6%A4%AD%E7%90%83/" class="post-title-link" itemprop="url">凸优化4：Euclid球和椭球</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-10 22:50:44" itemprop="dateCreated datePublished" datetime="2023-12-10T22:50:44+08:00">2023-12-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-11 00:06:54" itemprop="dateModified" datetime="2023-12-11T00:06:54+08:00">2023-12-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Euclid球-Euclidean-balls"><a href="#Euclid球-Euclidean-balls" class="headerlink" title="Euclid球(Euclidean balls)"></a>Euclid球(Euclidean balls)</h2><p>$\mathbf{R}^n$中的<strong>Euclid球</strong>（简称为球）具有下面的形式：</p>
-<p>$B(x_c,r)=\{x|\left|\left|x-x_c\right|\right|_2\leq r\}=\{x|(x-x_c)^T(x-x_c)\leq r^2\}$</p>
-<p>其中$r&gt;0$，$\left|\left|\cdot|\right|\right|_2$表示Euclid范数，即$||u||_2=(u^Tu)^{1/2}$. 向量$x_c$是球心，标量$r$为半径。$B(x_c,r)$是距离球心$x_c$不超过$r$的所有点组成。Euclid球的另一个常见的表达式为$B(x_c,r)=\{x_c+ru|||u||_2\leq1\}$.</p>
-<p>Euclid球是凸集，即若$||x_1-x_c||_2\leq r$，$||x_2-x_c||_2\leq r$，对于$\theta\in[0,1]$</p>
-<p>$\begin{aligned}||\theta x_1+(1-\theta)x_2-x_c||_2&amp;=||\theta(x_1-x_c)+(1-\theta)(x_2-x_c)||_2\\&amp;\leq \theta||x_1-x_c||_2+(1-\theta)||x_2-x_c||_2\\&amp;\leq r\end{aligned}$</p>
-<h2 id="椭球-Ellipsoids"><a href="#椭球-Ellipsoids" class="headerlink" title="椭球(Ellipsoids)"></a>椭球(Ellipsoids)</h2><p>另一类相关的凸集为<strong>椭球</strong>，其具有如下的形式</p>
-<p>$\mathcal{E}=\{x|(x-x_c)^TP^{-1}(x-x_c)\leq1\}$.</p>
-<p>其中$P=P^{-1}\succ0$，即$P$是对称正定矩阵。向量$x_c$是椭球的中心。矩阵$P$决定了椭球从$x_c$向各个方向拓展的幅度。椭球的半轴长度由$\sqrt{\lambda_i}$给出，这里$\lambda_i$为$P$的特征值。球可以堪称是一个$P=r^2I$。</p>
-<p>椭球的另一个表示形式为$\mathcal{E}=\{x_c+Au|||u||_2\leq1\}$,</p>
-<p>其中$A$是非奇异的方阵。我们可以不失一般性地假设$A$对称正定，取$A=P^{1/2}$。这个式子就类似于第一种表示形式。当$A$为对称半正定矩阵但是奇异时，这个式子表示一个退化地椭球。其仿射维数等于$A$的秩，退化的椭球也是凸的。</p>
-<h5 id="椭球公式的推导"><a href="#椭球公式的推导" class="headerlink" title="椭球公式的推导"></a>椭球公式的推导</h5><p>只考虑正椭球（椭球的轴为坐标轴，中心在原点），其他形式可以通过线性变换来实现。</p>
-<p>椭球的方程：</p>
-<p>$\begin{aligned}&amp;\cfrac{x_1^2}{a_1^2}+\cfrac{x_2^2}{a_2^2}+\dots+\cfrac{x_n^2}{a_n^2}=1\\\Leftrightarrow&amp;x^Teye(\cfrac1{a_1^2},\cfrac{1}{a_2^2},\dots,\cfrac{1}{a_n^2})x=1\end{aligned}$</p>
-<p>取$P=eye(a_1^2,a_2^2,\dots,a_n^2)$，则每个轴的长度就为$\sqrt{\lambda_i}$</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%963%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E4%B8%8E%E5%8D%8A%E7%A9%BA%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/10/%E5%87%B8%E4%BC%98%E5%8C%963%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E4%B8%8E%E5%8D%8A%E7%A9%BA%E9%97%B4/" class="post-title-link" itemprop="url">凸优化3：超平面与半空间</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-12-10 16:09:39 / 修改时间：16:41:43" itemprop="dateCreated datePublished" datetime="2023-12-10T16:09:39+08:00">2023-12-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="超平面-Hyperplanes"><a href="#超平面-Hyperplanes" class="headerlink" title="超平面(Hyperplanes)"></a>超平面(Hyperplanes)</h2><p><strong>超平面</strong>是具有如下形式的集合：$\{x|a^Tx=b\}$. 其中$a\in\mathbf{R}^n,a\neq 0,b\in\mathbf{R}$。</p>
-<p>解析上讲，超平面是关于$x$的非平凡线性方程的解空间，由之前的讨论，可以知道超平面是一个仿射集合。</p>
-<p>几何上讲，超平面$\{x|a^Tx=b\}$可以解释为与给定向量$a$的内积为常数的点的集合，或者法线方向为$a$的超平面，而常数$b\in\mathbf{R}$决定那个了这个平面从原点开始的偏移量。更直观地我们可以将超平面表现为以下形式$\{x|a^T(x-x_0)=0\}$. 其中$x_0$为超平面上任意一点（满足$a^Tx_0=b$）。进一步地，可以表示为$\{x|a^T(x-x_0)=0\}=x_0+a^{\perp}$，其中$a$的正交补$a^{\perp}=\{v|a^Tv=0\}$.</p>
-<p>从上面的这个表示可以看出，超平面有偏移$x_0$加上正交于向量$a$的向量构成。</p>
-<h2 id="半空间-Halfspaces"><a href="#半空间-Halfspaces" class="headerlink" title="半空间(Halfspaces)"></a>半空间(Halfspaces)</h2><p>一个超平面将$\mathbf{R}^n$划分为了两个<strong>半空间</strong>，半空间是具有以下形式的集合$\{x|a^Tx\leq b\}$. 也即一个线性不等式的解空间。</p>
-<p>半空间是凸的，但不是仿射的。</p>
-<p>半空间也可以表示为$\{x|a^T(x-x_0)\leq 0\}$.  其中$x_0$是相应超平面的任意一点。这个表达形式有个简单的几何解释：半空间由$x_0$加上任意与向量$a$呈钝角、直角的向量组成。</p>
-<p>半空间的边界就是相应的超平面。</p>
-<p>集合$\{x|a^Tx&lt;b\}$是半空间$\{x|a^Tx\leq b\}$的内部，称为<strong>半开空间</strong>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/09/%E5%87%B8%E4%BC%98%E5%8C%962%EF%BC%9A%E5%87%B8%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/09/%E5%87%B8%E4%BC%98%E5%8C%962%EF%BC%9A%E5%87%B8%E9%9B%86/" class="post-title-link" itemprop="url">凸优化2：凸集</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-09 23:59:02" itemprop="dateCreated datePublished" datetime="2023-12-09T23:59:02+08:00">2023-12-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-10 16:44:22" itemprop="dateModified" datetime="2023-12-10T16:44:22+08:00">2023-12-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="凸集"><a href="#凸集" class="headerlink" title="凸集"></a>凸集</h2><p>如果集合$C$中任意两点间的线段仍然在$C$中，即对于任意$x_1,x_2\in C$和满足$0\leq\theta\leq1$的$\theta$都有$\theta x_1+(1-\theta)x_2\in C$，那么集合$C$被称为是<strong>凸集</strong>。容易知道，仿射集合是凸集。</p>
-<p>称点$\theta_1x_1+\dots+\theta_kx_k$为点$x_1,\dots,x_k$的一个<strong>凸组合</strong>，其中$\theta_1+\dots+\theta_k=1$并且$\theta_i\geq0$。与仿射集合类似，一个集合是凸集等价于集合包含其中所有点的凸组合。点的凸组合可以看成是它们的加权平均。</p>
-<p>称集合$C$中所有点的凸组合的集合为其<strong>凸包</strong>，记为$\mathbf{conv}C$：</p>
-<p>$\mathbf{conv}C=\{\theta_1x_1+\dots+\theta_kx_k|x_i\in C,\theta_i\geq0,\theta_1+\dots+\theta_k=1\}$</p>
-<p>凸包$\mathbf{conv}C$总是凸的，其是包含$C$的最小的凸集。</p>
-<blockquote>
-<p>这里“最小的凸集”和上一节“最小的仿射集合”可以类比离散数学中的关系闭包。</p>
-</blockquote>
-<p>在上面的概念中，凸组合的定义可以从可数的组合拓展到无穷级数、积分等，假设有$\theta_i\geq0,\sum^{\infty}_{i=1}\theta_i=1$，并且$x_1,x_2,\dots\in C$，其中$C\subseteq \mathbf{R}^n$为凸集。如果接下来的级数收敛，那么我们就有$\sum^{\infty}_{i=1}\theta_ix_i\in C$</p>
-<p>更加一般地说，假设函数$p:\mathbf{R}^n\rightarrow\mathbf{R}$，对所有$x\in C$有$p(x)\geq0$且$\int_Cp(x)dx=1$，其中$C\subseteq\mathbf{R}^n$为凸集。如果接下来地积分存在，那么有$\int_Cp(x)xdx\in C$</p>
-<p>最一般地情况下，$C\subseteq \mathbf{R}^n$是凸集，$x$是随机变量，且$P(x\in C)=1$，那么$\mathbb{E}x\in C$. </p>
-<blockquote>
-<p>这一形式包含了前述地情况。如果随机变量$x$是两点分布，情况就退化到了两个点地简单凸组合</p>
-</blockquote>
-<h2 id="锥"><a href="#锥" class="headerlink" title="锥"></a>锥</h2><p>如果对于$\forall x\in C$和$\theta\geq0$有$\theta x\in C$，我们称集合$C$是<strong>锥</strong>(cone)或<strong>非负齐次</strong>。如果集合$C$是锥并且是凸集，则$C$称为<strong>凸锥</strong>(convex cone)，即对于任意$x_1,x_2\in C$和$\theta_1,\theta_2\geq0$，都有$\theta_1x_1+\theta_2x_2\in C$.</p>
-<p><img src="\img\image-20231210133852642.png" alt="image-20231210133852642"></p>
-<blockquote>
-<p>如图，几何上来看，$\theta_1x_1+\theta_2x_2$组成了一个二维的扇形，扇形的顶点代表$\theta_1=\theta_2=0$</p>
-</blockquote>
-<p>具有$\theta_1x_1+\dots+\theta_kx_k\geq0$形式的点称为$x_1,\dots,x_k$的<strong>锥组合</strong>(conic combination)或<strong>非负线性组合</strong>。如果$x_i$属于凸锥$C$，那么$x_i$的每一个锥组合也在$C$中。换句话说，集合$C$是凸锥$\Leftrightarrow$$C$包含其元素的所有锥组合。</p>
-<blockquote>
-<p>与凸组合、仿射组合类似，锥组合的概念可以拓展到无穷级数和积分之中。</p>
-</blockquote>
-<p>集合$C$的<strong>锥包</strong>是$C$中元素的所有锥组合的集合，即</p>
-<p>$\{\theta_1x_1+\dots+\theta_kx_k|x_i\in C\}$</p>
-<p>其是包含集合$C$的最小的凸锥。</p>
-<h2 id="简单的例子"><a href="#简单的例子" class="headerlink" title="简单的例子"></a>简单的例子</h2><p>下面不加证明的给出一些例子，方便理解。</p>
-<ol>
-<li>空集$\emptyset$、任一个单点集$\{x_0\}$、全空间$\mathbf{R}^n$都是$\mathbf{R}^n$的仿射子集（也是凸的）</li>
-<li>任意直线都是仿射的。特别地，如果直线通过零点，那么就是子空间，也是凸集</li>
-<li>一条线段是凸的，但不是仿射的（除非退化为一个点）</li>
-<li>一条射线，即$\{x_0+\theta v|\theta\ge 0 ,v\neq 0\}$是凸的。但不是仿射的。如果$x_0=0$，那么这个集合是凸锥</li>
-<li>任意子空间都是仿射的，并且是凸锥</li>
-</ol>
 
       
     </div>

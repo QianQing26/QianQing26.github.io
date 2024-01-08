@@ -729,4 +729,82 @@
         <tag>凸函数</tag>
       </tags>
   </entry>
+  <entry>
+    <title>凸优化15：凸函数的一阶、二阶条件</title>
+    <url>/2024/01/07/%E5%87%B8%E4%BC%98%E5%8C%9615%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E9%98%B6%E3%80%81%E4%BA%8C%E9%98%B6%E6%9D%A1%E4%BB%B6/</url>
+    <content><![CDATA[<h3 id="一阶条件"><a href="#一阶条件" class="headerlink" title="一阶条件"></a>一阶条件</h3><p>假设$f$可微，即梯度$\nabla f$在开集$\mathbf{dom}f$内处处存在，则函数$f$是凸函数的充要条件：$\mathbf{dom}f$是凸集且任意$x,y\in \mathbf{dom}f$，下式成立：$f(y)\geq f(x)+\nabla f(x)^T(y-x)$</p>
+<p>由$f(x)+\nabla f(x)^T(y-x)$得出的仿射函数$y$即为函数$f$在点$x$附近的$Taylor$近似。</p>
+<p>这个不等式说明从一个凸函数的局部信息可以得到一些全局信息。</p>
+<p>同理，严格凸性也可以用一节条件刻画，只需要去掉凸性的一节条件的定义式中的取等即可。对于凹函数，只需要将$\geq$改为$\leq$即可。</p>
+<h3 id="二阶条件"><a href="#二阶条件" class="headerlink" title="二阶条件"></a>二阶条件</h3><p>假设函数$f$二阶可导，即对于开集$\mathbf{dom}f$内的任意一点，其$\mathbf{Hessian}$矩阵或者二阶导数$\nabla^2f$存在，则函数$f$是凸函数的充要条件是，其Hessian矩阵是半正定的，也即对于所有的$x\in\mathbf{dom}f$有$\nabla^2f(x)\succeq0$.</p>
+<p>在$\mathbf{R}$上，这个条件退化为$f^{\prime\prime}(x)\geq0$. 此条件说明$f$的导数是非减的。条件$\nabla^2f(x)\succeq0$从几何上可以立即为函数图像在点$x$处有向上的曲率。</p>
+<p>类似地，函数$f$是凹的的充要条件是。$\mathbf{dom}f$是凸集且对于任意$x\in\mathbf{dom}f$有$\nabla^2f(x)\preceq0$.</p>
+<p>严格凸的条件可以部分由二阶条件来刻画，如果对于任意$x\in\mathbf{dom}f$有$\nabla^2f(x)\succ0$，则函数$f$严格凸。反过来不一定成立，例如$f(x)=x^4$严格凸，但是在$x=0$处其二阶导数为0.</p>
+<h3 id="凸函数的例子"><a href="#凸函数的例子" class="headerlink" title="凸函数的例子"></a>凸函数的例子</h3><p>首先，前面所有提到过的线性函数、仿射函数都为凸函数（同时也是凹函数）。</p>
+<h4 id="mathbf-R-上的一些例子："><a href="#mathbf-R-上的一些例子：" class="headerlink" title="$\mathbf{R}$上的一些例子："></a>$\mathbf{R}$上的一些例子：</h4><p>指数函数，幂函数，绝对值的幂函数</p>
+<p>负熵：函数$x\log x$在其定义域上是凸函数（定义域为$\mathbf{R}_+$）</p>
+<h4 id="mathbf-R-n-上的一些例子"><a href="#mathbf-R-n-上的一些例子" class="headerlink" title="$\mathbf{R}^n$上的一些例子"></a>$\mathbf{R}^n$上的一些例子</h4><p>范数是凸函数</p>
+<p>最大值函数：$f(x)=\max\{x_1,\dots,x_n\}$在$\mathbf{R}^n$上是凸的。</p>
+<p>二次-线性分式函数，例如$f(x,y)=x^2/y$是凸的，其定义域为$\mathbf{dom}f=\mathbf{R}\times\mathbf{R}_{++}$</p>
+<p>指数和的对数：$f(x)=\log(e^{x_1}+\dots+e^{x_n})$在$\mathbf{R}^n$。这个函数可以看成时最大值函数的近似，因为总有：$\max\{x_1\dots\}\leq f(x)\leq\max\{x_1,\dots\}+\log n$</p>
+<p>几何平均：几何平均函数$f(x)=\left(\Pi^n_{i+1}x_i\right)^{1/n}$在定义域$\mathbf{R}^n_{++}$上是凹函数</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸函数</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>数学</tag>
+        <tag>凸函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凸优化16：下水平集与上境图</title>
+    <url>/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9616%EF%BC%9A%E4%B8%8B%E6%B0%B4%E5%B9%B3%E9%9B%86%E4%B8%8E%E4%B8%8A%E5%A2%83%E5%9B%BE/</url>
+    <content><![CDATA[<h3 id="下水平集"><a href="#下水平集" class="headerlink" title="下水平集"></a>下水平集</h3><p>函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$的<strong>$\alpha$-下水平集</strong>定义为$C_{\alpha}=\{x\in\mathbf{dom}f|f(x)\leq\alpha\}$. 对于任意$\alpha$，凸函数的下水平集都是凸集。</p>
+<p>但是反过来不一定正确：某个函数的所有下水平集都是凸集，但这个函数可能不是凸函数。例如函数$f(x)=-e^x$在$\mathbf{R}$上是一个严格凹函数，但是其所有下水平集均为凸集。</p>
+<p>如果$f$是凹函数，则由$\{x\in\mathbf{dom}f|f(x)\geq\alpha\}$定义的<strong>$\alpha$-上水平集</strong>也是凸集。</p>
+<p>上面这两个性质可以用来判断集合的凸性，若某个集合可以被描述为一个凸函数的下水平集或者一个凹函数的上水平集，则这个集合为凸集。</p>
+<h3 id="上境图"><a href="#上境图" class="headerlink" title="上境图"></a>上境图</h3><p>函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$的图像定义为$\{(x,f(x))|x\in\mathbf{dom}f\}$，是$\mathbf{R}^{n+1}$空间的一个子集；函数的<strong>上境图</strong>定义为$\mathbf{epi}f=\{(x,t)|x\in\mathbf{dom}f,f(x)\leq t\}$,其也是$\mathbf{R}^{n+1}$空间的一个子集。</p>
+<p>直观来看，函数的上境图就是函数图像之上的部分。</p>
+<p>凸函数于凸集的联系可以通过上境图来建立：一个函数是凸函数，当且仅当其上境图是凸集。一个函数是凹函数，当且仅当其<strong>亚图</strong>$\mathbf{hypo}f=\{(x,t)|t\leq f(x)\}$是凸集。</p>
+<p>凸函数的很多结果都可以从几何角度利用上境图并结合凸集的一些结论来证明或者理解。</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸函数</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>数学</tag>
+        <tag>凸函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凸优化17：凸函数与不等式</title>
+    <url>/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9617%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E4%B8%8E%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<h3 id="Jensen不等式"><a href="#Jensen不等式" class="headerlink" title="Jensen不等式"></a>Jensen不等式</h3><p>基本不等式$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$有时也称为<strong>Jensen不等式</strong>。</p>
+<p>此不等式可以拓展到更多点的凸组合：如果函数$f$是凸函数，$x_1,\dots,x_k\in<script type="math/tex">\mathbf{dom}f$，$\theta_1,\dots,\theta_k\geq0$且$\theta_1+\dots+\theta_k=1$，则下面的不等式成立：$f(\theta_1x_1+\dots+\theta_kx_k)</script>\leq$$\theta_1f(x_1)+\dots+\theta_kf(x_k)$</p>
+<p>考虑凸集的时候，这个不等式可以拓展为无穷级数、积分、期望。</p>
+<p>例如下面由形式如下的不等式：$f\left(\int_Sp(x)xdx\right)&lt;\int_Sf(x)p(x)dx$以及$f(\mathbf{E}x)&lt;\mathbf{E}f(x)$</p>
+<p>实际上Jensen不等式最初的形式是：$f(\cfrac{x+y}{2}）\leq\cfrac{f(x)+f(y)}2$</p>
+<h3 id="其他不等式"><a href="#其他不等式" class="headerlink" title="其他不等式"></a>其他不等式</h3><p>很多不等式都可以将Jensen不等式应用到合适的凸函数中得到。</p>
+<p>例如，对凸函数$-\log x$使用Jensen不等式，可以得到$\sqrt{ab}\leq\cfrac{a+b}{2}$</p>
+<p>例如Hölder不等式：对$p&gt;1,\cfrac1p+\cfrac1q=1$以及$x,y\in\mathbf{R}^n$有：</p>
+<p>$\qquad\qquad\qquad \sum_{i=1}^nx_iy_i\leq\left(\sum_{i=1}^n|x_i|^p\right)^{1/p}\left(\sum_{i=1}^n|y_i|^q\right)^{1/q}$</p>
+<p>由$-\log x$的凸性可以得到更为一般的均值不等式：$a^{\theta}b^{1-\theta}\leq\theta a+(1-\theta)b$</p>
+<p>其中$a,b\geq0,\quad 0\leq\theta\leq1$，令$a=\cfrac{|x_i|^p}{\sum_{j=1}^n|x_j|^p},\quad b=\cfrac{|y_i|^q}{\sum_{j=1}^n|y_i|^q},\quad \theta=\cfrac1p$</p>
+<p>然后对$i$求和，可以得到Hölder不等式。</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸函数</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>数学</tag>
+        <tag>凸函数</tag>
+      </tags>
+  </entry>
 </search>
