@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,6 +158,304 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9621%EF%BC%9A%E5%85%B1%E8%BD%AD%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9621%EF%BC%9A%E5%85%B1%E8%BD%AD%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">凸优化21：共轭函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-01-08 16:17:35 / 修改时间：17:26:16" itemprop="dateCreated datePublished" datetime="2024-01-08T16:17:35+08:00">2024-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">凸函数</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="共轭函数的定义"><a href="#共轭函数的定义" class="headerlink" title="共轭函数的定义"></a>共轭函数的定义</h3><p>设函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$，定义函数$f^{\ast}:\mathbf{R}^n\rightarrow\mathbf{R}$为$f^{\ast}(y)=\sup_{x\in\mathbf{dom}f}\left(y^Tx-f(x)\right).\quad$ 此函数称为$y$的共轭函数。</p>
+<p>使上述的上确界有限，即差值$y^Tx-f(x)$在$\mathbf{dom}f$有上界的所有的$y\in\mathbf{R}^n$构成了共轭函数的定义域.</p>
+<p>容易看出，$f^{\ast}(y)$是关于$y$的一系列仿射函数的逐点上确界，因此无论$f(x)$是否为凸函数，$f^{\ast}$都是凸的。</p>
+<h3 id="共轭函数的一些例子"><a href="#共轭函数的一些例子" class="headerlink" title="共轭函数的一些例子"></a>共轭函数的一些例子</h3><h4 id="mathbf-R-上的一些例子"><a href="#mathbf-R-上的一些例子" class="headerlink" title="$\mathbf{R}$上的一些例子"></a>$\mathbf{R}$上的一些例子</h4><p>仿射函数：$f(x)=ax+b$，当且仅当$y=a$的时候，$f^{\ast}$有界，则此时共轭函数的定义域为单点集$\{a\}$，且$f^{\ast}(a)=-b$</p>
+<p>负对数函数：$f(x)=-\log x,\mathbf{dom}f=\mathbf{R}_{++}$，当$y\geq0$的时候，$xy+\log x$无上界，$y&lt;0$时，在$x=-1/y$处取到最大值。因此$f^{\ast}(y)=-\log(-y)-1\quad(y&lt;0)$</p>
+<p>指数函数：$f(x)=e^x\quad f^{\ast}(y)=y\log y-y\quad(y\ge0)$</p>
+<p>负熵函数：$f(x)=x\log x\quad f^{\ast}(y)=e^{y-1}$</p>
+<h4 id="更一般的一些例子"><a href="#更一般的一些例子" class="headerlink" title="更一般的一些例子"></a>更一般的一些例子</h4><p>严格凸的二次函数：$f(x)=\frac12 x^TQx,Q\in\mathbf{S}^n_{++}\quad f^{\ast}(y)=\frac12y^TQ^{-1}y$</p>
+<p>示性函数：$I_S$时某个集合$S\subseteq\mathbf{R}^n$（不一定是凸集）的示性函数，即$x\in\mathbf{dom}I_S=S$时，$I_S(x)=0$. 其共轭函数$I^{\ast}_S(y)=\sup_{x\in S}y^Tx$. 其是集合$S$的支撑函数</p>
+<h3 id="共轭函数的基本性质"><a href="#共轭函数的基本性质" class="headerlink" title="共轭函数的基本性质"></a>共轭函数的基本性质</h3><h4 id="Fenchel不等式"><a href="#Fenchel不等式" class="headerlink" title="Fenchel不等式"></a>Fenchel不等式</h4><p>任意$x,y$，有$f(x)+f^{\ast}(y)\ge x^Ty$</p>
+<p>根据定义，这是显而易见的</p>
+<h4 id="共轭的共轭"><a href="#共轭的共轭" class="headerlink" title="共轭的共轭"></a>共轭的共轭</h4><p>“共轭”的名字暗示了凸函数的共轭函数的共轭函数是原函数，即：如果函数$f$是凸函数且$f$是闭的，则$f^{\ast\ast}=f$</p>
+<h4 id="可微函数"><a href="#可微函数" class="headerlink" title="可微函数"></a>可微函数</h4><p>可微函数$f$的共轭函数也被称为$f$的Legendre变换。</p>
+<p>设函数$f$凸且可微，定义域为$\mathbf{R}^n$，使$y^Tx-f(x)$取最大值的$x^{\ast}$满足$y=\nabla f(x^{\ast})$，反之，若$x^{\ast}$满足$y=\nabla f(x^{\ast})$,$y^Tx-f(x)$在$x^{\ast}$处取最大值，因此如果$y=\nabla f(x^{\ast})$，则有$f^{\ast}(y)=x^{\ast T}\nabla f(x^{\ast})-f(x^{\ast})$.</p>
+<p>所以，给定任意$y$，可以求解梯度方程$y=\nabla f(z)$，从而得到$y$处的共轭函数$f^{\ast}(y)$</p>
+<h4 id="伸缩变化、复合仿射变换"><a href="#伸缩变化、复合仿射变换" class="headerlink" title="伸缩变化、复合仿射变换"></a>伸缩变化、复合仿射变换</h4><p>若$a&gt;0$以及$b\in \mathbf{R}$，$g(x)=af(x)+b$的共轭函数为$g^{\ast}(y)=af^{\ast}(y/a)-b$.</p>
+<p>设$A\in\mathbf{R}^{n\times n}$非奇异，$b\in\mathbf{R}^n$，则函数$g(x)=f(Ax+b)$的共轭函数为$g^{\ast}(y)=f^{\ast}(A^{-T}y)-b^TA^{-T}y$，其定义域为$\mathbf{dom}g^{\ast}=A^T\mathbf{dom}f^{\ast}$</p>
+<h4 id="独立函数的和"><a href="#独立函数的和" class="headerlink" title="独立函数的和"></a>独立函数的和</h4><p>如果函数$f(u,v)=f_1(u)+f_2(v)$，其中$f_1,f_2$是凸函数，且共轭函数分别是$f^{\ast}_1,f^{\ast}_2$，则$f^{\ast}(w,z)=f^{\ast}_1(w)+f^{\ast}_2(z)$.</p>
+<p>换言之，独立凸函数的和的共轭函数是各个凸函数的共轭函数的和（其中“独立”是指两个函数具有不同的变量）。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9620%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%973%EF%BC%9A%E6%9C%80%E5%B0%8F%E5%8C%96%E3%80%81%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9620%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%973%EF%BC%9A%E6%9C%80%E5%B0%8F%E5%8C%96%E3%80%81%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">凸优化20：保凸运算3：最小化、透视函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-01-08 16:08:47 / 修改时间：17:27:50" itemprop="dateCreated datePublished" datetime="2024-01-08T16:08:47+08:00">2024-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">凸函数</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="最小化"><a href="#最小化" class="headerlink" title="最小化"></a>最小化</h3><p>逐点最大/上确界可以得到凸函数，一些特殊形式的最小化同样可以得到凸函数。</p>
+<p>若函数$f$关于$(x,y)$是凸函数，集合$C$是非空凸集，定义函数$g(x)=\inf_{y\in C}f(x,y)$</p>
+<p>若存在某个$x$使得$g(x)&gt;-\infty$，则函数$g$关于$x$是凸函数，其定义域是$\mathbf{dom}f$在$x$方向上的投影，即$\mathbf{dom}g=\{x|对某个y\in C成立(x,y)\in\mathbf{dom}f\}$.</p>
+<h3 id="透视函数"><a href="#透视函数" class="headerlink" title="透视函数"></a>透视函数</h3><p>给定函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$，则$f$的透视函数$g:\mathbf{R}^{n+1}\rightarrow\mathbf{R}$定义为$g(x,t)=tf(x/t)$，其定义域为$\mathbf{dom}g=\{(x,t)|x/t\in\mathbf{dom}g,t&gt;0\}$</p>
+<p>透视运算是保凸的：如果函数$f$是凸函数，则其透视函数$g$也是凸函数。同时透视运算也是保凹的。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9619%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E5%A4%8D%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QianQing26">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 千顷/QianQing26">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9619%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E5%A4%8D%E5%90%88/" class="post-title-link" itemprop="url">凸优化19：保凸运算2：复合</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-01-08 14:27:08 / 修改时间：15:57:47" itemprop="dateCreated datePublished" datetime="2024-01-08T14:27:08+08:00">2024-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">凸函数</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>给定函数$h:\mathbf{R}^k\rightarrow\mathbf{R}$和$g:\mathbf{R}^n\rightarrow\mathbf{R}^{k}$，定义复合函数$f=h\circ g:\mathbf{R}^n\rightarrow\mathbf{R}$为$f(x)=h(g(x)),\mathbf{dom}f=\{x\in\mathbf{dom}g|g(x)\in\mathbf{dom}h\}$，我们考虑当函数$f$保凸或者保凹时，函数$h,g$必须满足的条件。</p>
+<h3 id="标量复合"><a href="#标量复合" class="headerlink" title="标量复合"></a>标量复合</h3><p>首先考虑$k=1$，即$h:\mathbf{R}\rightarrow\mathbf{R}$和$g:\mathbf{R}^n\rightarrow\mathbf{R}$。</p>
+<p>为了找出复合规律，不妨先考虑$n=1$并且假设$h$和$g$都是二次可微的，且$\mathbf{dom}g=\mathbf{dom}h=\mathbf{R}$. 这种情况下，$f$是凸的等价于$f^{\prime\prime}\geq0$.</p>
+<p>而$f^{\prime\prime}(x)=h^{\prime\prime}(g(x))g^{\prime}(x)^2+h^{\prime}(g(x))g^{\prime\prime}(x)$</p>
+<p>从而可以得出以下结论</p>
+<ol>
+<li>$h$凸且非减、$g$是凸，则$f$是凸函数</li>
+<li>$h$凸且非增、$g$是凹，则$f$是凸函数</li>
+<li>$h$凹且非减、$g$是凹，则$f$是凹函数</li>
+<li>$h$凹且非增、$g$是凸，则$f$是凹函数</li>
+</ol>
+<p>对于更加一般的情况，如$n&gt;1$，不再假设$h,g$可微或者定义域为$\mathbf{R}^n$，相似的规则仍然成立为：</p>
+<ol>
+<li>$h$凸且$\widetilde{h}$非减、$g$是凸，则$f$是凸函数</li>
+<li>$h$凸且$\widetilde{h}$非增、$g$是凹，则$f$是凸函数</li>
+<li>$h$凹且$\widetilde{h}$非减、$g$是凹，则$f$是凹函数</li>
+<li>$h$凹且$\widetilde{h}$非增、$g$是凸，则$f$是凹函数</li>
+</ol>
+<p>其中$\widetilde{h}$表示$h$的扩展值延伸。若点不再$\mathbf{dom}h$之内，则对其赋值为$+\infty$或$-\infty$（分别对于凸函数和凹函数）。需要注意的是，对于$\widetilde{h}$的增减性，要求在整个$\mathbf{R}$上都满足非增或者非减</p>
+<h3 id="矢量复合"><a href="#矢量复合" class="headerlink" title="矢量复合"></a>矢量复合</h3><p>下面考虑$k\ge0$的情况，此时更复杂一点，设$f(x)=h(g(x))=h(g_1(x),\dots,g_k(x)).\qquad$其中$h:\mathbf{R}^k\rightarrow\mathbf{R}$和$g_i:\mathbf{R}^n\rightarrow\mathbf{R}$.</p>
+<p>为了发现规律，先假设$n=1$、二次可微，且$\mathbf{dom}g=\mathbf{R},\mathbf{dom}h=\mathbf{R}^k$，对$f$二次微分得：$f^{\prime\prime}(x)=g^{\prime}(x)^T\nabla^2h(g(x))g^{\prime}+\nabla h(g(x))^Tg^{\prime\prime}(x)$</p>
+<p>类似地，还可以得到很多规则：</p>
+<ol>
+<li>如果$h$是凸函数且每一维分量上$h$非减，$g_i$是凸函数，则$f$是凸函数</li>
+<li>如果$h$是凸函数且每一维分量上$h$非增，$g_i$是凹函数，则$f$是凸函数</li>
+<li>如果$h$是凸函数且每一维分量上$h$非减，$g_i$是凹函数，则$f$是凹函数</li>
+</ol>
+<p>对更一般的情况来说，类似地结论依然成立，但是不仅需要$h$满足单调性条件，其扩展值延伸同样需要满足</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -294,7 +592,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-01-08 10:52:12 / 修改时间：11:20:19" itemprop="dateCreated datePublished" datetime="2024-01-08T10:52:12+08:00">2024-01-08</time>
+      <time title="创建时间：2024-01-08 10:52:12 / 修改时间：13:34:16" itemprop="dateCreated datePublished" datetime="2024-01-08T10:52:12+08:00">2024-01-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -321,7 +619,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <h3 id="Jensen不等式"><a href="#Jensen不等式" class="headerlink" title="Jensen不等式"></a>Jensen不等式</h3><p>基本不等式$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$有时也称为<strong>Jensen不等式</strong>。</p>
-<p>此不等式可以拓展到更多点的凸组合：如果函数$f$是凸函数，$x_1,\dots,x_k\in<script type="math/tex">\mathbf{dom}f$，$\theta_1,\dots,\theta_k\geq0$且$\theta_1+\dots+\theta_k=1$，则下面的不等式成立：$f(\theta_1x_1+\dots+\theta_kx_k)</script>\leq$$\theta_1f(x_1)+\dots+\theta_kf(x_k)$</p>
+<p>此不等式可以拓展到更多点的凸组合：如果函数$f$是凸函数，$x_1,\dots,x_k\in \mathbf{dom}f$，$\theta_1,\dots,\theta_k\geq0$且$\theta_1+\dots+\theta_k=1$，则下面的不等式成立：$f(\theta_1x_1+\dots+\theta_kx_k)\leq\theta_1f(x_1)+\dots+\theta_kf(x_k)$</p>
 <p>考虑凸集的时候，这个不等式可以拓展为无穷级数、积分、期望。</p>
 <p>例如下面由形式如下的不等式：$f\left(\int_Sp(x)xdx\right)&lt;\int_Sf(x)p(x)dx$以及$f(\mathbf{E}x)&lt;\mathbf{E}f(x)$</p>
 <p>实际上Jensen不等式最初的形式是：$f(\cfrac{x+y}{2}）\leq\cfrac{f(x)+f(y)}2$</p>
@@ -822,303 +1120,6 @@
 <p>diagnonalize()返回的结果中，第一个矩阵表示$P$，第二个矩阵表示$D$，其中 $A=PDP^{-1}$</p>
 <p>在线性代数中，可以使用矩阵解线性方程组，例如求解Ax=b，以$\begin{bmatrix}1&amp;1\\0&amp;2\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}=\begin{bmatrix}3\\5\end{bmatrix}$为例</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>A = sympy.Matrix([[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">2</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A</span><br><span class="line">Matrix([</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">[<span class="number">0</span>, <span class="number">2</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = sympy.Matrix([<span class="number">3</span>,<span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">Matrix([</span><br><span class="line">[<span class="number">3</span>],</span><br><span class="line">[<span class="number">5</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A**-<span class="number">1</span>*b</span><br><span class="line">Matrix([</span><br><span class="line">[<span class="number">1</span>/<span class="number">2</span>],</span><br><span class="line">[<span class="number">5</span>/<span class="number">2</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.linsolve((A,b))</span><br><span class="line">&#123;(<span class="number">1</span>/<span class="number">2</span>, <span class="number">5</span>/<span class="number">2</span>)&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">凸优化12：超平面分离定理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-29 09:09:48" itemprop="dateCreated datePublished" datetime="2023-12-29T09:09:48+08:00">2023-12-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-30 13:49:40" itemprop="dateModified" datetime="2023-12-30T13:49:40+08:00">2023-12-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="超平面分离定理"><a href="#超平面分离定理" class="headerlink" title="超平面分离定理"></a>超平面分离定理</h3><p>假设$C$和$D$是两个不相交的凸集，即$C\cap D=\emptyset$，那么存在$a\neq0$和$b$使得对于所有的$x\in C$有$a^Tx\leq b$、对于所有$x\in D$有$a^Tx\geq b$。</p>
-<p>换言之，仿射函数$a^Tx-b$在$C$中为非正，而在$D$中为非负。</p>
-<p>超平面$\{x|a^Tx=b\}$称为$C$和$D$的<strong>分离超平面</strong>，或称超平面<strong>分离</strong>了集合$C$和$D$。</p>
-<p><img src="img/超平面分离定理.png" alt=""></p>
-<p><img src="超平面分离定理.png" alt=""></p>
-<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>这里只考虑特殊情况。使用$Euclid$距离，将集合$C$和$D$的距离定义为$\mathbf{dist}(C,D)=\inf\{||u-v||_2|u\in C,v\in D\}.\quad$并且存在$c\in D,d\in D$达到这个最小距离，即$||c-d||_2=\mathbf{dist}(C,D)$.</p>
-<p>定义$a=d-c,\qquad$$b=\cfrac{||d||_2^2-||c||_2^2}{2}$</p>
-<p>我们将会得到一个仿射函数$f(x)=a^Tx-b=(d-c)^T(x-\frac12(d+c))$</p>
-<p>在$C$中非正而在$D$中非负，即$\{x|a^Tx=b\}$分离了$C$和$D$。这个超平面是连接$c,d$之间的线段的中垂面（如同上面的图中的形状），直觉上来讲是成立的。</p>
-<p>我们首先来证明$f$在$D$中非负。关于$f$在$C$中非正的证明是相似的。</p>
-<p>假设存在点$u\in D$，且$f(u)=(d-c)^T(u-\frac12(d+c))&lt;0$.这意味着$(d-c)^T(u-d)&lt;0$</p>
-<p>可以将$f(u)$表示为:</p>
-<p>$f(u)=(d-c)^T(u-\frac12(d+c))=(d-c)^T(u-d)+\frac12||d-c||_2^2$.</p>
-<p>结合上面的两个式子，可以观察到$\cfrac{d}{dt}||d+t(u-d)-c||_2^2\bigg|_{t=0}=2(d-c)^T(u-d)&lt;0.$</p>
-<p>因此对于足够小的$t&gt;0$及$t\leq1$，我们有$||d+t(u-d)-c||_2&lt;||d-c||_2$</p>
-<p>即$d+t(u-d)$比$d$更加靠近$c$。因为$D$是包含$d,u$的凸集，我们有$d+t(u-d)\in D$，但这和我们的假设是相违背的。</p>
-<h3 id="严格分离"><a href="#严格分离" class="headerlink" title="严格分离"></a>严格分离</h3><p>如果之前构造的分离超平面满足更强的条件，即对于任意$x\in C$有$a^Tx<b$并且对于$x\in D$有$a^Tx>b$，则称其为集合$C$和$D$的<strong>严格分离</strong>。</p>
-<h3 id="超平面分离定理的逆定理"><a href="#超平面分离定理的逆定理" class="headerlink" title="超平面分离定理的逆定理"></a>超平面分离定理的逆定理</h3><p>超平面分离定理的逆定理（即分离超平面的存在表明$C$和$D$不相交）是不成立的，除非在凸性之外在给这两个集合附加其他约束。一个反例是$C=D=\{0\}\subseteq \mathbf{R}$，超平面$x=0$可以分离$C$和$D$。</p>
-<p>给$C,D$增加条件后，可以得到超平面分离定理的一些逆定理。例如，设$C,D$是凸集，$C$是开集，若存在一个仿射函数$f$，其在$C$中非正而在$D$中非负，那么$C,D$不相交。</p>
-<p>将逆定理和原定理相结合，可以得到如下结论：任何两个凸集$C,D$如果其中至少有一个是开集，那么当且仅当存在分离超平面的时候，它们不相交。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/27/SymPy%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/27/SymPy%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/" class="post-title-link" itemprop="url">SymPy方程求解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-12-27 23:57:38 / 修改时间：23:58:25" itemprop="dateCreated datePublished" datetime="2023-12-27T23:57:38+08:00">2023-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/SymPy/" itemprop="url" rel="index"><span itemprop="name">SymPy</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在数学研究中，解方程首先需要确定解的范围，在SymPy中解方程也首先需要确定解的范围是实数集<code>sympy.S.Reals</code>或者复数集<code>sympy.S.Complexes</code>。定义域不同，得到的解集也是不同的。</p>
-<p>在SymPy中使用函数<code>sympy.solveset</code>来求解方程的解集。</p>
-<p>例如依次求解以下五个方程</p>
-<p>$\begin{aligned}&amp;\{x\in\mathbb{R}|x^3-1=0\}\\&amp;\{x\in\mathbb{C}|x^3-1=0\}\\&amp;\{x\in\mathbb{R}|e^x=0\}\\&amp;\{x\in\mathbb{R}|e^x-1=0\}\\&amp;\{x\in\mathbb{C}|e^x-1=0\}\\\end{aligned}$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.Eq(x**<span class="number">3</span>,<span class="number">1</span>),x,domain=sympy.S.Reals)</span><br><span class="line">&#123;<span class="number">1</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.Eq(x**<span class="number">3</span>,<span class="number">1</span>),x,domain=sympy.S.Complexes)</span><br><span class="line">&#123;<span class="number">1</span>, -<span class="number">1</span>/<span class="number">2</span> - sqrt(<span class="number">3</span>)*I/<span class="number">2</span>, -<span class="number">1</span>/<span class="number">2</span> + sqrt(<span class="number">3</span>)*I/<span class="number">2</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.exp(x),x)</span><br><span class="line">EmptySet</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.exp(x)-<span class="number">1</span>,x,domain=sympy.S.Reals)</span><br><span class="line">&#123;<span class="number">0</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solveset(sympy.exp(x)-<span class="number">1</span>,x,domain=sympy.S.Complexes)</span><br><span class="line">ImageSet(Lambda(_n, <span class="number">2</span>*_n*I*pi), Integers)</span><br></pre></td></tr></table></figure>
-<p>其中<code>Lambda()</code>表示函数，<code>_n</code>是自变量，<code>Integers</code>是自变量的定义域</p>
-<p>在线性代数中，有多元一次方程组，可以使用<code>sympy.solve()</code>函数，例如</p>
-<p>$\begin{cases}x+y-10\\x-y-2=0\end{cases}$</p>
-<p>$\begin{cases}\sin(x-y)=0\\\cos(x+y)=0\end{cases}$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solve([x+y-<span class="number">10</span>,x-y-<span class="number">2</span>],[x,y])</span><br><span class="line">&#123;x: <span class="number">6</span>, y: <span class="number">4</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.solve([sympy.sin(x-y),sympy.cos(x+y)],[x,y])</span><br><span class="line">[(-pi/<span class="number">4</span>, <span class="number">3</span>*pi/<span class="number">4</span>), (pi/<span class="number">4</span>, pi/<span class="number">4</span>), (<span class="number">3</span>*pi/<span class="number">4</span>, <span class="number">3</span>*pi/<span class="number">4</span>), (<span class="number">5</span>*pi/<span class="number">4</span>, pi/<span class="number">4</span>)]</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/27/SymPy%E5%BE%AE%E7%A7%AF%E5%88%86%E8%AE%A1%E7%AE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QianQing26">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 千顷/QianQing26">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/27/SymPy%E5%BE%AE%E7%A7%AF%E5%88%86%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">SymPy微积分计算</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-12-27 23:27:32 / 修改时间：23:28:14" itemprop="dateCreated datePublished" datetime="2023-12-27T23:27:32+08:00">2023-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/SymPy/" itemprop="url" rel="index"><span itemprop="name">SymPy</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p> SymPy可以进行微分、积分、极限等计算，</p>
-<p>比如有函数$f(x)=\cfrac1x$，可以使用<code>sympy.subs()</code>进行变量代换，把$x$代换为$y$等其他变量或者常数。例如</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = sympy.symbols(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = <span class="number">1</span>/x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f</span><br><span class="line"><span class="number">1</span>/x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>y = sympy.symbols(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = f.subs(x,y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f</span><br><span class="line"><span class="number">1</span>/y</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = f.subs(y,<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>在微积分中，最基本的操作是求极限，SymPy中求极限使用函数<code>sympy.limit()</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = <span class="number">1</span>/x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.limit(f,x,<span class="number">0</span>)</span><br><span class="line">oo</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.limit(f,x,sympy.oo)</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = sympy.sin(x)/x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.limit(f,x,<span class="number">0</span>)</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>也可以使用函数<code>sympy.diff()</code>进行求导的操作，可以在参数中设定求导的次数、变量等</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = <span class="number">1</span>/x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.diff(f,x)</span><br><span class="line">-<span class="number">1</span>/x**<span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.diff(f,x,<span class="number">2</span>)	<span class="comment"># 对f求x的二阶导</span></span><br><span class="line"><span class="number">2</span>/x**<span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.diff(f,x,<span class="number">10</span>)	<span class="comment"># 对f求x的十阶导</span></span><br><span class="line"><span class="number">3628800</span>/x**<span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = sympy.exp(x*y)*x+sympy.sin(x**<span class="number">2</span>+y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.diff(f,x,y,x)	<span class="comment"># f先对x求导，再对y求导，再对x求导</span></span><br><span class="line">x**<span class="number">2</span>*y**<span class="number">2</span>*exp(x*y) - <span class="number">4</span>*x**<span class="number">2</span>*cos(x**<span class="number">2</span> + y) + <span class="number">4</span>*x*y*exp(x*y) + <span class="number">2</span>*exp(x*y) - <span class="number">2</span>*sin(x**<span class="number">2</span> + y)</span><br></pre></td></tr></table></figure>
-<p>提到导数，这里提一下泰勒级数，这里可以使用<code>sympy.series()</code>函数。其中包含参数<code>expr</code>,<code>x</code>,<code>x0</code>,<code>n</code>,<code>dir</code>；分别表示函数、展开变量、展开点、展开的最高次、方向（$x\rightarrow x_0^+$等）。默认情况下，<code>x0=0</code>,<code>n=6</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = sympy.cos(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.series(f,x)</span><br><span class="line"><span class="number">1</span> - x**<span class="number">2</span>/<span class="number">2</span> + x**<span class="number">4</span>/<span class="number">24</span> + O(x**<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.series(f,x,<span class="number">1</span>,<span class="number">10</span>)</span><br><span class="line">cos(<span class="number">1</span>) - (x - <span class="number">1</span>)*sin(<span class="number">1</span>) - (x - <span class="number">1</span>)**<span class="number">2</span>*cos(<span class="number">1</span>)/<span class="number">2</span> + (x - <span class="number">1</span>)**<span class="number">3</span>*sin(<span class="number">1</span>)/<span class="number">6</span> + (x - <span class="number">1</span>)**<span class="number">4</span>*cos(<span class="number">1</span>)/<span class="number">24</span> - (x - <span class="number">1</span>)**<span class="number">5</span>*sin(<span class="number">1</span>)/<span class="number">120</span> - (x - <span class="number">1</span>)**<span class="number">6</span>*cos(<span class="number">1</span>)/<span class="number">720</span> + (x - <span class="number">1</span>)**<span class="number">7</span>*sin(<span class="number">1</span>)/<span class="number">5040</span> + (x - <span class="number">1</span>)**<span class="number">8</span>*cos(<span class="number">1</span>)/<span class="number">40320</span> - (x - <span class="number">1</span>)**<span class="number">9</span>*sin(<span class="number">1</span>)/<span class="number">362880</span> + O((x - <span class="number">1</span>)**<span class="number">10</span>, (x, <span class="number">1</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.series(f,x).removeO()	<span class="comment"># removeO()方法可以去掉余项</span></span><br><span class="line">x**<span class="number">4</span>/<span class="number">24</span> - x**<span class="number">2</span>/<span class="number">2</span> + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>SymPy的积分使用函数<code>sympy.integrate()</code>，可以计算不定积分、定积分、广义积分</p>
-<p>例如$\int \cfrac1x dx=\ln(x)+C,\quad \int_1^2\cfrac1xdx=\ln(2)$</p>
-<p>需要注意积分上下界在函数中的写法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = <span class="number">1</span>/x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.integrate(f,x)</span><br><span class="line">log(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.integrate(f,(x,<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">log(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p>还有$\begin{aligned}&amp;\int_{-\infty}^0e^{-x^2}dx=\cfrac{\sqrt{\pi}}{2}\\&amp;\int_0^{+\infty}e^{-x}dx=1\\&amp;\int_{-\infty}^{+\infty}e^{-x^2-y^2}dxdy=\pi\end{aligned}$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>g = sympy.exp(-x**<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.integrate(g,(x,-sympy.oo,<span class="number">0</span>))</span><br><span class="line">sqrt(pi)/<span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>g = sympy.exp(-x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.integrate(g,(x,<span class="number">0</span>,sympy.oo))</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>h = sympy.exp(-x**<span class="number">2</span>-y**<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sympy.integrate(h,(x,-sympy.oo,sympy.oo),(y,-sympy.oo,sympy.oo))</span><br><span class="line">pi</span><br></pre></td></tr></table></figure>
 
       
     </div>

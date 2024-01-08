@@ -785,7 +785,7 @@
     <title>凸优化17：凸函数与不等式</title>
     <url>/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9617%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E4%B8%8E%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
     <content><![CDATA[<h3 id="Jensen不等式"><a href="#Jensen不等式" class="headerlink" title="Jensen不等式"></a>Jensen不等式</h3><p>基本不等式$f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y)$有时也称为<strong>Jensen不等式</strong>。</p>
-<p>此不等式可以拓展到更多点的凸组合：如果函数$f$是凸函数，$x_1,\dots,x_k\in<script type="math/tex">\mathbf{dom}f$，$\theta_1,\dots,\theta_k\geq0$且$\theta_1+\dots+\theta_k=1$，则下面的不等式成立：$f(\theta_1x_1+\dots+\theta_kx_k)</script>\leq$$\theta_1f(x_1)+\dots+\theta_kf(x_k)$</p>
+<p>此不等式可以拓展到更多点的凸组合：如果函数$f$是凸函数，$x_1,\dots,x_k\in \mathbf{dom}f$，$\theta_1,\dots,\theta_k\geq0$且$\theta_1+\dots+\theta_k=1$，则下面的不等式成立：$f(\theta_1x_1+\dots+\theta_kx_k)\leq\theta_1f(x_1)+\dots+\theta_kf(x_k)$</p>
 <p>考虑凸集的时候，这个不等式可以拓展为无穷级数、积分、期望。</p>
 <p>例如下面由形式如下的不等式：$f\left(\int_Sp(x)xdx\right)&lt;\int_Sf(x)p(x)dx$以及$f(\mathbf{E}x)&lt;\mathbf{E}f(x)$</p>
 <p>实际上Jensen不等式最初的形式是：$f(\cfrac{x+y}{2}）\leq\cfrac{f(x)+f(y)}2$</p>
@@ -825,6 +825,100 @@
 <h5 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h5><p>以权为变量的最小二乘费用。令$a_1,\dots,a_n\in\mathbf{R}^m$，在加圈最小二乘问题中，我们对所有的$x\in\mathbf{R}^m$极小化目标函数$\sum^n_{i=1}w_i(a^T_ix-b_i)^2$。称其中$w_i$为<strong>权</strong>，并允许负的$w_i$.</p>
 <p>定义（最优）加权最小二乘费用函数为$g(w)=\inf_x\sum^n_{i=1}w_i(a^T_ix-b_i)^2$,其定义域为$\mathbf{dom}g=\{w|\inf_x\sum^n_{i=1}w_i(a_i^Tx-b_i)^2&gt;-\infty\}$.</p>
 <p>因为$g$是关于$w$的线性函数的下确界，则其是$w$的凹函数。</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸函数</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>数学</tag>
+        <tag>凸函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凸优化19：保凸运算2：复合</title>
+    <url>/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9619%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%972%EF%BC%9A%E5%A4%8D%E5%90%88/</url>
+    <content><![CDATA[<p>给定函数$h:\mathbf{R}^k\rightarrow\mathbf{R}$和$g:\mathbf{R}^n\rightarrow\mathbf{R}^{k}$，定义复合函数$f=h\circ g:\mathbf{R}^n\rightarrow\mathbf{R}$为$f(x)=h(g(x)),\mathbf{dom}f=\{x\in\mathbf{dom}g|g(x)\in\mathbf{dom}h\}$，我们考虑当函数$f$保凸或者保凹时，函数$h,g$必须满足的条件。</p>
+<h3 id="标量复合"><a href="#标量复合" class="headerlink" title="标量复合"></a>标量复合</h3><p>首先考虑$k=1$，即$h:\mathbf{R}\rightarrow\mathbf{R}$和$g:\mathbf{R}^n\rightarrow\mathbf{R}$。</p>
+<p>为了找出复合规律，不妨先考虑$n=1$并且假设$h$和$g$都是二次可微的，且$\mathbf{dom}g=\mathbf{dom}h=\mathbf{R}$. 这种情况下，$f$是凸的等价于$f^{\prime\prime}\geq0$.</p>
+<p>而$f^{\prime\prime}(x)=h^{\prime\prime}(g(x))g^{\prime}(x)^2+h^{\prime}(g(x))g^{\prime\prime}(x)$</p>
+<p>从而可以得出以下结论</p>
+<ol>
+<li>$h$凸且非减、$g$是凸，则$f$是凸函数</li>
+<li>$h$凸且非增、$g$是凹，则$f$是凸函数</li>
+<li>$h$凹且非减、$g$是凹，则$f$是凹函数</li>
+<li>$h$凹且非增、$g$是凸，则$f$是凹函数</li>
+</ol>
+<p>对于更加一般的情况，如$n&gt;1$，不再假设$h,g$可微或者定义域为$\mathbf{R}^n$，相似的规则仍然成立为：</p>
+<ol>
+<li>$h$凸且$\widetilde{h}$非减、$g$是凸，则$f$是凸函数</li>
+<li>$h$凸且$\widetilde{h}$非增、$g$是凹，则$f$是凸函数</li>
+<li>$h$凹且$\widetilde{h}$非减、$g$是凹，则$f$是凹函数</li>
+<li>$h$凹且$\widetilde{h}$非增、$g$是凸，则$f$是凹函数</li>
+</ol>
+<p>其中$\widetilde{h}$表示$h$的扩展值延伸。若点不再$\mathbf{dom}h$之内，则对其赋值为$+\infty$或$-\infty$（分别对于凸函数和凹函数）。需要注意的是，对于$\widetilde{h}$的增减性，要求在整个$\mathbf{R}$上都满足非增或者非减</p>
+<h3 id="矢量复合"><a href="#矢量复合" class="headerlink" title="矢量复合"></a>矢量复合</h3><p>下面考虑$k\ge0$的情况，此时更复杂一点，设$f(x)=h(g(x))=h(g_1(x),\dots,g_k(x)).\qquad$其中$h:\mathbf{R}^k\rightarrow\mathbf{R}$和$g_i:\mathbf{R}^n\rightarrow\mathbf{R}$.</p>
+<p>为了发现规律，先假设$n=1$、二次可微，且$\mathbf{dom}g=\mathbf{R},\mathbf{dom}h=\mathbf{R}^k$，对$f$二次微分得：$f^{\prime\prime}(x)=g^{\prime}(x)^T\nabla^2h(g(x))g^{\prime}+\nabla h(g(x))^Tg^{\prime\prime}(x)$</p>
+<p>类似地，还可以得到很多规则：</p>
+<ol>
+<li>如果$h$是凸函数且每一维分量上$h$非减，$g_i$是凸函数，则$f$是凸函数</li>
+<li>如果$h$是凸函数且每一维分量上$h$非增，$g_i$是凹函数，则$f$是凸函数</li>
+<li>如果$h$是凸函数且每一维分量上$h$非减，$g_i$是凹函数，则$f$是凹函数</li>
+</ol>
+<p>对更一般的情况来说，类似地结论依然成立，但是不仅需要$h$满足单调性条件，其扩展值延伸同样需要满足</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸函数</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>数学</tag>
+        <tag>凸函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凸优化20：保凸运算3：最小化、透视函数</title>
+    <url>/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9620%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%973%EF%BC%9A%E6%9C%80%E5%B0%8F%E5%8C%96%E3%80%81%E9%80%8F%E8%A7%86%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h3 id="最小化"><a href="#最小化" class="headerlink" title="最小化"></a>最小化</h3><p>逐点最大/上确界可以得到凸函数，一些特殊形式的最小化同样可以得到凸函数。</p>
+<p>若函数$f$关于$(x,y)$是凸函数，集合$C$是非空凸集，定义函数$g(x)=\inf_{y\in C}f(x,y)$</p>
+<p>若存在某个$x$使得$g(x)&gt;-\infty$，则函数$g$关于$x$是凸函数，其定义域是$\mathbf{dom}f$在$x$方向上的投影，即$\mathbf{dom}g=\{x|对某个y\in C成立(x,y)\in\mathbf{dom}f\}$.</p>
+<h3 id="透视函数"><a href="#透视函数" class="headerlink" title="透视函数"></a>透视函数</h3><p>给定函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$，则$f$的透视函数$g:\mathbf{R}^{n+1}\rightarrow\mathbf{R}$定义为$g(x,t)=tf(x/t)$，其定义域为$\mathbf{dom}g=\{(x,t)|x/t\in\mathbf{dom}g,t&gt;0\}$</p>
+<p>透视运算是保凸的：如果函数$f$是凸函数，则其透视函数$g$也是凸函数。同时透视运算也是保凹的。</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸函数</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>数学</tag>
+        <tag>凸函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凸优化21：共轭函数</title>
+    <url>/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9621%EF%BC%9A%E5%85%B1%E8%BD%AD%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h3 id="共轭函数的定义"><a href="#共轭函数的定义" class="headerlink" title="共轭函数的定义"></a>共轭函数的定义</h3><p>设函数$f:\mathbf{R}^n\rightarrow\mathbf{R}$，定义函数$f^{\ast}:\mathbf{R}^n\rightarrow\mathbf{R}$为$f^{\ast}(y)=\sup_{x\in\mathbf{dom}f}\left(y^Tx-f(x)\right).\quad$ 此函数称为$y$的共轭函数。</p>
+<p>使上述的上确界有限，即差值$y^Tx-f(x)$在$\mathbf{dom}f$有上界的所有的$y\in\mathbf{R}^n$构成了共轭函数的定义域.</p>
+<p>容易看出，$f^{\ast}(y)$是关于$y$的一系列仿射函数的逐点上确界，因此无论$f(x)$是否为凸函数，$f^{\ast}$都是凸的。</p>
+<h3 id="共轭函数的一些例子"><a href="#共轭函数的一些例子" class="headerlink" title="共轭函数的一些例子"></a>共轭函数的一些例子</h3><h4 id="mathbf-R-上的一些例子"><a href="#mathbf-R-上的一些例子" class="headerlink" title="$\mathbf{R}$上的一些例子"></a>$\mathbf{R}$上的一些例子</h4><p>仿射函数：$f(x)=ax+b$，当且仅当$y=a$的时候，$f^{\ast}$有界，则此时共轭函数的定义域为单点集$\{a\}$，且$f^{\ast}(a)=-b$</p>
+<p>负对数函数：$f(x)=-\log x,\mathbf{dom}f=\mathbf{R}_{++}$，当$y\geq0$的时候，$xy+\log x$无上界，$y&lt;0$时，在$x=-1/y$处取到最大值。因此$f^{\ast}(y)=-\log(-y)-1\quad(y&lt;0)$</p>
+<p>指数函数：$f(x)=e^x\quad f^{\ast}(y)=y\log y-y\quad(y\ge0)$</p>
+<p>负熵函数：$f(x)=x\log x\quad f^{\ast}(y)=e^{y-1}$</p>
+<h4 id="更一般的一些例子"><a href="#更一般的一些例子" class="headerlink" title="更一般的一些例子"></a>更一般的一些例子</h4><p>严格凸的二次函数：$f(x)=\frac12 x^TQx,Q\in\mathbf{S}^n_{++}\quad f^{\ast}(y)=\frac12y^TQ^{-1}y$</p>
+<p>示性函数：$I_S$时某个集合$S\subseteq\mathbf{R}^n$（不一定是凸集）的示性函数，即$x\in\mathbf{dom}I_S=S$时，$I_S(x)=0$. 其共轭函数$I^{\ast}_S(y)=\sup_{x\in S}y^Tx$. 其是集合$S$的支撑函数</p>
+<h3 id="共轭函数的基本性质"><a href="#共轭函数的基本性质" class="headerlink" title="共轭函数的基本性质"></a>共轭函数的基本性质</h3><h4 id="Fenchel不等式"><a href="#Fenchel不等式" class="headerlink" title="Fenchel不等式"></a>Fenchel不等式</h4><p>任意$x,y$，有$f(x)+f^{\ast}(y)\ge x^Ty$</p>
+<p>根据定义，这是显而易见的</p>
+<h4 id="共轭的共轭"><a href="#共轭的共轭" class="headerlink" title="共轭的共轭"></a>共轭的共轭</h4><p>“共轭”的名字暗示了凸函数的共轭函数的共轭函数是原函数，即：如果函数$f$是凸函数且$f$是闭的，则$f^{\ast\ast}=f$</p>
+<h4 id="可微函数"><a href="#可微函数" class="headerlink" title="可微函数"></a>可微函数</h4><p>可微函数$f$的共轭函数也被称为$f$的Legendre变换。</p>
+<p>设函数$f$凸且可微，定义域为$\mathbf{R}^n$，使$y^Tx-f(x)$取最大值的$x^{\ast}$满足$y=\nabla f(x^{\ast})$，反之，若$x^{\ast}$满足$y=\nabla f(x^{\ast})$,$y^Tx-f(x)$在$x^{\ast}$处取最大值，因此如果$y=\nabla f(x^{\ast})$，则有$f^{\ast}(y)=x^{\ast T}\nabla f(x^{\ast})-f(x^{\ast})$.</p>
+<p>所以，给定任意$y$，可以求解梯度方程$y=\nabla f(z)$，从而得到$y$处的共轭函数$f^{\ast}(y)$</p>
+<h4 id="伸缩变化、复合仿射变换"><a href="#伸缩变化、复合仿射变换" class="headerlink" title="伸缩变化、复合仿射变换"></a>伸缩变化、复合仿射变换</h4><p>若$a&gt;0$以及$b\in \mathbf{R}$，$g(x)=af(x)+b$的共轭函数为$g^{\ast}(y)=af^{\ast}(y/a)-b$.</p>
+<p>设$A\in\mathbf{R}^{n\times n}$非奇异，$b\in\mathbf{R}^n$，则函数$g(x)=f(Ax+b)$的共轭函数为$g^{\ast}(y)=f^{\ast}(A^{-T}y)-b^TA^{-T}y$，其定义域为$\mathbf{dom}g^{\ast}=A^T\mathbf{dom}f^{\ast}$</p>
+<h4 id="独立函数的和"><a href="#独立函数的和" class="headerlink" title="独立函数的和"></a>独立函数的和</h4><p>如果函数$f(u,v)=f_1(u)+f_2(v)$，其中$f_1,f_2$是凸函数，且共轭函数分别是$f^{\ast}_1,f^{\ast}_2$，则$f^{\ast}(w,z)=f^{\ast}_1(w)+f^{\ast}_2(z)$.</p>
+<p>换言之，独立凸函数的和的共轭函数是各个凸函数的共轭函数的和（其中“独立”是指两个函数具有不同的变量）。</p>
 ]]></content>
       <categories>
         <category>凸优化</category>
