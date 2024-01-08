@@ -807,4 +807,33 @@
         <tag>凸函数</tag>
       </tags>
   </entry>
+  <entry>
+    <title>凸优化18：保凸运算1</title>
+    <url>/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9618%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%971/</url>
+    <content><![CDATA[<p>接下来讨论几种保持函数凸性、凹形的运算这样可以由已知的凸函数构造出新的凸函数。</p>
+<h3 id="非负加权求和"><a href="#非负加权求和" class="headerlink" title="非负加权求和"></a>非负加权求和</h3><p>显然，如果$f$是凸函数且$\alpha\geq0$，则函数$\alpha f$也为凸函数；如果函数$f_1,f_2$是凸函数，那么$f_1+f_2$也是凸函数。将非负伸缩以及求和运算结合起来，可以看书，凸函数的几何本身是一个凸锥：凸函数的非负加权求和仍然是凸函数：$f=w_1f_1+\dots+w_mf_m$是凸函数。</p>
+<p>类似地，凹函数、严格凸函数、严格凹函数都有如上的性质。</p>
+<p>这个性质可以扩展值无穷级数、积分。</p>
+<h3 id="复合仿射映射"><a href="#复合仿射映射" class="headerlink" title="复合仿射映射"></a>复合仿射映射</h3><p>假设函数$f:\mathbf{R}^n\rightarrow\mathbf{R},\mathbf{A}\in \mathbf{R}^{n\times m}$以及$b\in\mathbf{R}^n$，定义$g:\mathbf{R}^m\rightarrow\mathbf{R}$为$g(x)=f(Ax+b)$，其中$\mathbf{dom}g=\{x|Ax+b\in\mathbf{dom}f\}$.若函数$f$是凸/凹函数，则函数$g$为凸/凹函数。</p>
+<h3 id="逐点最大和逐点上确界"><a href="#逐点最大和逐点上确界" class="headerlink" title="逐点最大和逐点上确界"></a>逐点最大和逐点上确界</h3><h4 id="逐点最大"><a href="#逐点最大" class="headerlink" title="逐点最大"></a>逐点最大</h4><p>若函数$f_1,f_2$均为凸函数，则两者的<strong>逐点最大</strong>函数$f$为$f(x)=\max\{f_1(x),f_2(x)\}$，定义域$\mathbf{dom}f=\mathbf{dom}f_1\cap\mathbf{dom}f_2$,仍然为凸函数。容易验证：</p>
+<p>$\begin{aligned}f(\theta x+(1-\theta)y)&amp;=\max\{f_1(\theta x+(1-\theta)y),f_2(\theta x+(1-\theta)y)\}\\&amp;\leq\max\{\theta f_1(x)+(1-\theta)f_1(y),\theta f_2(x)+(1-\theta)f_2(y)\}\\&amp;\leq\theta\max\{f_1(x),f(_2x)\}+(1-\theta)\max\{f_1(y),f_2(y)\}\\&amp;=\theta f(x)+(1-\theta)f(y)\end{aligned}$</p>
+<h4 id="逐点上确界"><a href="#逐点上确界" class="headerlink" title="逐点上确界"></a>逐点上确界</h4><p>逐点最大的性质可以扩展到无限个凸函数的逐点上确界。如果对于任意$y\in\mathcal{A}$，函数$f(x,y)$关于$x$都是凸的，则函数$g:g(x)=\sup_{y\in\mathcal{A}}f(x,y)$关于$x$是凸的，此时$g$的定义域为$\mathbf{dom}g=\{x|(x,y)\in\mathbf{dom}f,\forall y\in\mathcal{A},\sup_{y\in\mathcal{A}}f(x,y)&lt;\infty\}$</p>
+<p>类似，一系列凹函数的逐点下确界是凹函数。</p>
+<p>使用上境图理解，一系列函数的逐点上确界函数对应着这些函数上境图的交集：对函数$f,g$以及上面定义的$\mathcal{A}$，有$\mathbf{epi}g=\bigcap_{y=\mathcal{A}}\mathbf{epi}f(\cdot,y)$，交集运算保持集合的凸性，容易知道$g$是凸函数。</p>
+<h5 id="表示成一族放射函数的逐点上确界"><a href="#表示成一族放射函数的逐点上确界" class="headerlink" title="表示成一族放射函数的逐点上确界"></a>表示成一族放射函数的逐点上确界</h5><p>一个建立函数凸性的好方法是：将其表示为一族仿射函数的逐点上确界。</p>
+<p>反过来也是成立的：几乎所有的凸函数都可以表示为一族仿射函数的逐点上确界。</p>
+<h5 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h5><p>以权为变量的最小二乘费用。令$a_1,\dots,a_n\in\mathbf{R}^m$，在加圈最小二乘问题中，我们对所有的$x\in\mathbf{R}^m$极小化目标函数$\sum^n_{i=1}w_i(a^T_ix-b_i)^2$。称其中$w_i$为<strong>权</strong>，并允许负的$w_i$.</p>
+<p>定义（最优）加权最小二乘费用函数为$g(w)=\inf_x\sum^n_{i=1}w_i(a^T_ix-b_i)^2$,其定义域为$\mathbf{dom}g=\{w|\inf_x\sum^n_{i=1}w_i(a_i^Tx-b_i)^2&gt;-\infty\}$.</p>
+<p>因为$g$是关于$w$的线性函数的下确界，则其是$w$的凹函数。</p>
+]]></content>
+      <categories>
+        <category>凸优化</category>
+        <category>凸函数</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+        <tag>数学</tag>
+        <tag>凸函数</tag>
+      </tags>
+  </entry>
 </search>

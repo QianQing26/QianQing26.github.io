@@ -19,33 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qianqing26.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="超平面分离定理假设$C$和$D$是两个不相交的凸集，即$C\cap D&#x3D;\emptyset$，那么存在$a\neq0$和$b$使得对于所有的$x\in C$有$a^Tx\leq b$、对于所有$x\in D$有$a^Tx\geq b$。 换言之，仿射函数$a^Tx-b$在$C$中为非正，而在$D$中为非负。 超平面$\{x|a^Tx&#x3D;b\}$称为$C$和$D$的分离超平面，或称超平面分离了集合$C">
+    <meta name="description" content="接下来讨论几种保持函数凸性、凹形的运算这样可以由已知的凸函数构造出新的凸函数。 非负加权求和显然，如果$f$是凸函数且$\alpha\geq0$，则函数$\alpha f$也为凸函数；如果函数$f_1,f_2$是凸函数，那么$f_1+f_2$也是凸函数。将非负伸缩以及求和运算结合起来，可以看书，凸函数的几何本身是一个凸锥：凸函数的非负加权求和仍然是凸函数：$f&#x3D;w_1f_1+\dots+w_mf_">
 <meta property="og:type" content="article">
-<meta property="og:title" content="凸优化12：超平面分离定理">
-<meta property="og:url" content="http://qianqing26.github.io/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/index.html">
+<meta property="og:title" content="凸优化18：保凸运算1">
+<meta property="og:url" content="http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9618%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%971/index.html">
 <meta property="og:site_name" content="千顷&#x2F;QianQing26">
-<meta property="og:description" content="超平面分离定理假设$C$和$D$是两个不相交的凸集，即$C\cap D&#x3D;\emptyset$，那么存在$a\neq0$和$b$使得对于所有的$x\in C$有$a^Tx\leq b$、对于所有$x\in D$有$a^Tx\geq b$。 换言之，仿射函数$a^Tx-b$在$C$中为非正，而在$D$中为非负。 超平面$\{x|a^Tx&#x3D;b\}$称为$C$和$D$的分离超平面，或称超平面分离了集合$C">
+<meta property="og:description" content="接下来讨论几种保持函数凸性、凹形的运算这样可以由已知的凸函数构造出新的凸函数。 非负加权求和显然，如果$f$是凸函数且$\alpha\geq0$，则函数$\alpha f$也为凸函数；如果函数$f_1,f_2$是凸函数，那么$f_1+f_2$也是凸函数。将非负伸缩以及求和运算结合起来，可以看书，凸函数的几何本身是一个凸锥：凸函数的非负加权求和仍然是凸函数：$f&#x3D;w_1f_1+\dots+w_mf_">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://qianqing26.github.io/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/img/%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86.png">
-<meta property="og:image" content="http://qianqing26.github.io/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86.png">
-<meta property="article:published_time" content="2023-12-29T01:09:48.000Z">
-<meta property="article:modified_time" content="2023-12-30T05:49:40.669Z">
+<meta property="article:published_time" content="2024-01-08T03:33:41.000Z">
+<meta property="article:modified_time" content="2024-01-08T05:30:57.847Z">
 <meta property="article:author" content="QianQing26">
 <meta property="article:tag" content="凸优化">
-<meta property="article:tag" content="凸集">
 <meta property="article:tag" content="数学">
+<meta property="article:tag" content="凸函数">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qianqing26.github.io/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/img/%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86.png">
 
 
-<link rel="canonical" href="http://qianqing26.github.io/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/">
+<link rel="canonical" href="http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9618%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%971/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/","path":"2023/12/29/凸优化12：超平面分离定理/","title":"凸优化12：超平面分离定理"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9618%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%971/","path":"2024/01/08/凸优化18：保凸运算1/","title":"凸优化18：保凸运算1"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>凸优化12：超平面分离定理 | 千顷/QianQing26</title>
+<title>凸优化18：保凸运算1 | 千顷/QianQing26</title>
   
 
 
@@ -120,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">超平面分离定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A5%E6%A0%BC%E5%88%86%E7%A6%BB"><span class="nav-number">3.</span> <span class="nav-text">严格分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86%E7%9A%84%E9%80%86%E5%AE%9A%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">超平面分离定理的逆定理</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E8%B4%9F%E5%8A%A0%E6%9D%83%E6%B1%82%E5%92%8C"><span class="nav-number">1.</span> <span class="nav-text">非负加权求和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E4%BB%BF%E5%B0%84%E6%98%A0%E5%B0%84"><span class="nav-number">2.</span> <span class="nav-text">复合仿射映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%90%E7%82%B9%E6%9C%80%E5%A4%A7%E5%92%8C%E9%80%90%E7%82%B9%E4%B8%8A%E7%A1%AE%E7%95%8C"><span class="nav-number">3.</span> <span class="nav-text">逐点最大和逐点上确界</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%90%E7%82%B9%E6%9C%80%E5%A4%A7"><span class="nav-number">3.1.</span> <span class="nav-text">逐点最大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%90%E7%82%B9%E4%B8%8A%E7%A1%AE%E7%95%8C"><span class="nav-number">3.2.</span> <span class="nav-text">逐点上确界</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E6%88%90%E4%B8%80%E6%97%8F%E6%94%BE%E5%B0%84%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%90%E7%82%B9%E4%B8%8A%E7%A1%AE%E7%95%8C"><span class="nav-number">3.2.1.</span> <span class="nav-text">表示成一族放射函数的逐点上确界</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">3.2.2.</span> <span class="nav-text">一个例子</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,7 +176,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2023/12/29/%E5%87%B8%E4%BC%98%E5%8C%9612%EF%BC%9A%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%88%86%E7%A6%BB%E5%AE%9A%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://qianqing26.github.io/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9618%EF%BC%9A%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%971/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -192,12 +189,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="凸优化12：超平面分离定理 | 千顷/QianQing26">
+      <meta itemprop="name" content="凸优化18：保凸运算1 | 千顷/QianQing26">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          凸优化12：超平面分离定理
+          凸优化18：保凸运算1
         </h1>
 
         <div class="post-meta-container">
@@ -207,15 +204,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-12-29 09:09:48" itemprop="dateCreated datePublished" datetime="2023-12-29T09:09:48+08:00">2023-12-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-30 13:49:40" itemprop="dateModified" datetime="2023-12-30T13:49:40+08:00">2023-12-30</time>
+      <time title="创建时间：2024-01-08 11:33:41 / 修改时间：13:30:57" itemprop="dateCreated datePublished" datetime="2024-01-08T11:33:41+08:00">2024-01-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -227,7 +218,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">凸集</span></a>
+          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">凸函数</span></a>
         </span>
     </span>
 
@@ -247,26 +238,21 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="超平面分离定理"><a href="#超平面分离定理" class="headerlink" title="超平面分离定理"></a>超平面分离定理</h3><p>假设$C$和$D$是两个不相交的凸集，即$C\cap D=\emptyset$，那么存在$a\neq0$和$b$使得对于所有的$x\in C$有$a^Tx\leq b$、对于所有$x\in D$有$a^Tx\geq b$。</p>
-<p>换言之，仿射函数$a^Tx-b$在$C$中为非正，而在$D$中为非负。</p>
-<p>超平面$\{x|a^Tx=b\}$称为$C$和$D$的<strong>分离超平面</strong>，或称超平面<strong>分离</strong>了集合$C$和$D$。</p>
-<p><img src="img/超平面分离定理.png" alt=""></p>
-<p><img src="超平面分离定理.png" alt=""></p>
-<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>这里只考虑特殊情况。使用$Euclid$距离，将集合$C$和$D$的距离定义为$\mathbf{dist}(C,D)=\inf\{||u-v||_2|u\in C,v\in D\}.\quad$并且存在$c\in D,d\in D$达到这个最小距离，即$||c-d||_2=\mathbf{dist}(C,D)$.</p>
-<p>定义$a=d-c,\qquad$$b=\cfrac{||d||_2^2-||c||_2^2}{2}$</p>
-<p>我们将会得到一个仿射函数$f(x)=a^Tx-b=(d-c)^T(x-\frac12(d+c))$</p>
-<p>在$C$中非正而在$D$中非负，即$\{x|a^Tx=b\}$分离了$C$和$D$。这个超平面是连接$c,d$之间的线段的中垂面（如同上面的图中的形状），直觉上来讲是成立的。</p>
-<p>我们首先来证明$f$在$D$中非负。关于$f$在$C$中非正的证明是相似的。</p>
-<p>假设存在点$u\in D$，且$f(u)=(d-c)^T(u-\frac12(d+c))&lt;0$.这意味着$(d-c)^T(u-d)&lt;0$</p>
-<p>可以将$f(u)$表示为:</p>
-<p>$f(u)=(d-c)^T(u-\frac12(d+c))=(d-c)^T(u-d)+\frac12||d-c||_2^2$.</p>
-<p>结合上面的两个式子，可以观察到$\cfrac{d}{dt}||d+t(u-d)-c||_2^2\bigg|_{t=0}=2(d-c)^T(u-d)&lt;0.$</p>
-<p>因此对于足够小的$t&gt;0$及$t\leq1$，我们有$||d+t(u-d)-c||_2&lt;||d-c||_2$</p>
-<p>即$d+t(u-d)$比$d$更加靠近$c$。因为$D$是包含$d,u$的凸集，我们有$d+t(u-d)\in D$，但这和我们的假设是相违背的。</p>
-<h3 id="严格分离"><a href="#严格分离" class="headerlink" title="严格分离"></a>严格分离</h3><p>如果之前构造的分离超平面满足更强的条件，即对于任意$x\in C$有$a^Tx<b$并且对于$x\in D$有$a^Tx>b$，则称其为集合$C$和$D$的<strong>严格分离</strong>。</p>
-<h3 id="超平面分离定理的逆定理"><a href="#超平面分离定理的逆定理" class="headerlink" title="超平面分离定理的逆定理"></a>超平面分离定理的逆定理</h3><p>超平面分离定理的逆定理（即分离超平面的存在表明$C$和$D$不相交）是不成立的，除非在凸性之外在给这两个集合附加其他约束。一个反例是$C=D=\{0\}\subseteq \mathbf{R}$，超平面$x=0$可以分离$C$和$D$。</p>
-<p>给$C,D$增加条件后，可以得到超平面分离定理的一些逆定理。例如，设$C,D$是凸集，$C$是开集，若存在一个仿射函数$f$，其在$C$中非正而在$D$中非负，那么$C,D$不相交。</p>
-<p>将逆定理和原定理相结合，可以得到如下结论：任何两个凸集$C,D$如果其中至少有一个是开集，那么当且仅当存在分离超平面的时候，它们不相交。</p>
+    <div class="post-body" itemprop="articleBody"><p>接下来讨论几种保持函数凸性、凹形的运算这样可以由已知的凸函数构造出新的凸函数。</p>
+<h3 id="非负加权求和"><a href="#非负加权求和" class="headerlink" title="非负加权求和"></a>非负加权求和</h3><p>显然，如果$f$是凸函数且$\alpha\geq0$，则函数$\alpha f$也为凸函数；如果函数$f_1,f_2$是凸函数，那么$f_1+f_2$也是凸函数。将非负伸缩以及求和运算结合起来，可以看书，凸函数的几何本身是一个凸锥：凸函数的非负加权求和仍然是凸函数：$f=w_1f_1+\dots+w_mf_m$是凸函数。</p>
+<p>类似地，凹函数、严格凸函数、严格凹函数都有如上的性质。</p>
+<p>这个性质可以扩展值无穷级数、积分。</p>
+<h3 id="复合仿射映射"><a href="#复合仿射映射" class="headerlink" title="复合仿射映射"></a>复合仿射映射</h3><p>假设函数$f:\mathbf{R}^n\rightarrow\mathbf{R},\mathbf{A}\in \mathbf{R}^{n\times m}$以及$b\in\mathbf{R}^n$，定义$g:\mathbf{R}^m\rightarrow\mathbf{R}$为$g(x)=f(Ax+b)$，其中$\mathbf{dom}g=\{x|Ax+b\in\mathbf{dom}f\}$.若函数$f$是凸/凹函数，则函数$g$为凸/凹函数。</p>
+<h3 id="逐点最大和逐点上确界"><a href="#逐点最大和逐点上确界" class="headerlink" title="逐点最大和逐点上确界"></a>逐点最大和逐点上确界</h3><h4 id="逐点最大"><a href="#逐点最大" class="headerlink" title="逐点最大"></a>逐点最大</h4><p>若函数$f_1,f_2$均为凸函数，则两者的<strong>逐点最大</strong>函数$f$为$f(x)=\max\{f_1(x),f_2(x)\}$，定义域$\mathbf{dom}f=\mathbf{dom}f_1\cap\mathbf{dom}f_2$,仍然为凸函数。容易验证：</p>
+<p>$\begin{aligned}f(\theta x+(1-\theta)y)&amp;=\max\{f_1(\theta x+(1-\theta)y),f_2(\theta x+(1-\theta)y)\}\\&amp;\leq\max\{\theta f_1(x)+(1-\theta)f_1(y),\theta f_2(x)+(1-\theta)f_2(y)\}\\&amp;\leq\theta\max\{f_1(x),f(_2x)\}+(1-\theta)\max\{f_1(y),f_2(y)\}\\&amp;=\theta f(x)+(1-\theta)f(y)\end{aligned}$</p>
+<h4 id="逐点上确界"><a href="#逐点上确界" class="headerlink" title="逐点上确界"></a>逐点上确界</h4><p>逐点最大的性质可以扩展到无限个凸函数的逐点上确界。如果对于任意$y\in\mathcal{A}$，函数$f(x,y)$关于$x$都是凸的，则函数$g:g(x)=\sup_{y\in\mathcal{A}}f(x,y)$关于$x$是凸的，此时$g$的定义域为$\mathbf{dom}g=\{x|(x,y)\in\mathbf{dom}f,\forall y\in\mathcal{A},\sup_{y\in\mathcal{A}}f(x,y)&lt;\infty\}$</p>
+<p>类似，一系列凹函数的逐点下确界是凹函数。</p>
+<p>使用上境图理解，一系列函数的逐点上确界函数对应着这些函数上境图的交集：对函数$f,g$以及上面定义的$\mathcal{A}$，有$\mathbf{epi}g=\bigcap_{y=\mathcal{A}}\mathbf{epi}f(\cdot,y)$，交集运算保持集合的凸性，容易知道$g$是凸函数。</p>
+<h5 id="表示成一族放射函数的逐点上确界"><a href="#表示成一族放射函数的逐点上确界" class="headerlink" title="表示成一族放射函数的逐点上确界"></a>表示成一族放射函数的逐点上确界</h5><p>一个建立函数凸性的好方法是：将其表示为一族仿射函数的逐点上确界。</p>
+<p>反过来也是成立的：几乎所有的凸函数都可以表示为一族仿射函数的逐点上确界。</p>
+<h5 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h5><p>以权为变量的最小二乘费用。令$a_1,\dots,a_n\in\mathbf{R}^m$，在加圈最小二乘问题中，我们对所有的$x\in\mathbf{R}^m$极小化目标函数$\sum^n_{i=1}w_i(a^T_ix-b_i)^2$。称其中$w_i$为<strong>权</strong>，并允许负的$w_i$.</p>
+<p>定义（最优）加权最小二乘费用函数为$g(w)=\inf_x\sum^n_{i=1}w_i(a^T_ix-b_i)^2$,其定义域为$\mathbf{dom}g=\{w|\inf_x\sum^n_{i=1}w_i(a_i^Tx-b_i)^2&gt;-\infty\}$.</p>
+<p>因为$g$是关于$w$的线性函数的下确界，则其是$w$的凹函数。</p>
 
     </div>
 
@@ -295,22 +281,19 @@
 
           <div class="post-tags">
               <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 凸优化</a>
-              <a href="/tags/%E5%87%B8%E9%9B%86/" rel="tag"><i class="fa fa-tag"></i> 凸集</a>
               <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+              <a href="/tags/%E5%87%B8%E5%87%BD%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 凸函数</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/12/27/SymPy%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/" rel="prev" title="SymPy方程求解">
-                  <i class="fa fa-angle-left"></i> SymPy方程求解
+                <a href="/2024/01/08/%E5%87%B8%E4%BC%98%E5%8C%9617%EF%BC%9A%E5%87%B8%E5%87%BD%E6%95%B0%E4%B8%8E%E4%B8%8D%E7%AD%89%E5%BC%8F/" rel="prev" title="凸优化17：凸函数与不等式">
+                  <i class="fa fa-angle-left"></i> 凸优化17：凸函数与不等式
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/01/01/SymPy%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97/" rel="next" title="SymPy矩阵运算">
-                  SymPy矩阵运算 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
