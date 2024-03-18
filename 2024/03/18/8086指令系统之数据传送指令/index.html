@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="介绍8086CPU汇编指令的数据传送指令:  通用数据传送指令 输入输出指令 地址目标传送指令 标志传送指令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8086指令系统之数据传送指令">
+<meta property="og:url" content="http://example.com/2024/03/18/8086%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4/index.html">
+<meta property="og:site_name" content="QianQing&#39;s Blog">
+<meta property="og:description" content="介绍8086CPU汇编指令的数据传送指令:  通用数据传送指令 输入输出指令 地址目标传送指令 标志传送指令">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/QianQing26/MyPic/main/MOV.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/QianQing26/MyPic/main/LAHF.png">
+<meta property="article:published_time" content="2024-03-18T10:33:58.000Z">
+<meta property="article:modified_time" content="2024-03-18T11:25:36.490Z">
+<meta property="article:author" content="千顷QianQing">
+<meta property="article:tag" content="微机原理">
+<meta property="article:tag" content="汇编指令">
+<meta property="article:tag" content="8086CPU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/QianQing26/MyPic/main/MOV.png">
+
+
+<link rel="canonical" href="http://example.com/2024/03/18/8086%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/03/18/8086%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4/","path":"2024/03/18/8086指令系统之数据传送指令/","title":"8086指令系统之数据传送指令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>8086指令系统之数据传送指令 | QianQing's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">QianQing's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">通用数据传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MOV%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">MOV传送指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PUSH%E8%BF%9B%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">PUSH进栈指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POP%E5%87%BA%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">POP出栈指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XCHG%E4%BA%A4%E6%8D%A2%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.</span> <span class="nav-text">XCHG交换指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XLAT%E8%A1%A8%E8%BD%AC%E6%8D%A2%E6%8C%87%E4%BB%A4"><span class="nav-number">1.5.</span> <span class="nav-text">XLAT表转换指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%8C%87%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">输入输出指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IN%E8%BE%93%E5%85%A5%E6%8C%87%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">IN输入指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OUT%E8%BE%93%E5%87%BA%E6%8C%87%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">OUT输出指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E7%9B%AE%E6%A0%87%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">地址目标传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LEA%E5%8F%96%E6%9C%89%E6%95%88%E5%9C%B0%E5%9D%80%E6%8C%87%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">LEA取有效地址指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDS%E5%B0%86%E5%8F%8C%E5%AD%97%E6%8C%87%E9%92%88%E9%80%81%E5%88%B0%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8CDS%E6%8C%87%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">LDS将双字指针送到寄存器和DS指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LES%E5%B0%86%E5%8F%8C%E5%AD%97%E6%8C%87%E9%92%88%E9%80%81%E5%88%B0%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8CES%E6%8C%87%E4%BB%A4"><span class="nav-number">3.3.</span> <span class="nav-text">LES将双字指针送到寄存器和ES指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E5%BF%97%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">标志传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LAHF%E6%A0%87%E5%BF%97%E9%80%81%E5%88%B0AH%E6%8C%87%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">LAHF标志送到AH指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAHF-AH%E9%80%81%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">SAHF AH送标志寄存器指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PUSHF-%E6%A0%87%E5%BF%97%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">PUSHF 标志入栈指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POPF-%E6%A0%87%E5%BF%97%E5%87%BA%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">4.4.</span> <span class="nav-text">POPF 标志出栈指令</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">千顷QianQing</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qianqing26" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianqing26" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/18/8086%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="千顷QianQing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="8086指令系统之数据传送指令 | QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          8086指令系统之数据传送指令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-03-18 18:33:58 / Modified: 19:25:36" itemprop="dateCreated datePublished" datetime="2024-03-18T18:33:58+08:00">2024-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">微机原理</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/" itemprop="url" rel="index"><span itemprop="name">汇编指令</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>介绍8086CPU汇编指令的数据传送指令:</p>
+<ol>
+<li>通用数据传送指令</li>
+<li>输入输出指令</li>
+<li>地址目标传送指令</li>
+<li>标志传送指令</li>
+</ol>
+<span id="more"></span>
+<h1 id="通用数据传送指令"><a href="#通用数据传送指令" class="headerlink" title="通用数据传送指令"></a>通用数据传送指令</h1><h2 id="MOV传送指令"><a href="#MOV传送指令" class="headerlink" title="MOV传送指令"></a>MOV传送指令</h2><p>MOV：move</p>
+<p>指令格式：<code>MOV 目的, 源</code></p>
+<p>指令功能：目的操作数<script type="math/tex">\leftarrow</script>源操作数</p>
+<p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/MOV.png" alt=""></p>
+<p>注意：</p>
+<ol>
+<li>CS不能作为目的操作数</li>
+<li>立即数不能做目的操作数</li>
+<li>指令中至少要有一项明确说明传送的是字节还是字</li>
+<li>注意对段寄存器的保护</li>
+</ol>
+<h2 id="PUSH进栈指令"><a href="#PUSH进栈指令" class="headerlink" title="PUSH进栈指令"></a>PUSH进栈指令</h2><p>指令格式：<code>PUSH 源</code></p>
+<p>指令功能：将源操作数推入堆栈</p>
+<p>注意：</p>
+<ol>
+<li>源操作数可以是16位通用寄存器、段寄存器或者存储器中的数据字，但不能是立即数</li>
+<li>执行<code>PUSH</code>操作后，<script type="math/tex">SP\leftarrow SP-2</script>，再将源操作数压入SP所指示的位置上</li>
+</ol>
+<h2 id="POP出栈指令"><a href="#POP出栈指令" class="headerlink" title="POP出栈指令"></a>POP出栈指令</h2><p>指令格式：<code>POP 目的</code></p>
+<p>指令功能：把当前SP所指的一个字送到目的操作数中</p>
+<p>注意：</p>
+<ol>
+<li>目的操作数可以是16位通用寄存器、段寄存器或储存单元，但不能是CS</li>
+<li>每执行一次出栈操作，先将SP指向的数据送到目的操作数，再<script type="math/tex">SP\leftarrow</script>SP+2，SP向高地址方向移动，指向新的栈顶</li>
+</ol>
+<h2 id="XCHG交换指令"><a href="#XCHG交换指令" class="headerlink" title="XCHG交换指令"></a>XCHG交换指令</h2><p>XCHG：exchange</p>
+<p>指令格式：<code>XCHG 目的, 源</code></p>
+<p>指令功能：源操作数和目的操作数相交换</p>
+<p>注意：交换可以在寄存器之间、寄存器与储存器之间进行，但是段寄存器不饿能作为操作数，也不能直接交换两个存储单元中的内容</p>
+<h2 id="XLAT表转换指令"><a href="#XLAT表转换指令" class="headerlink" title="XLAT表转换指令"></a>XLAT表转换指令</h2><p>%todo</p>
+<h1 id="输入输出指令"><a href="#输入输出指令" class="headerlink" title="输入输出指令"></a>输入输出指令</h1><h2 id="IN输入指令"><a href="#IN输入指令" class="headerlink" title="IN输入指令"></a>IN输入指令</h2><p>指令格式：<code>IN AL, 端口地址</code>（读入一字节）或<code>IN AX, 端口地址</code>（读入一个字）</p>
+<p>当端口地址大于0FFH时，必须先将端口地址MOV入DX中，再使用DX作为端口地址进行输入</p>
+<p>btw，IN指令也可以用符号表示地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ATOD EQU 54H</span><br><span class="line">IN AL,ATOD</span><br></pre></td></tr></table></figure>
+<p>这里是将54H端口的内容读入AL中</p>
+<h2 id="OUT输出指令"><a href="#OUT输出指令" class="headerlink" title="OUT输出指令"></a>OUT输出指令</h2><p>指令格式：<code>OUT 端口地址/DX, AL/AX</code></p>
+<h1 id="地址目标传送指令"><a href="#地址目标传送指令" class="headerlink" title="地址目标传送指令"></a>地址目标传送指令</h1><p>这是一类专用于传送地址码的指令，可以用来传送操作数的段地址和偏移地址</p>
+<h2 id="LEA取有效地址指令"><a href="#LEA取有效地址指令" class="headerlink" title="LEA取有效地址指令"></a>LEA取有效地址指令</h2><p>指令格式：<code>LEA 目的, 源</code></p>
+<p>指令功能：取源操作数地址的偏移量，送到目的操作数</p>
+<p>注意：源操作数必须是存储单元，目的操作数是一个除段寄存器之外的16位寄存器</p>
+<p>例：下面两条指令是等价的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LEA BX, TABLE</span><br><span class="line">MOV BX, OFFSET TABLE</span><br></pre></td></tr></table></figure>
+<h2 id="LDS将双字指针送到寄存器和DS指令"><a href="#LDS将双字指针送到寄存器和DS指令" class="headerlink" title="LDS将双字指针送到寄存器和DS指令"></a>LDS将双字指针送到寄存器和DS指令</h2><p>指令格式：<code>LDS 目的, 源</code></p>
+<p>指令功能：从源操作数指定的存储单元中，取出一个4字节地址指针，送进目的寄存器DS和指令中指定的目的寄存器中</p>
+<p>注意：源操作数必须是存储单元，目的操作数必须是16位寄存器，常用SI寄存器，但不能用段寄存器</p>
+<p>例：设DS=1200H，(12450H)=F346H, (12452H)=0A90H；执行指令<code>LDS SI, [450H]</code>后，则SI<script type="math/tex">\leftarrow</script>F346H，DS<script type="math/tex">\leftarrow</script>0A90H</p>
+<h2 id="LES将双字指针送到寄存器和ES指令"><a href="#LES将双字指针送到寄存器和ES指令" class="headerlink" title="LES将双字指针送到寄存器和ES指令"></a>LES将双字指针送到寄存器和ES指令</h2><p>指令格式：<code>LES 目的, 源</code></p>
+<p>指令功能：与LDS基本相同，但段寄存器位ES，目的操作数常用DI</p>
+<h1 id="标志传送指令"><a href="#标志传送指令" class="headerlink" title="标志传送指令"></a>标志传送指令</h1><h2 id="LAHF标志送到AH指令"><a href="#LAHF标志送到AH指令" class="headerlink" title="LAHF标志送到AH指令"></a>LAHF标志送到AH指令</h2><p>LAHF： Load AH from Flags</p>
+<p>指令格式：LAHF</p>
+<p>指令功能：把标志寄存器的SF、ZF、AF、PF、CF传送到AH寄存器的相应位</p>
+<p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/LAHF.png" alt=""></p>
+<h2 id="SAHF-AH送标志寄存器指令"><a href="#SAHF-AH送标志寄存器指令" class="headerlink" title="SAHF AH送标志寄存器指令"></a>SAHF AH送标志寄存器指令</h2><p>SAHF： Store AH into Flags</p>
+<p>指令格式：SAHF</p>
+<p>指令功能：把AH内容存入标志寄存器。指令功能与LAHF相反</p>
+<h2 id="PUSHF-标志入栈指令"><a href="#PUSHF-标志入栈指令" class="headerlink" title="PUSHF 标志入栈指令"></a>PUSHF 标志入栈指令</h2><p>PUSHF： Push Flags onto Stack</p>
+<p>指令格式：PUSHF</p>
+<p>指令功能：把整个标志寄存器的内容推入堆栈，并使SP<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>SP-2</p>
+<h2 id="POPF-标志出栈指令"><a href="#POPF-标志出栈指令" class="headerlink" title="POPF 标志出栈指令"></a>POPF 标志出栈指令</h2><p>POPF： Pop Flags off Stack</p>
+<p>指令格式： POPF</p>
+<p>指令功能：把SP所指的一个字传送给标志寄存器FLAGS，并使SP<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>SP+2</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/" rel="tag"># 微机原理</a>
+              <a href="/tags/%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/" rel="tag"># 汇编指令</a>
+              <a href="/tags/8086CPU/" rel="tag"># 8086CPU</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/16/%E9%95%9C%E5%83%8F%E4%B8%8B%E9%99%8D%E6%96%B9%E6%B3%95Mirror-Descent/" rel="prev" title="镜像下降方法Mirror Descent">
+                  <i class="fa fa-angle-left"></i> 镜像下降方法Mirror Descent
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023-12 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">千顷QianQing</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
