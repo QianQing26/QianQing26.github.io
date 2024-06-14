@@ -194,7 +194,7 @@ mjx-container[display="true"] + br {
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
   </ul>
 </nav>
 
@@ -231,18 +231,18 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -273,6 +273,102 @@ mjx-container[display="true"] + br {
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/14/%E8%B4%9D%E5%B0%94%E6%9B%BC%E7%AE%97%E5%AD%90-Bellman-Operators-%E4%B8%8E%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="千顷QianQing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/06/14/%E8%B4%9D%E5%B0%94%E6%9B%BC%E7%AE%97%E5%AD%90-Bellman-Operators-%E4%B8%8E%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">贝尔曼算子(Bellman Operators)与动态规划</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-06-14 00:29:57 / Modified: 14:55:28" itemprop="dateCreated datePublished" datetime="2024-06-14T00:29:57+08:00">2024-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">强化学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这篇博客介绍了强化学习中的Bellman算子以及使用Bellman算子来解释动态规划的迭代过程。</p>
+<p>原本内容来自Stanford大学Ashwin Rao老师的lecture ：<a target="_blank" rel="noopener" href="https://web.stanford.edu/class/cme241/lecture_slides/BellmanOperators.pdf">Understanding (Exact) Dynamic Programming through Bellman Operators</a>，本篇博客是这个lecture的翻译/整理/学习笔记，包括以下七个部分</p>
+<ol>
+<li>值函数的向量描述</li>
+<li>Bellman算子</li>
+<li>算子的收缩性的单调性</li>
+<li>策略评估</li>
+<li>策略迭代</li>
+<li>值迭代</li>
+<li>策略最优性</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/06/14/%E8%B4%9D%E5%B0%94%E6%9B%BC%E7%AE%97%E5%AD%90-Bellman-Operators-%E4%B8%8E%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/05/Python%E5%8D%95%E7%BA%AF%E6%80%A7%E8%A1%A8%E8%AE%A1%E7%AE%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -291,7 +387,7 @@ mjx-container[display="true"] + br {
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/06/05/Python%E5%8D%95%E7%BA%AF%E6%80%A7%E8%A1%A8%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">Python单纯性表计算</a>
+          <a href="/2024/06/05/Python%E5%8D%95%E7%BA%AF%E6%80%A7%E8%A1%A8%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">Python单纯形表计算</a>
         </h2>
 
         <div class="post-meta-container">
@@ -301,9 +397,15 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-06-05 12:56:59 / Modified: 13:00:01" itemprop="dateCreated datePublished" datetime="2024-06-05T12:56:59+08:00">2024-06-05</time>
+      <time title="Created: 2024-06-05 12:56:59" itemprop="dateCreated datePublished" datetime="2024-06-05T12:56:59+08:00">2024-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-06-14 00:55:57" itemprop="dateModified" datetime="2024-06-14T00:55:57+08:00">2024-06-14</time>
     </span>
 
   
@@ -877,7 +979,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-16 17:15:25" itemprop="dateModified" datetime="2024-03-16T17:15:25+08:00">2024-03-16</time>
+      <time title="Modified: 2024-06-05 13:04:38" itemprop="dateModified" datetime="2024-06-05T13:04:38+08:00">2024-06-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -903,7 +1005,7 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>这篇博文记录计算方法中牛顿插值法及其Python和matlab实现，并且记录差商的相关知识。</p>
+          <p>这篇博文记录计算方法中牛顿插值法及其Python实现，并且记录差商的相关知识。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/03/05/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%EF%BC%9A%E7%89%9B%E9%A1%BF%E6%8F%92%E5%80%BC%E5%8F%8A%E5%85%B6%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/#more" rel="contents">
@@ -1121,104 +1223,8 @@ mjx-container[display="true"] + br {
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/10/%E5%87%B8%E4%BC%98%E5%8C%9624-%E5%AF%B9%E6%95%B0-%E5%87%B9%E5%87%BD%E6%95%B0%E5%92%8C%E5%AF%B9%E6%95%B0-%E5%87%B8%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="千顷QianQing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QianQing's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | QianQing's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/01/10/%E5%87%B8%E4%BC%98%E5%8C%9624-%E5%AF%B9%E6%95%B0-%E5%87%B9%E5%87%BD%E6%95%B0%E5%92%8C%E5%AF%B9%E6%95%B0-%E5%87%B8%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">凸优化24:对数-凹函数和对数-凸函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-01-10 10:57:21" itemprop="dateCreated datePublished" datetime="2024-01-10T10:57:21+08:00">2024-01-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-16 17:09:01" itemprop="dateModified" datetime="2024-03-16T17:09:01+08:00">2024-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">凸函数</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>介绍对数—凸/凹函数及其性质</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/01/10/%E5%87%B8%E4%BC%98%E5%8C%9624-%E5%AF%B9%E6%95%B0-%E5%87%B9%E5%87%BD%E6%95%B0%E5%92%8C%E5%AF%B9%E6%95%B0-%E5%87%B8%E5%87%BD%E6%95%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
