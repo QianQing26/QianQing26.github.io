@@ -301,9 +301,15 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-06-14 00:29:57 / Modified: 14:55:28" itemprop="dateCreated datePublished" datetime="2024-06-14T00:29:57+08:00">2024-06-14</time>
+      <time title="Created: 2024-06-14 00:29:57" itemprop="dateCreated datePublished" datetime="2024-06-14T00:29:57+08:00">2024-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-06-28 13:58:24" itemprop="dateModified" datetime="2024-06-28T13:58:24+08:00">2024-06-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -327,7 +333,7 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
           <p>这篇博客介绍了强化学习中的Bellman算子以及使用Bellman算子来解释动态规划的迭代过程。</p>
 <p>原本内容来自Stanford大学Ashwin Rao老师的lecture ：<a target="_blank" rel="noopener" href="https://web.stanford.edu/class/cme241/lecture_slides/BellmanOperators.pdf">Understanding (Exact) Dynamic Programming through Bellman Operators</a>，本篇博客是这个lecture的翻译/整理/学习笔记，包括以下七个部分</p>
-<ol>
+<ol type="1">
 <li>值函数的向量描述</li>
 <li>Bellman算子</li>
 <li>算子的收缩性的单调性</li>
@@ -488,7 +494,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-20 00:03:41" itemprop="dateModified" datetime="2024-03-20T00:03:41+08:00">2024-03-20</time>
+      <time title="Modified: 2024-03-20 00:05:22" itemprop="dateModified" datetime="2024-03-20T00:05:22+08:00">2024-03-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -514,10 +520,11 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>前置问题 </p>
-<ol>
+          <p>前置问题</p>
+<ol type="1">
 <li>程序实现跳转的本质是什么？</li>
-<li>JMP和CALL、RET之间有什么共通之处？  </li>
+<li>JMP和CALL、RET之间有什么共通之处？<br>
+</li>
 <li>条件转移指令转移的依据是什么？为何要分有符号数和无符号数的转移指令？</li>
 <li>CMP指令和条件跳转指令有何关系？</li>
 <li>段内跳转和段间跳转有何区别？</li>
@@ -614,7 +621,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>前置问题：</p>
-<ol>
+<ol type="1">
 <li>如何对一个8位的操作数进行：按位清零、按位置一和按位取反？</li>
 <li>程序初始化之前，常常会对AX寄存器清零，一般会用<code>XOR AX, AX</code>而不是用<code>MOV AX, 0H</code>，为什么？</li>
 <li>算数移位和逻辑移位有何差别？为什么算数右移要这么设计？和补码有什么关系？</li>
@@ -717,7 +724,7 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
           <p>本篇介绍了汇编指令中如何进行运算，包括加、减、乘、除</p>
 <p>前置问题：</p>
-<ol>
+<ol type="1">
 <li>怎么做多字节的加减法？</li>
 <li>为什么加减法指令不分有符号数和无符号数，而乘除法的有符号数和无符号数运算分别是不同的指令</li>
 <li>如何确定指令执行的是字节操作还是字操作？</li>
@@ -814,7 +821,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>介绍8086CPU汇编指令的数据传送指令:</p>
-<ol>
+<ol type="1">
 <li>通用数据传送指令</li>
 <li>输入输出指令</li>
 <li>地址目标传送指令</li>
