@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="verilog的行为级建模使用关键词initial和always定义的两种结构类型的语句。一个模块的内部可以包含多个initial和always语句块，仿真的时候，这些语句块同时并行执行，直到仿真结束 initial语句块通常用来描述激励信号，仿真时仅执行一次，课本中没有详细介绍。 always语句本身是一个无限循环语句，即不停地循环执行其中地内容。其语法一般如下 12345always @">
+    <meta name="description" content="verilog的行为级建模使用关键词initial和always定义的两种结构类型的语句。一个模块的内部可以包含多个initial和always语句块，仿真的时候，这些语句块同时并行执行，直到仿真结束 initial语句块通常用来描述激励信号，仿真时仅执行一次，课本中没有详细介绍。 always语句本身是一个无限循环语句，即不停地循环执行其中地内容。其语法一般如下 12345always @(敏感">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Verilog：锁存器与触发器建模">
 <meta property="og:url" content="http://example.com/2023/12/18/Verilog%EF%BC%9A%E9%94%81%E5%AD%98%E5%99%A8%E4%B8%8E%E8%A7%A6%E5%8F%91%E5%99%A8%E5%BB%BA%E6%A8%A1/index.html">
 <meta property="og:site_name" content="QianQing&#39;s Blog">
-<meta property="og:description" content="verilog的行为级建模使用关键词initial和always定义的两种结构类型的语句。一个模块的内部可以包含多个initial和always语句块，仿真的时候，这些语句块同时并行执行，直到仿真结束 initial语句块通常用来描述激励信号，仿真时仅执行一次，课本中没有详细介绍。 always语句本身是一个无限循环语句，即不停地循环执行其中地内容。其语法一般如下 12345always @">
+<meta property="og:description" content="verilog的行为级建模使用关键词initial和always定义的两种结构类型的语句。一个模块的内部可以包含多个initial和always语句块，仿真的时候，这些语句块同时并行执行，直到仿真结束 initial语句块通常用来描述激励信号，仿真时仅执行一次，课本中没有详细介绍。 always语句本身是一个无限循环语句，即不停地循环执行其中地内容。其语法一般如下 12345always @(敏感">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-17T16:50:42.000Z">
 <meta property="article:modified_time" content="2023-12-17T16:51:58.000Z">
@@ -224,7 +224,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%81%E5%AD%98%E5%99%A8%E5%92%8C%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84verilog%E5%BB%BA%E6%A8%A1%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">锁存器和触发器的Verilog建模实例</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%81%E5%AD%98%E5%99%A8%E5%92%8C%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84Verilog%E5%BB%BA%E6%A8%A1%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">锁存器和触发器的Verilog建模实例</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -239,7 +239,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -353,10 +353,9 @@ mjx-container[display="true"] + br {
 <p>而边沿敏感信号分别使用<strong>posedge</strong>和<strong>negedge</strong>表示上升沿、下降沿</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CP,<span class="keyword">negedge</span> CR)</span><br></pre></td></tr></table></figure>
 <p>表示CP信号上升沿或者CR信号下降沿来的时候执行always语句块中的内容</p>
-<p>always块内部的赋值语句分为两种：阻塞型和非阻塞型。其中阻塞型使用"="，非阻塞型使用"&lt;="。</p>
+<p>always块内部的赋值语句分为两种：阻塞型和非阻塞型。其中阻塞型使用”=”，非阻塞型使用”&lt;=”。</p>
 <p>阻塞型赋值的多条语句是逐条进行的，而非阻塞型赋值可以理解为是同时进行的。</p>
-<h3 id="锁存器和触发器的verilog建模实例">锁存器和触发器的Verilog建模实例</h3>
-<p>门控D锁存器</p>
+<h3 id="锁存器和触发器的Verilog建模实例"><a href="#锁存器和触发器的Verilog建模实例" class="headerlink" title="锁存器和触发器的Verilog建模实例"></a>锁存器和触发器的Verilog建模实例</h3><p>门控D锁存器</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> D_latch(</span><br><span class="line">	<span class="keyword">input</span> D,E,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> Q,</span><br><span class="line">    <span class="keyword">output</span> QN</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> QN=~Q;</span><br><span class="line">    <span class="keyword">always</span> @(E,D)</span><br><span class="line">        <span class="keyword">if</span>(E) Q&lt;=D;</span><br><span class="line"><span class="keyword">endmodule</span> </span><br></pre></td></tr></table></figure>
 <p>基本D触发器</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> DFF(</span><br><span class="line">	<span class="keyword">output</span> <span class="keyword">reg</span> Q,</span><br><span class="line">    <span class="keyword">input</span> D,</span><br><span class="line">    <span class="keyword">input</span> CP</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> CP)</span><br><span class="line">        Q&lt;=D;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
