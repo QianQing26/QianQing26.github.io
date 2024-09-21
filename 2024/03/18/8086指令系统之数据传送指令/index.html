@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="介绍8086CPU汇编指令的数据传送指令:  通用数据传送指令 输入输出指令 地址目标传送指令 标志传送指令">
+    <meta name="description" content="介绍8086CPU汇编指令的数据传送指令:  通用数据传送指令 输入输出指令 地址目标传送指令 标志传送指令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="8086指令系统之数据传送指令">
 <meta property="og:url" content="http://example.com/2024/03/18/8086%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="QianQing&#39;s Blog">
-<meta property="og:description" content="介绍8086CPU汇编指令的数据传送指令:  通用数据传送指令 输入输出指令 地址目标传送指令 标志传送指令">
+<meta property="og:description" content="介绍8086CPU汇编指令的数据传送指令:  通用数据传送指令 输入输出指令 地址目标传送指令 标志传送指令">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/QianQing26/MyPic/main/MOV.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/QianQing26/MyPic/main/LAHF.png">
@@ -229,7 +229,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">通用数据传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MOV%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">MOV传送指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PUSH%E8%BF%9B%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">PUSH进栈指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POP%E5%87%BA%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">POP出栈指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XCHG%E4%BA%A4%E6%8D%A2%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.</span> <span class="nav-text">XCHG交换指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XLAT%E8%A1%A8%E8%BD%AC%E6%8D%A2%E6%8C%87%E4%BB%A4"><span class="nav-number">1.5.</span> <span class="nav-text">XLAT表转换指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%8C%87%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">输入输出指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IN%E8%BE%93%E5%85%A5%E6%8C%87%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">IN输入指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OUT%E8%BE%93%E5%87%BA%E6%8C%87%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">OUT输出指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E7%9B%AE%E6%A0%87%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">地址目标传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LEA%E5%8F%96%E6%9C%89%E6%95%88%E5%9C%B0%E5%9D%80%E6%8C%87%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">LEA取有效地址指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDS%E5%B0%86%E5%8F%8C%E5%AD%97%E6%8C%87%E9%92%88%E9%80%81%E5%88%B0%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8CDS%E6%8C%87%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">LDS将双字指针送到寄存器和DS指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LES%E5%B0%86%E5%8F%8C%E5%AD%97%E6%8C%87%E9%92%88%E9%80%81%E5%88%B0%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8CES%E6%8C%87%E4%BB%A4"><span class="nav-number">3.3.</span> <span class="nav-text">LES将双字指针送到寄存器和ES指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E5%BF%97%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">标志传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LAHF%E6%A0%87%E5%BF%97%E9%80%81%E5%88%B0AH%E6%8C%87%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">LAHF标志送到AH指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAHF-AH%E9%80%81%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">SAHF AH送标志寄存器指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PUSHF-%E6%A0%87%E5%BF%97%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">PUSHF 标志入栈指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POPF-%E6%A0%87%E5%BF%97%E5%87%BA%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">4.4.</span> <span class="nav-text">POPF 标志出栈指令</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">通用数据传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mov%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">MOV传送指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#push%E8%BF%9B%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">PUSH进栈指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pop%E5%87%BA%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">POP出栈指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xchg%E4%BA%A4%E6%8D%A2%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.</span> <span class="nav-text">XCHG交换指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xlat%E8%A1%A8%E8%BD%AC%E6%8D%A2%E6%8C%87%E4%BB%A4"><span class="nav-number">1.5.</span> <span class="nav-text">XLAT表转换指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%8C%87%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">输入输出指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#in%E8%BE%93%E5%85%A5%E6%8C%87%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">IN输入指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#out%E8%BE%93%E5%87%BA%E6%8C%87%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">OUT输出指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E7%9B%AE%E6%A0%87%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">地址目标传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lea%E5%8F%96%E6%9C%89%E6%95%88%E5%9C%B0%E5%9D%80%E6%8C%87%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">LEA取有效地址指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lds%E5%B0%86%E5%8F%8C%E5%AD%97%E6%8C%87%E9%92%88%E9%80%81%E5%88%B0%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8Cds%E6%8C%87%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">LDS将双字指针送到寄存器和DS指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#les%E5%B0%86%E5%8F%8C%E5%AD%97%E6%8C%87%E9%92%88%E9%80%81%E5%88%B0%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8Ces%E6%8C%87%E4%BB%A4"><span class="nav-number">3.3.</span> <span class="nav-text">LES将双字指针送到寄存器和ES指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E5%BF%97%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">标志传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lahf%E6%A0%87%E5%BF%97%E9%80%81%E5%88%B0ah%E6%8C%87%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">LAHF标志送到AH指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sahf-ah%E9%80%81%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">SAHF AH送标志寄存器指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pushf-%E6%A0%87%E5%BF%97%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">PUSHF 标志入栈指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#popf-%E6%A0%87%E5%BF%97%E5%87%BA%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">4.4.</span> <span class="nav-text">POPF 标志出栈指令</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -244,7 +244,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -353,74 +353,92 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody"><p>介绍8086CPU汇编指令的数据传送指令:</p>
-<ol>
+<ol type="1">
 <li>通用数据传送指令</li>
 <li>输入输出指令</li>
 <li>地址目标传送指令</li>
 <li>标志传送指令</li>
 </ol>
 <span id="more"></span>
-<h1 id="通用数据传送指令"><a href="#通用数据传送指令" class="headerlink" title="通用数据传送指令"></a>通用数据传送指令</h1><h2 id="MOV传送指令"><a href="#MOV传送指令" class="headerlink" title="MOV传送指令"></a>MOV传送指令</h2><p>MOV：move</p>
+<h1 id="通用数据传送指令">通用数据传送指令</h1>
+<h2 id="mov传送指令">MOV传送指令</h2>
+<p>MOV：move</p>
 <p>指令格式：<code>MOV 目的, 源</code></p>
-<p>指令功能：目的操作数<script type="math/tex">\leftarrow</script>源操作数</p>
-<p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/MOV.png" alt=""></p>
+<p>指令功能：目的操作数<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>源操作数</p>
+<p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/MOV.png"></p>
 <p>注意：</p>
-<ol>
+<ol type="1">
 <li>CS不能作为目的操作数</li>
 <li>立即数不能做目的操作数</li>
 <li>指令中至少要有一项明确说明传送的是字节还是字</li>
 <li>注意对段寄存器的保护</li>
 </ol>
-<h2 id="PUSH进栈指令"><a href="#PUSH进栈指令" class="headerlink" title="PUSH进栈指令"></a>PUSH进栈指令</h2><p>指令格式：<code>PUSH 源</code></p>
+<h2 id="push进栈指令">PUSH进栈指令</h2>
+<p>指令格式：<code>PUSH 源</code></p>
 <p>指令功能：将源操作数推入堆栈</p>
 <p>注意：</p>
-<ol>
+<ol type="1">
 <li>源操作数可以是16位通用寄存器、段寄存器或者存储器中的数据字，但不能是立即数</li>
-<li>执行<code>PUSH</code>操作后，<script type="math/tex">SP\leftarrow SP-2</script>，再将源操作数压入SP所指示的位置上</li>
+<li>执行<code>PUSH</code>操作后，<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="13.733ex" height="1.781ex" role="img" focusable="false" viewBox="0 -705 6070 787"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g><g data-mml-node="mi" transform="translate(645,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mo" transform="translate(1673.8,0)"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g><g data-mml-node="mi" transform="translate(2951.6,0)"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g><g data-mml-node="mi" transform="translate(3596.6,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mo" transform="translate(4569.8,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(5570,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g></svg></mjx-container></span>，再将源操作数压入SP所指示的位置上</li>
 </ol>
-<h2 id="POP出栈指令"><a href="#POP出栈指令" class="headerlink" title="POP出栈指令"></a>POP出栈指令</h2><p>指令格式：<code>POP 目的</code></p>
+<h2 id="pop出栈指令">POP出栈指令</h2>
+<p>指令格式：<code>POP 目的</code></p>
 <p>指令功能：把当前SP所指的一个字送到目的操作数中</p>
 <p>注意：</p>
-<ol>
+<ol type="1">
 <li>目的操作数可以是16位通用寄存器、段寄存器或储存单元，但不能是CS</li>
-<li>每执行一次出栈操作，先将SP指向的数据送到目的操作数，再<script type="math/tex">SP\leftarrow</script>SP+2，SP向高地址方向移动，指向新的栈顶</li>
+<li>每执行一次出栈操作，先将SP指向的数据送到目的操作数，再<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="6.049ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 2673.8 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g><g data-mml-node="mi" transform="translate(645,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mo" transform="translate(1673.8,0)"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>SP+2，SP向高地址方向移动，指向新的栈顶</li>
 </ol>
-<h2 id="XCHG交换指令"><a href="#XCHG交换指令" class="headerlink" title="XCHG交换指令"></a>XCHG交换指令</h2><p>XCHG：exchange</p>
+<h2 id="xchg交换指令">XCHG交换指令</h2>
+<p>XCHG：exchange</p>
 <p>指令格式：<code>XCHG 目的, 源</code></p>
 <p>指令功能：源操作数和目的操作数相交换</p>
 <p>注意：交换可以在寄存器之间、寄存器与储存器之间进行，但是段寄存器不饿能作为操作数，也不能直接交换两个存储单元中的内容</p>
-<h2 id="XLAT表转换指令"><a href="#XLAT表转换指令" class="headerlink" title="XLAT表转换指令"></a>XLAT表转换指令</h2><p>%todo</p>
-<h1 id="输入输出指令"><a href="#输入输出指令" class="headerlink" title="输入输出指令"></a>输入输出指令</h1><h2 id="IN输入指令"><a href="#IN输入指令" class="headerlink" title="IN输入指令"></a>IN输入指令</h2><p>指令格式：<code>IN AL, 端口地址</code>（读入一字节）或<code>IN AX, 端口地址</code>（读入一个字）</p>
+<h2 id="xlat表转换指令">XLAT表转换指令</h2>
+<p>%todo</p>
+<h1 id="输入输出指令">输入输出指令</h1>
+<h2 id="in输入指令">IN输入指令</h2>
+<p>指令格式：<code>IN AL, 端口地址</code>（读入一字节）或<code>IN AX, 端口地址</code>（读入一个字）</p>
 <p>当端口地址大于0FFH时，必须先将端口地址MOV入DX中，再使用DX作为端口地址进行输入</p>
 <p>btw，IN指令也可以用符号表示地址：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ATOD EQU 54H</span><br><span class="line">IN AL,ATOD</span><br></pre></td></tr></table></figure>
 <p>这里是将54H端口的内容读入AL中</p>
-<h2 id="OUT输出指令"><a href="#OUT输出指令" class="headerlink" title="OUT输出指令"></a>OUT输出指令</h2><p>指令格式：<code>OUT 端口地址/DX, AL/AX</code></p>
-<h1 id="地址目标传送指令"><a href="#地址目标传送指令" class="headerlink" title="地址目标传送指令"></a>地址目标传送指令</h1><p>这是一类专用于传送地址码的指令，可以用来传送操作数的段地址和偏移地址</p>
-<h2 id="LEA取有效地址指令"><a href="#LEA取有效地址指令" class="headerlink" title="LEA取有效地址指令"></a>LEA取有效地址指令</h2><p>指令格式：<code>LEA 目的, 源</code></p>
+<h2 id="out输出指令">OUT输出指令</h2>
+<p>指令格式：<code>OUT 端口地址/DX, AL/AX</code></p>
+<h1 id="地址目标传送指令">地址目标传送指令</h1>
+<p>这是一类专用于传送地址码的指令，可以用来传送操作数的段地址和偏移地址</p>
+<h2 id="lea取有效地址指令">LEA取有效地址指令</h2>
+<p>指令格式：<code>LEA 目的, 源</code></p>
 <p>指令功能：取源操作数地址的偏移量，送到目的操作数</p>
 <p>注意：源操作数必须是存储单元，目的操作数是一个除段寄存器之外的16位寄存器</p>
 <p>例：下面两条指令是等价的</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LEA BX, TABLE</span><br><span class="line">MOV BX, OFFSET TABLE</span><br></pre></td></tr></table></figure>
-<h2 id="LDS将双字指针送到寄存器和DS指令"><a href="#LDS将双字指针送到寄存器和DS指令" class="headerlink" title="LDS将双字指针送到寄存器和DS指令"></a>LDS将双字指针送到寄存器和DS指令</h2><p>指令格式：<code>LDS 目的, 源</code></p>
+<h2 id="lds将双字指针送到寄存器和ds指令">LDS将双字指针送到寄存器和DS指令</h2>
+<p>指令格式：<code>LDS 目的, 源</code></p>
 <p>指令功能：从源操作数指定的存储单元中，取出一个4字节地址指针，送进目的寄存器DS和指令中指定的目的寄存器中</p>
 <p>注意：源操作数必须是存储单元，目的操作数必须是16位寄存器，常用SI寄存器，但不能用段寄存器</p>
-<p>例：设DS=1200H，(12450H)=F346H, (12452H)=0A90H；执行指令<code>LDS SI, [450H]</code>后，则SI<script type="math/tex">\leftarrow</script>F346H，DS<script type="math/tex">\leftarrow</script>0A90H</p>
-<h2 id="LES将双字指针送到寄存器和ES指令"><a href="#LES将双字指针送到寄存器和ES指令" class="headerlink" title="LES将双字指针送到寄存器和ES指令"></a>LES将双字指针送到寄存器和ES指令</h2><p>指令格式：<code>LES 目的, 源</code></p>
+<p>例：设DS=1200H，(12450H)=F346H, (12452H)=0A90H；执行指令<code>LDS SI, [450H]</code>后，则SI<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>F346H，DS<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>0A90H</p>
+<h2 id="les将双字指针送到寄存器和es指令">LES将双字指针送到寄存器和ES指令</h2>
+<p>指令格式：<code>LES 目的, 源</code></p>
 <p>指令功能：与LDS基本相同，但段寄存器位ES，目的操作数常用DI</p>
-<h1 id="标志传送指令"><a href="#标志传送指令" class="headerlink" title="标志传送指令"></a>标志传送指令</h1><h2 id="LAHF标志送到AH指令"><a href="#LAHF标志送到AH指令" class="headerlink" title="LAHF标志送到AH指令"></a>LAHF标志送到AH指令</h2><p>LAHF： Load AH from Flags</p>
+<h1 id="标志传送指令">标志传送指令</h1>
+<h2 id="lahf标志送到ah指令">LAHF标志送到AH指令</h2>
+<p>LAHF： Load AH from Flags</p>
 <p>指令格式：LAHF</p>
 <p>指令功能：把标志寄存器的SF、ZF、AF、PF、CF传送到AH寄存器的相应位</p>
-<p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/LAHF.png" alt=""></p>
-<h2 id="SAHF-AH送标志寄存器指令"><a href="#SAHF-AH送标志寄存器指令" class="headerlink" title="SAHF AH送标志寄存器指令"></a>SAHF AH送标志寄存器指令</h2><p>SAHF： Store AH into Flags</p>
+<p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/LAHF.png"></p>
+<h2 id="sahf-ah送标志寄存器指令">SAHF AH送标志寄存器指令</h2>
+<p>SAHF： Store AH into Flags</p>
 <p>指令格式：SAHF</p>
 <p>指令功能：把AH内容存入标志寄存器。指令功能与LAHF相反</p>
-<h2 id="PUSHF-标志入栈指令"><a href="#PUSHF-标志入栈指令" class="headerlink" title="PUSHF 标志入栈指令"></a>PUSHF 标志入栈指令</h2><p>PUSHF： Push Flags onto Stack</p>
+<h2 id="pushf-标志入栈指令">PUSHF 标志入栈指令</h2>
+<p>PUSHF： Push Flags onto Stack</p>
 <p>指令格式：PUSHF</p>
-<p>指令功能：把整个标志寄存器的内容推入堆栈，并使SP<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>SP-2</p>
-<h2 id="POPF-标志出栈指令"><a href="#POPF-标志出栈指令" class="headerlink" title="POPF 标志出栈指令"></a>POPF 标志出栈指令</h2><p>POPF： Pop Flags off Stack</p>
+<p>指令功能：把整个标志寄存器的内容推入堆栈，并使SP<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>SP-2</p>
+<h2 id="popf-标志出栈指令">POPF 标志出栈指令</h2>
+<p>POPF： Pop Flags off Stack</p>
 <p>指令格式： POPF</p>
-<p>指令功能：把SP所指的一个字传送给标志寄存器FLAGS，并使SP<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>SP+2</p>
+<p>指令功能：把SP所指的一个字传送给标志寄存器FLAGS，并使SP<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>SP+2</p>
 
     </div>
 
