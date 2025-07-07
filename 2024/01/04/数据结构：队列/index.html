@@ -224,7 +224,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">数组模拟队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E6%A0%88%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97"><span class="nav-number">2.</span> <span class="nav-text">双栈模拟队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-stl-%E4%B8%AD%E7%9A%84%E9%98%9F%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">C++ STL 中的队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E9%98%9F%E5%88%97"><span class="nav-number">4.</span> <span class="nav-text">特殊队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="nav-number">4.1.</span> <span class="nav-text">双端队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#c-stl-%E4%B8%AD%E7%9A%84%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="nav-number">4.1.1.</span> <span class="nav-text">C++ STL 中的双端队列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97"><span class="nav-number">4.2.</span> <span class="nav-text">循环队列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">数组模拟队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E6%A0%88%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97"><span class="nav-number">2.</span> <span class="nav-text">双栈模拟队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-STL-%E4%B8%AD%E7%9A%84%E9%98%9F%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">C++ STL 中的队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E9%98%9F%E5%88%97"><span class="nav-number">4.</span> <span class="nav-text">特殊队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="nav-number">4.1.</span> <span class="nav-text">双端队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#C-STL-%E4%B8%AD%E7%9A%84%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="nav-number">4.1.1.</span> <span class="nav-text">C++ STL 中的双端队列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97"><span class="nav-number">4.2.</span> <span class="nav-text">循环队列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></div>
         </div>
         <!--/noindex-->
 
@@ -239,18 +239,18 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -351,8 +351,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody"><p>队列（queue）是一种具有「先进入队列的元素一定先出队列」性质的表。由于该性质，队列通常也被称为先进先出（first in first out）表，简称 FIFO 表。</p>
 <span id="more"></span>
-<h2 id="数组模拟队列">数组模拟队列</h2>
-<p>通常用一个数组模拟一个队列，用两个变量标记队列的首尾。</p>
+<h2 id="数组模拟队列"><a href="#数组模拟队列" class="headerlink" title="数组模拟队列"></a>数组模拟队列</h2><p>通常用一个数组模拟一个队列，用两个变量标记队列的首尾。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> q[SIZE], ql = <span class="number">1</span>, qr;</span><br></pre></td></tr></table></figure>
 <p>队列操作对应的代码如下：</p>
 <ul>
@@ -362,16 +361,14 @@ mjx-container[display="true"] + br {
 <li>访问队尾：<code>q[qr]</code></li>
 <li>清空队列：<code>ql = 1; qr = 0;</code></li>
 </ul>
-<h2 id="双栈模拟队列">双栈模拟队列</h2>
-<p>还有一种冷门的方法是使用两个 <a target="_blank" rel="noopener" href="https://qianqing26.github.io/2023/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%A0%88/">栈</a> 来模拟一个队列。</p>
+<h2 id="双栈模拟队列"><a href="#双栈模拟队列" class="headerlink" title="双栈模拟队列"></a>双栈模拟队列</h2><p>还有一种冷门的方法是使用两个 <a target="_blank" rel="noopener" href="https://qianqing26.github.io/2023/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%A0%88/">栈</a> 来模拟一个队列。</p>
 <p>这种方法使用两个栈 F, S 模拟一个队列，其中 F 是队尾的栈，S 代表队首的栈，支持 push（在队尾插入），pop（在队首弹出）操作：</p>
 <ul>
 <li>push：插入到栈 F 中。</li>
 <li>pop：如果 S 非空，让 S 弹栈；否则把 F 的元素倒过来压到 S 中（其实就是一个一个弹出插入，做完后是首尾颠倒的），然后再让 S 弹栈。</li>
 </ul>
-<p>容易证明，每个元素只会进入/转移/弹出一次，均摊复杂度 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>。</p>
-<h2 id="c-stl-中的队列">C++ STL 中的队列</h2>
-<p>C++ 在 STL 中提供了一个容器 <code>std::queue</code>，使用前需要先引入 <code>&lt;queue&gt;</code> 头文件。</p>
+<p>容易证明，每个元素只会进入/转移/弹出一次，均摊复杂度 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>。</p>
+<h2 id="C-STL-中的队列"><a href="#C-STL-中的队列" class="headerlink" title="C++ STL 中的队列"></a>C++ STL 中的队列</h2><p>C++ 在 STL 中提供了一个容器 <code>std::queue</code>，使用前需要先引入 <code>&lt;queue&gt;</code> 头文件。</p>
 <p>STL 中对 <code>queue</code> 的定义:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// clang-format off</span></span><br><span class="line"><span class="keyword">template</span>&lt;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">T</span>,</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Container</span> = std::deque&lt;T&gt;</span><br><span class="line">&gt; <span class="keyword">class</span> queue;</span><br></pre></td></tr></table></figure>
 <p><code>T</code> 为 queue 中要存储的数据类型。</p>
@@ -385,27 +382,25 @@ mjx-container[display="true"] + br {
 <p>STL 容器 <code>std::deque</code> 和 <code>std::list</code> 满足这些要求。如果不指定，则默认使用 <code>std::deque</code> 作为底层容器。</p>
 <p>STL 中的 <code>queue</code> 容器提供了一众成员函数以供调用。其中较为常用的有：</p>
 <ul>
-<li>元素访问
-<ul>
+<li>元素访问<ul>
 <li><code>q.front()</code> 返回队首元素</li>
 <li><code>q.back()</code> 返回队尾元素</li>
-</ul></li>
-<li>修改
-<ul>
+</ul>
+</li>
+<li>修改<ul>
 <li><code>q.push()</code> 在队尾插入元素</li>
 <li><code>q.pop()</code> 弹出队首元素</li>
-</ul></li>
-<li>容量
-<ul>
+</ul>
+</li>
+<li>容量<ul>
 <li><code>q.empty()</code> 队列是否为空</li>
 <li><code>q.size()</code> 返回队列中元素的数量</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>此外，<code>queue</code> 还提供了一些运算符。较为常用的是使用赋值运算符 <code>=</code> 为 <code>queue</code> 赋值，示例：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">std::queue&lt;<span class="type">int</span>&gt; q1, q2;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向 q1 的队尾插入 1</span></span><br><span class="line">q1.<span class="built_in">push</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 q1 赋值给 q2</span></span><br><span class="line">q2 = q1;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 q2 的队首元素</span></span><br><span class="line">std::cout &lt;&lt; q2.<span class="built_in">front</span>() &lt;&lt; std::endl;</span><br><span class="line"><span class="comment">// 输出: 1</span></span><br></pre></td></tr></table></figure>
-<h2 id="特殊队列">特殊队列</h2>
-<h3 id="双端队列">双端队列</h3>
-<p>双端队列是指一个可以在队首/队尾插入或删除元素的队列。相当于是栈与队列功能的结合。具体地，双端队列支持的操作有 4 个：</p>
+<h2 id="特殊队列"><a href="#特殊队列" class="headerlink" title="特殊队列"></a>特殊队列</h2><h3 id="双端队列"><a href="#双端队列" class="headerlink" title="双端队列"></a>双端队列</h3><p>双端队列是指一个可以在队首/队尾插入或删除元素的队列。相当于是栈与队列功能的结合。具体地，双端队列支持的操作有 4 个：</p>
 <ul>
 <li>在队首插入一个元素</li>
 <li>在队尾插入一个元素</li>
@@ -413,33 +408,32 @@ mjx-container[display="true"] + br {
 <li>在队尾删除一个元素</li>
 </ul>
 <p>数组模拟双端队列的方式与普通队列相同。</p>
-<h4 id="c-stl-中的双端队列">C++ STL 中的双端队列</h4>
-<p>C++ 在 STL 中也提供了一个容器 <code>std::deque</code>，使用前需要先引入 <code>&lt;deque&gt;</code> 头文件。</p>
+<h4 id="C-STL-中的双端队列"><a href="#C-STL-中的双端队列" class="headerlink" title="C++ STL 中的双端队列"></a>C++ STL 中的双端队列</h4><p>C++ 在 STL 中也提供了一个容器 <code>std::deque</code>，使用前需要先引入 <code>&lt;deque&gt;</code> 头文件。</p>
 <p>STL 中对 <code>deque</code> 的定义:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// clang-format off</span></span><br><span class="line"><span class="keyword">template</span>&lt;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">T</span>,</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Allocator</span> = std::allocator&lt;T&gt;</span><br><span class="line">&gt; <span class="keyword">class</span> deque;</span><br></pre></td></tr></table></figure>
 <p><code>T</code> 为 deque 中要存储的数据类型。</p>
 <p><code>Allocator</code> 为分配器，此处不做过多说明，一般保持默认即可。</p>
 <p>STL 中的 <code>deque</code> 容器提供了一众成员函数以供调用。其中较为常用的有：</p>
 <ul>
-<li>元素访问
-<ul>
+<li>元素访问<ul>
 <li><code>q.front()</code> 返回队首元素</li>
 <li><code>q.back()</code> 返回队尾元素</li>
-</ul></li>
-<li>修改
-<ul>
+</ul>
+</li>
+<li>修改<ul>
 <li><code>q.push_back()</code> 在队尾插入元素</li>
 <li><code>q.pop_back()</code> 弹出队尾元素</li>
 <li><code>q.push_front()</code> 在队首插入元素</li>
 <li><code>q.pop_front()</code> 弹出队首元素</li>
 <li><code>q.insert()</code> 在指定位置前插入元素（传入迭代器和元素）</li>
 <li><code>q.erase()</code> 删除指定位置的元素（传入迭代器）</li>
-</ul></li>
-<li>容量
-<ul>
+</ul>
+</li>
+<li>容量<ul>
 <li><code>q.empty()</code> 队列是否为空</li>
 <li><code>q.size()</code> 返回队列中元素的数量</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>此外，<code>deque</code> 还提供了一些运算符。其中较为常用的有：</p>
 <ul>
@@ -447,11 +441,9 @@ mjx-container[display="true"] + br {
 <li>使用 <code>[]</code> 访问元素，类似 <code>vector</code>。</li>
 </ul>
 <p><code>&lt;queue&gt;</code> 头文件中还提供了优先队列 <code>std::priority_queue</code>，因其与 <a href="./heap.md">堆</a> 更为相似，在此不作过多介绍。</p>
-<h3 id="循环队列">循环队列</h3>
-<p>使用数组模拟队列会导致一个问题：随着时间的推移，整个队列会向数组的尾部移动，一旦到达数组的最末端，即使数组的前端还有空闲位置，再进行入队操作也会导致溢出（这种数组里实际有空闲位置而发生了上溢的现象被称为「假溢出」）。</p>
+<h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><p>使用数组模拟队列会导致一个问题：随着时间的推移，整个队列会向数组的尾部移动，一旦到达数组的最末端，即使数组的前端还有空闲位置，再进行入队操作也会导致溢出（这种数组里实际有空闲位置而发生了上溢的现象被称为「假溢出」）。</p>
 <p>解决假溢出的办法是采用循环的方式来组织存放队列元素的数组，即将数组下标为 0 的位置看做是最后一个位置的后继。（数组下标为 <code>x</code> 的元素，它的后继为 <code>(x + 1) % SIZE</code>）。这样就形成了循环队列。</p>
-<h1 id="参考资料">参考资料</h1>
-<ol type="1">
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/queue">std::queue - zh.cppreference.com</a></li>
 <li><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque">std::deque - zh.cppreference.com</a></li>
 </ol>
@@ -498,7 +490,7 @@ mjx-container[display="true"] + br {
 
   <div class="copyright">
     &copy; 2023-12 – 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
