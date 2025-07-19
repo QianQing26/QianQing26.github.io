@@ -19,29 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub： 🔗 https:&#x2F;&#x2F;github.com&#x2F;QianQing26&#x2F;MiniViT">
+    <meta name="description" content="论文：Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer 作者：Colin Raffel et al. (Google Research) 链接：arXiv:1910.10683">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vision Transformer简化实现与训练记录">
-<meta property="og:url" content="http://example.com/2025/07/15/Vision-Transformer%E7%AE%80%E5%8C%96%E5%AE%9E%E7%8E%B0%E4%B8%8E%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="论文阅读笔记：Text-To-Text Transfer Learning">
+<meta property="og:url" content="http://example.com/2025/07/18/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AText-To-Text-Transfer-Learning/index.html">
 <meta property="og:site_name" content="QianQing&#39;s Blog">
-<meta property="og:description" content="本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub： 🔗 https:&#x2F;&#x2F;github.com&#x2F;QianQing26&#x2F;MiniViT">
+<meta property="og:description" content="论文：Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer 作者：Colin Raffel et al. (Google Research) 链接：arXiv:1910.10683">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-07-15T08:49:01.000Z">
-<meta property="article:modified_time" content="2025-07-19T01:33:14.854Z">
+<meta property="article:published_time" content="2025-07-18T11:32:45.000Z">
+<meta property="article:modified_time" content="2025-07-19T01:35:04.068Z">
 <meta property="article:author" content="千顷QianQing">
 <meta property="article:tag" content="ViT">
-<meta property="article:tag" content="代码实现">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2025/07/15/Vision-Transformer%E7%AE%80%E5%8C%96%E5%AE%9E%E7%8E%B0%E4%B8%8E%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="http://example.com/2025/07/18/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AText-To-Text-Transfer-Learning/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/07/15/Vision-Transformer%E7%AE%80%E5%8C%96%E5%AE%9E%E7%8E%B0%E4%B8%8E%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/","path":"2025/07/15/Vision-Transformer简化实现与训练记录/","title":"Vision Transformer简化实现与训练记录"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/07/18/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AText-To-Text-Transfer-Learning/","path":"2025/07/18/论文阅读笔记：Text-To-Text-Transfer-Learning/","title":"论文阅读笔记：Text-To-Text Transfer Learning"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Vision Transformer简化实现与训练记录 | QianQing's Blog</title>
+<title>论文阅读笔记：Text-To-Text Transfer Learning | QianQing's Blog</title>
   
 
 
@@ -225,7 +224,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%9B%AE%E7%9A%84%E4%B8%8E%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">1. 项目目的与背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1minivit"><span class="nav-number">2.</span> <span class="nav-text">2. 模型结构设计（MiniViT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%A6%82%E4%B8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">模型参数配置如下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">3. 项目结构与模块划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E4%B8%8E%E9%AA%8C%E8%AF%81%E8%AE%B0%E5%BD%95"><span class="nav-number">4.</span> <span class="nav-text">4. 训练与验证记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E9%85%8D%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">训练配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E9%AA%8C%E8%AF%81%E5%87%86%E7%A1%AE%E7%8E%87"><span class="nav-number">4.2.</span> <span class="nav-text">最佳验证准确率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E7%90%86%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">5. 推理可视化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82%E4%B8%8E%E7%BB%8F%E9%AA%8C%E8%AE%B0%E5%BD%95"><span class="nav-number">6.</span> <span class="nav-text">6. 技术细节与经验记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">7.</span> <span class="nav-text">7. 项目地址</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">阅读动机与背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E6%A0%B8%E5%BF%83%E8%B4%A1%E7%8C%AE%E6%A6%82%E8%A7%88"><span class="nav-number">2.</span> <span class="nav-text">论文核心贡献概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E4%B8%8E%E8%AE%AD%E7%BB%83%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">模型与训练方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%90%86%E5%BF%B5text-to-text-format"><span class="nav-number">3.1.</span> <span class="nav-text">核心理念：Text-to-Text Format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E7%9B%AE%E6%A0%87span-corruption%E8%BF%9E%E7%BB%AD%E7%89%87%E6%AE%B5%E6%8E%A9%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">预训练目标：Span-Corruption（连续片段掩码）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84encoder-decoder-transformer"><span class="nav-number">3.3.</span> <span class="nav-text">模型结构：Encoder-Decoder Transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%9E%84%E9%80%A0prefix-prompt-text"><span class="nav-number">3.4.</span> <span class="nav-text">输入构造：Prefix Prompt + Text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E8%B0%83%E7%AD%96%E7%95%A5"><span class="nav-number">3.5.</span> <span class="nav-text">微调策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8E%E8%AF%84%E4%BC%B0"><span class="nav-number">4.</span> <span class="nav-text">数据集与评估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E6%96%99c4"><span class="nav-number">4.1.</span> <span class="nav-text">预训练语料：C4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%B8%B8%E4%BB%BB%E5%8A%A1%E8%AF%84%E4%BC%B0"><span class="nav-number">4.2.</span> <span class="nav-text">下游任务评估</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E8%9E%8D%E4%B8%8E%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90"><span class="nav-number">5.</span> <span class="nav-text">消融与对比分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E6%94%B6%E8%8E%B7%E4%B8%8E%E5%90%AF%E5%8F%91"><span class="nav-number">6.</span> <span class="nav-text">阅读收获与启发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%88%91%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="nav-number">6.1.</span> <span class="nav-text">对我的启示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90"><span class="nav-number">7.</span> <span class="nav-text">参考资源</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -286,7 +285,7 @@ mjx-container[display="true"] + br {
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/15/Vision-Transformer%E7%AE%80%E5%8C%96%E5%AE%9E%E7%8E%B0%E4%B8%8E%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/18/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AText-To-Text-Transfer-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -299,12 +298,12 @@ mjx-container[display="true"] + br {
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Vision Transformer简化实现与训练记录 | QianQing's Blog">
+      <meta itemprop="name" content="论文阅读笔记：Text-To-Text Transfer Learning | QianQing's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vision Transformer简化实现与训练记录
+          论文阅读笔记：Text-To-Text Transfer Learning
         </h1>
 
         <div class="post-meta-container">
@@ -315,14 +314,14 @@ mjx-container[display="true"] + br {
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2025-07-15 16:49:01" itemprop="dateCreated datePublished" datetime="2025-07-15T16:49:01+08:00">2025-07-15</time>
+      <time title="Created: 2025-07-18 19:32:45" itemprop="dateCreated datePublished" datetime="2025-07-18T19:32:45+08:00">2025-07-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-19 09:33:14" itemprop="dateModified" datetime="2025-07-19T09:33:14+08:00">2025-07-19</time>
+      <time title="Modified: 2025-07-19 09:35:04" itemprop="dateModified" datetime="2025-07-19T09:35:04+08:00">2025-07-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -351,61 +350,257 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody"><blockquote>
-<p>本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub：<br>
-🔗 https://github.com/QianQing26/MiniViT</p>
+<p>论文：Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer<br>
+作者：Colin Raffel et al. (Google Research)<br>
+链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.10683">arXiv:1910.10683</a></p>
 </blockquote>
 <span id="more"></span>
-<h2 id="项目目的与背景">1. 项目目的与背景</h2>
-<p>传统图像分类多基于 CNN，而 ViT 作为纯 Transformer 架构，移除了卷积模块，仅靠 attention 建模全局关系。为了深入理解 ViT 的机制，我尝试手动实现一个简化模型，并完成训练、评估、推理与可视化流程。</p>
 <hr>
-<h2 id="模型结构设计minivit">2. 模型结构设计（MiniViT）</h2>
-<p>模型遵循论文《An Image is Worth 16x16 Words》中的主干结构：</p>
+<h2 id="阅读动机与背景">阅读动机与背景</h2>
+<p>在 NLP 模型大一统的潮流中，BERT、GPT、BART 等预训练方法层出不穷。然而，它们在以下方面仍存在分裂：</p>
 <ul>
-<li>输入图像划分为 patch，展平后进行线性映射；</li>
-<li>加入 <code>[CLS]</code> token 与可学习位置编码；</li>
-<li>多层标准 Transformer Encoder（包含 MHSA + MLP）；</li>
-<li>使用 <code>[CLS]</code> token 的输出进行分类。</li>
+<li>任务格式五花八门（分类、生成、问答格式不同）；</li>
+<li>训练与微调方式不一致；</li>
+<li>不利于统一架构的研究和部署。</li>
 </ul>
-<h3 id="模型参数配置如下">模型参数配置如下：</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model = MiniViT(</span><br><span class="line">    img_size=<span class="number">32</span>,</span><br><span class="line">    patch_size=<span class="number">4</span>,</span><br><span class="line">    embed_dim=<span class="number">256</span>,</span><br><span class="line">    depth=<span class="number">8</span>,</span><br><span class="line">    heads=<span class="number">8</span>,</span><br><span class="line">    num_classes=<span class="number">10</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>T5 的核心目标是：</p>
+<blockquote>
+<p><strong>将所有 NLP 任务统一为“文本到文本”的格式，并用统一的 Transformer 架构解决它们。</strong></p>
+</blockquote>
 <hr>
-<h2 id="项目结构与模块划分">3. 项目结构与模块划分</h2>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">MiniViT/</span><br><span class="line">├── models/</span><br><span class="line">│   ├── patch_embed.py       # Patch Embedding 实现</span><br><span class="line">│   ├── transformer.py       # Attention、FFN、Transformer Block</span><br><span class="line">│   └── vit.py               # 主模型结构拼接</span><br><span class="line">├── train.py                 # 包含训练 + 验证 + best model 保存</span><br><span class="line">├── inference.py             # 推理脚本，支持图像与预测可视化</span><br><span class="line">├── utils.py                 # 工具函数：绘图、加载模型等</span><br><span class="line">├── training_log.csv         # 每轮训练记录日志</span><br><span class="line">├── loss.png / acc.png       # 训练曲线图</span><br><span class="line">├── inference_result.png     # 推理可视化结果图</span><br><span class="line">└── README.md                # 仓库介绍</span><br></pre></td></tr></table></figure>
+<h2 id="论文核心贡献概览">论文核心贡献概览</h2>
+<table>
+<thead>
+<tr class="header">
+<th>编号</th>
+<th>贡献内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1️⃣</td>
+<td>将所有 NLP 任务（分类、翻译、摘要、问答等）统一为文本到文本格式</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>提出 Span-Corruption 预训练目标，替代传统 token-level MLM</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>构建大规模清洗语料库 C4（Colossal Clean Crawled Corpus）</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>系统比较各种架构、目标与超参组合，提供标准 benchmark</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>首次在 SuperGLUE 上达到或超过人类表现（T5-11B）</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<h2 id="训练与验证记录">4. 训练与验证记录</h2>
-<h3 id="训练配置">训练配置</h3>
+<h2 id="模型与训练方法">模型与训练方法</h2>
+<h3 id="核心理念text-to-text-format">核心理念：Text-to-Text Format</h3>
+<p>所有任务都以纯文本形式表示，输入/输出皆为字符串。</p>
+<table>
+<thead>
+<tr class="header">
+<th>任务类型</th>
+<th>输入文本示例</th>
+<th>输出文本</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>翻译</td>
+<td><code>translate English to German: That is good</code></td>
+<td><code>Das ist gut</code></td>
+</tr>
+<tr class="even">
+<td>情感分析</td>
+<td><code>sst2 sentence: I loved the film</code></td>
+<td><code>positive</code></td>
+</tr>
+<tr class="odd">
+<td>QA</td>
+<td><code>question: Who wrote Hamlet? context: ...</code></td>
+<td><code>Shakespeare</code></td>
+</tr>
+<tr class="even">
+<td>摘要</td>
+<td><code>summarize: The article says...</code></td>
+<td><code>This article ...</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>好处：简化接口，支持端到端训练、多任务融合、微调统一。</p>
+</blockquote>
+<hr>
+<h3 id="预训练目标span-corruption连续片段掩码">预训练目标：Span-Corruption（连续片段掩码）</h3>
 <ul>
-<li>数据集：CIFAR-10</li>
-<li>优化器：AdamW（lr=3e-4）</li>
-<li>batch_size：128</li>
-<li>epoch 数：50</li>
-<li>patch_size：4 × 4</li>
-<li>embed_dim：256</li>
+<li>类似 BERT，但不是随机掩盖 token，而是 <strong>随机删除多个连续 token</strong></li>
+<li>输入句子：<code>The cat &lt;extra_id_0&gt; on the &lt;extra_id_1&gt; mat.</code></li>
+<li>目标输出：<code>&lt;extra_id_0&gt; sat &lt;extra_id_1&gt; warm</code></li>
 </ul>
-<h3 id="最佳验证准确率">最佳验证准确率</h3>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Epoch 50: Val Acc = 71.07%</span><br></pre></td></tr></table></figure>
-<p>训练过程中，训练 loss 与 acc 持续平稳提升，验证集表现稳定，整体无过拟合倾向。</p>
+<p>这种训练方式更符合自然语言生成习惯，提升泛化能力。</p>
 <hr>
-<h2 id="推理可视化">5. 推理可视化</h2>
-<p>推理脚本 <code>inference.py</code> 支持随机抽样若干张测试图像，输出模型预测类别与真实标签。</p>
+<h3 id="模型结构encoder-decoder-transformer">模型结构：Encoder-Decoder Transformer</h3>
+<p>T5 采用标准的 Transformer 架构（非 decoder-only）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">           +--------------------------+</span><br><span class="line">Input ---&gt; |        Encoder           | ---&gt; Encoder hidden states</span><br><span class="line">           +--------------------------+</span><br><span class="line">                     ↓</span><br><span class="line">           +--------------------------+</span><br><span class="line">    Shifted input --&gt;  Decoder        | ---&gt; Token-by-token generation</span><br><span class="line">           +--------------------------+</span><br></pre></td></tr></table></figure>
+<p>支持端到端训练与 sequence-to-sequence 推理。模型版本有：</p>
+<table>
+<thead>
+<tr class="header">
+<th>版本</th>
+<th>参数量</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T5-Small</td>
+<td>60M</td>
+</tr>
+<tr class="even">
+<td>T5-Base</td>
+<td>220M</td>
+</tr>
+<tr class="odd">
+<td>T5-Large</td>
+<td>770M</td>
+</tr>
+<tr class="even">
+<td>T5-3B</td>
+<td>3B</td>
+</tr>
+<tr class="odd">
+<td>T5-11B</td>
+<td>11B</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="输入构造prefix-prompt-text">输入构造：Prefix Prompt + Text</h3>
+<p>训练中，每个任务会带有任务前缀（prefix）提示模型该怎么做：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">input = "summarize: The food was great. The staff were polite."</span><br><span class="line">target = "The service and food were excellent."</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="微调策略">微调策略</h3>
 <ul>
-<li>使用训练完成的 <code>best_model.pt</code> 权重</li>
-<li>支持 matplotlib 保存结果图像 <code>inference_result.png</code></li>
-<li>错误预测以红色标题显示，正确为绿色</li>
+<li>使用统一的文本 loss（Cross Entropy）</li>
+<li>可在单一任务微调，也可用多任务 joint training</li>
+<li>只需换 prefix 与数据即可迁移到新任务</li>
 </ul>
 <hr>
-<h2 id="技术细节与经验记录">6. 技术细节与经验记录</h2>
+<h2 id="数据集与评估">数据集与评估</h2>
+<h3 id="预训练语料c4">预训练语料：C4</h3>
 <ul>
-<li>使用 <code>tqdm</code> 显示训练进度；</li>
-<li>多线程加载数据时需注意 Windows 平台下的 <code>if __name__ == "__main__"</code>；</li>
-<li>解决 <code>libiomp5md.dll</code> 冲突：需在开头加入 <code>os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'</code>；</li>
-<li>使用 <code>matplotlib</code> 和 <code>pandas</code> 保存与绘制训练曲线；</li>
-<li>训练中每轮记录训练 / 验证 loss 和 acc，并保存最优模型；</li>
-<li>推理时使用 softmax 输出置信度用于可视化结果更直观。</li>
+<li>从 Common Crawl 网页数据中清洗得到</li>
+<li>去除脚本、日志、重复、垃圾邮件等</li>
+<li>最终约 750GB，远大于 Wikipedia 语料</li>
+</ul>
+<h3 id="下游任务评估">下游任务评估</h3>
+<p>包含多个 benchmark：</p>
+<table>
+<thead>
+<tr class="header">
+<th>类别</th>
+<th>数据集例子</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>文本分类</td>
+<td>GLUE, SuperGLUE</td>
+</tr>
+<tr class="even">
+<td>问答</td>
+<td>SQuAD, TriviaQA</td>
+</tr>
+<tr class="odd">
+<td>摘要生成</td>
+<td>CNN/DailyMail</td>
+</tr>
+<tr class="even">
+<td>翻译</td>
+<td>WMT English-German/French</td>
+</tr>
+</tbody>
+</table>
+<p>T5-11B 在 SuperGLUE 上得分首次超越人类：</p>
+<table>
+<thead>
+<tr class="header">
+<th>模型</th>
+<th>SuperGLUE Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BERT</td>
+<td>~70</td>
+</tr>
+<tr class="even">
+<td>RoBERTa</td>
+<td>~89</td>
+</tr>
+<tr class="odd">
+<td><strong>T5-11B</strong></td>
+<td><strong>89.3</strong></td>
+</tr>
+<tr class="even">
+<td>人类平均</td>
+<td>~89.0</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="消融与对比分析">消融与对比分析</h2>
+<p>论文还分析了以下问题：</p>
+<table>
+<thead>
+<tr class="header">
+<th>比较维度</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MLM vs Span Mask</td>
+<td>Span Corruption 更有效</td>
+</tr>
+<tr class="even">
+<td>输入格式 vs prompt</td>
+<td>prefix prompt 更有效</td>
+</tr>
+<tr class="odd">
+<td>单任务 vs 多任务</td>
+<td>多任务微调更稳健</td>
+</tr>
+<tr class="even">
+<td>Encoder-only vs Encoder-Decoder</td>
+<td>Encoder-Decoder 更泛化</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="阅读收获与启发">阅读收获与启发</h2>
+<h3 id="对我的启示">对我的启示</h3>
+<ul>
+<li>统一任务格式有利于通用模型设计与部署；</li>
+<li>Prompt engineering 的潜力早已体现；</li>
+<li>预训练目标的设计决定了泛化能力；</li>
+<li>预训练语料质量和规模是成功关键；</li>
+<li>多任务学习 + decoder 模型是未来趋势；</li>
 </ul>
 <hr>
-<h2 id="项目地址">7. 项目地址</h2>
-<p>📦 GitHub 项目仓库：https://github.com/QianQing26/MiniViT</p>
+<h2 id="参考资源">参考资源</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.10683">T5 官方论文</a></li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/model_doc/t5">T5 模型实现 (HuggingFace)</a></li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/c4">C4 数据集清洗细节</a></li>
+</ul>
+<hr>
 
     </div>
 
@@ -416,21 +611,17 @@ mjx-container[display="true"] + br {
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/ViT/" rel="tag"># ViT</a>
-              <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" rel="tag"># 代码实现</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/07/14/ViT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="prev" title="ViT论文阅读笔记">
-                  <i class="fa fa-angle-left"></i> ViT论文阅读笔记
+                <a href="/2025/07/15/Vision-Transformer%E7%AE%80%E5%8C%96%E5%AE%9E%E7%8E%B0%E4%B8%8E%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/" rel="prev" title="Vision Transformer简化实现与训练记录">
+                  <i class="fa fa-angle-left"></i> Vision Transformer简化实现与训练记录
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/07/18/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AText-To-Text-Transfer-Learning/" rel="next" title="论文阅读笔记：Text-To-Text Transfer Learning">
-                  论文阅读笔记：Text-To-Text Transfer Learning <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
