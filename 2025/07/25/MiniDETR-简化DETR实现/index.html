@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本项目实现了 DETR（DEtection TRansformer）模型的一个简化版本，并最终发布在了 GitHub 上：MiniDETR 项目地址。 这是一个目标检测模型的完整训练框架。 本篇博客总结了我对 DETR 的理解、模型的核心模块、关键实现细节、训练调优策略，以及一些工程实践经验。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MiniDETR:简化DETR实现">
+<meta property="og:url" content="http://example.com/2025/07/25/MiniDETR-%E7%AE%80%E5%8C%96DETR%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="QianQing&#39;s Blog">
+<meta property="og:description" content="本项目实现了 DETR（DEtection TRansformer）模型的一个简化版本，并最终发布在了 GitHub 上：MiniDETR 项目地址。 这是一个目标检测模型的完整训练框架。 本篇博客总结了我对 DETR 的理解、模型的核心模块、关键实现细节、训练调优策略，以及一些工程实践经验。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-07-25T08:58:06.000Z">
+<meta property="article:modified_time" content="2025-07-25T09:04:54.794Z">
+<meta property="article:author" content="千顷QianQing">
+<meta property="article:tag" content="DETR">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/07/25/MiniDETR-%E7%AE%80%E5%8C%96DETR%E5%AE%9E%E7%8E%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/07/25/MiniDETR-%E7%AE%80%E5%8C%96DETR%E5%AE%9E%E7%8E%B0/","path":"2025/07/25/MiniDETR-简化DETR实现/","title":"MiniDETR:简化DETR实现"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MiniDETR:简化DETR实现 | QianQing's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">QianQing's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DETR%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">DETR核心思想简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88"><span class="nav-number">2.</span> <span class="nav-text">实现结构概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">项目结构设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%85%B3%E9%94%AE%E7%BB%86%E8%8A%82%E5%88%86%E4%BA%AB"><span class="nav-number">4.</span> <span class="nav-text">实现关键细节分享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8C%88%E7%89%99%E5%88%A9%E5%8C%B9%E9%85%8D%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.1.</span> <span class="nav-text">1. 匈牙利匹配的理解与实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%EF%BC%88Positional-Embedding%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">2. 位置编码（Positional Embedding）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Transformer%E6%A8%A1%E5%9D%97%E8%87%AA%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.3.</span> <span class="nav-text">3. Transformer模块自实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%94%AF%E6%8C%81-warmup-%E4%B8%8E%E5%B7%AE%E5%88%86%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="nav-number">4.4.</span> <span class="nav-text">4. 支持 warmup 与差分学习率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-mAP-%E8%AF%84%E4%BC%B0%E5%B7%A5%E5%85%B7"><span class="nav-number">4.5.</span> <span class="nav-text">5. mAP 评估工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">成果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">6.</span> <span class="nav-text">项目地址</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千顷QianQing"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">千顷QianQing</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qianqing26" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianqing26" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:eevee_hbc@outlook.com" title="E-Mail → mailto:eevee_hbc@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/25/MiniDETR-%E7%AE%80%E5%8C%96DETR%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="千顷QianQing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MiniDETR:简化DETR实现 | QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MiniDETR:简化DETR实现
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-07-25 16:58:06 / Modified: 17:04:54" itemprop="dateCreated datePublished" datetime="2025-07-25T16:58:06+08:00">2025-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A0%94%E9%9B%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">研零学习记录</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>本项目实现了 DETR（<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.12872">DEtection TRansformer</a>）模型的一个简化版本，并最终发布在了 GitHub 上：<a target="_blank" rel="noopener" href="https://github.com/QianQing26/MiniDETR">MiniDETR 项目地址</a>。</p>
+<p>这是一个目标检测模型的完整训练框架。</p>
+<p>本篇博客总结了我对 DETR 的理解、模型的核心模块、关键实现细节、训练调优策略，以及一些工程实践经验。</p>
+<span id="more"></span>
+<hr>
+<h2 id="DETR核心思想简述"><a href="#DETR核心思想简述" class="headerlink" title="DETR核心思想简述"></a>DETR核心思想简述</h2><p>传统目标检测模型（如 Faster R-CNN、YOLO）通常依赖 anchor box、NMS 等启发式方法。而 DETR 的创新点在于：</p>
+<ul>
+<li><strong>目标检测 = 集合预测问题</strong>，由匈牙利匹配直接解决框-目标对齐问题</li>
+<li><strong>用 Transformer 进行全局建模</strong>，输入图像特征后输出一组固定长度的 object queries，代表可能的目标</li>
+<li><strong>End-to-End 无需手工设计后处理模块</strong></li>
+</ul>
+<p>这使得 DETR 的架构极度简洁统一，同时也为 Transformer 在视觉领域开辟了新的道路。</p>
+<hr>
+<h2 id="实现结构概览"><a href="#实现结构概览" class="headerlink" title="实现结构概览"></a>实现结构概览</h2><p>我实现的 Mini-DETR 模型保留了 DETR 的核心思路，并针对小显存设备（≤8GB）进行了简化与优化：</p>
+<ul>
+<li>使用 <strong>ResNet50</strong> 作为 backbone，输出 feature map</li>
+<li>用 1×1 Conv 将 channel 压缩至 <code>hidden_dim=256</code></li>
+<li>加入 <strong>位置编码（sinusoidal）</strong>，并送入自实现的 <code>TransformerEncoder + TransformerDecoder</code></li>
+<li>decoder 接收 <code>num_queries=100</code> 个 object query，输出每个目标的分类与 bbox</li>
+<li>匹配预测与GT使用 <strong>HungarianMatcher</strong></li>
+<li>损失包括：<strong>CrossEntropy + L1 + GIoU</strong></li>
+</ul>
+<hr>
+<h2 id="项目结构设计"><a href="#项目结构设计" class="headerlink" title="项目结构设计"></a>项目结构设计</h2><p>工程采用主流 PyTorch 项目结构划分，具备良好的模块化和可扩展性：</p>
+<ul>
+<li><code>models/</code>: 模型主干与 Transformer 组件</li>
+<li><code>data/</code>: VOC数据加载、自定义 JSON 格式解析、图像增广</li>
+<li><code>utils/</code>: 包含 matcher、损失函数、评估工具（mAP 计算）</li>
+<li><code>train.py</code>: 包含训练循环、tqdm 进度条、warmup 策略、checkpoints、CSV日志等</li>
+<li><code>eval.py</code>: 进行 mAP 评估，兼容 VOC JSON 数据格式</li>
+</ul>
+<p>这次我特别注重代码组织清晰与注释完整，每个模块都可以独立理解与运行调试。</p>
+<hr>
+<h2 id="实现关键细节分享"><a href="#实现关键细节分享" class="headerlink" title="实现关键细节分享"></a>实现关键细节分享</h2><h3 id="1-匈牙利匹配的理解与实现"><a href="#1-匈牙利匹配的理解与实现" class="headerlink" title="1. 匈牙利匹配的理解与实现"></a>1. 匈牙利匹配的理解与实现</h3><p>DETR的精髓在于将检测任务视为集合预测，使用匈牙利算法做 bipartite matching。<br> 我实现了一个简化版本，匹配代价由分类差异（CE）+ 回归差异（L1）组成，输出预测-目标的一一对应关系。</p>
+<h3 id="2-位置编码（Positional-Embedding）"><a href="#2-位置编码（Positional-Embedding）" class="headerlink" title="2. 位置编码（Positional Embedding）"></a>2. 位置编码（Positional Embedding）</h3><p>我使用了与原文一致的 <strong>正弦-余弦编码</strong>，编码二维位置，并添加到特征上。位置编码模块是完全手写的。</p>
+<h3 id="3-Transformer模块自实现"><a href="#3-Transformer模块自实现" class="headerlink" title="3. Transformer模块自实现"></a>3. Transformer模块自实现</h3><h3 id="4-支持-warmup-与差分学习率"><a href="#4-支持-warmup-与差分学习率" class="headerlink" title="4. 支持 warmup 与差分学习率"></a>4. 支持 warmup 与差分学习率</h3><p>在训练阶段，我加入了：</p>
+<ul>
+<li><strong>学习率 warmup</strong>（前1000步线性增长）</li>
+<li><strong>backbone 冻结 / 解冻机制</strong></li>
+<li><strong>backbone</strong> 与 <strong>transformer</strong> 使用不同的学习率</li>
+</ul>
+<h3 id="5-mAP-评估工具"><a href="#5-mAP-评估工具" class="headerlink" title="5. mAP 评估工具"></a>5. mAP 评估工具</h3><p>没有使用 pycocotools，自己实现了 mAP（IoU=0.5）计算逻辑，包括：</p>
+<ul>
+<li>IoU计算</li>
+<li>TP/FP判定</li>
+<li>Precision-Recall 曲线</li>
+<li>11-point mAP 计算</li>
+</ul>
+<hr>
+<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><p>在VOC训练集上训练约50 epochs，模型能够初步检测出常见目标，mAP 在 0.4~0.5 左右（IoU=0.5）。<br> 虽然精度不高，但这个结果已经验证了模型的通路是正确的，对于学习和调试是完全可用的。</p>
+<p>更重要的是，我从零构建出了一个完整检测框架，这比直接套用库要收获大得多</p>
+<hr>
+<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p>完整代码已开源在 GitHub：</p>
+<p> <a target="_blank" rel="noopener" href="https://github.com/QianQing26/MiniDETR">https://github.com/QianQing26/MiniDETR</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DETR/" rel="tag"># DETR</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/07/24/DETR%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AEnd-to-End-Object-Detection-with-Transformer/" rel="prev" title="DETR论文阅读笔记：End-to-End Object Detection with Transformer">
+                  <i class="fa fa-angle-left"></i> DETR论文阅读笔记：End-to-End Object Detection with Transformer
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023-12 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">千顷QianQing</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/qianqing26" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"version":"7.1.2","theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.min.js","integrity":"sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

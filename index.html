@@ -233,7 +233,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -269,6 +269,94 @@ mjx-container[display="true"] + br {
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/25/MiniDETR-%E7%AE%80%E5%8C%96DETR%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="千顷QianQing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/07/25/MiniDETR-%E7%AE%80%E5%8C%96DETR%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">MiniDETR:简化DETR实现</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-07-25 16:58:06 / Modified: 17:04:54" itemprop="dateCreated datePublished" datetime="2025-07-25T16:58:06+08:00">2025-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A0%94%E9%9B%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">研零学习记录</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本项目实现了 DETR（<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.12872">DEtection TRansformer</a>）模型的一个简化版本，并最终发布在了 GitHub 上：<a target="_blank" rel="noopener" href="https://github.com/QianQing26/MiniDETR">MiniDETR 项目地址</a>。</p>
+<p>这是一个目标检测模型的完整训练框架。</p>
+<p>本篇博客总结了我对 DETR 的理解、模型的核心模块、关键实现细节、训练调优策略，以及一些工程实践经验。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/07/25/MiniDETR-%E7%AE%80%E5%8C%96DETR%E5%AE%9E%E7%8E%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -331,7 +419,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.12872">arXiv:2005.12872v3</a> 作者：Nicolas Carion et al. (Facebook AI Research) 模型关键词：Set Prediction、Hungarian Matching、Transformer、Object Queries</p>
+<p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.12872">arXiv:2005.12872v3</a><br> 作者：Nicolas Carion et al. (Facebook AI Research)<br> 模型关键词：Set Prediction、Hungarian Matching、Transformer、Object Queries</p>
 </blockquote>
 <hr>
 <p>这篇论文提出了一个极具颠覆性的目标检测框架 —— <strong>DETR（DEtection TRansformer）</strong>，它摒弃了 anchor、NMS、候选框等传统组件，使用纯粹的 CNN + Transformer 结构进行端到端训练，实现了“无组件”目标检测。</p>
@@ -423,8 +511,7 @@ mjx-container[display="true"] + br {
           <blockquote>
 <p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/QianQing26/MiniCLIP/tree/master">github.com/QianQing26/MiniCLIP</a></p>
 </blockquote>
-<h2 id="项目简介">项目简介</h2>
-<p>本项目是对论文 <strong>"Learning Transferable Visual Models From Natural Language Supervision"（CLIP）</strong> 的一次轻量实现，适用于资源受限环境（如单卡 8GB 显存）。该实现完整复现了 CLIP 的核心思想与训练流程，并使用 <strong>Flickr8k</strong> 数据集进行实验验证。</p>
+<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>本项目是对论文 <strong>“Learning Transferable Visual Models From Natural Language Supervision”（CLIP）</strong> 的一次轻量实现，适用于资源受限环境（如单卡 8GB 显存）。该实现完整复现了 CLIP 的核心思想与训练流程，并使用 <strong>Flickr8k</strong> 数据集进行实验验证。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/07/24/MiniCLIP-%E7%AE%80%E5%8C%96CLIP%E5%AE%9E%E7%8E%B0/#more" rel="contents">
@@ -510,7 +597,7 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong>论文标题</strong>：Learning Transferable Visual Models From Natural Language Supervision <strong>作者单位</strong>：OpenAI <strong>会议</strong>：ICML 2021</p>
+          <p><strong>论文标题</strong>：Learning Transferable Visual Models From Natural Language Supervision<br> <strong>作者单位</strong>：OpenAI<br> <strong>会议</strong>：ICML 2021</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/07/24/CLIP%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/#more" rel="contents">
@@ -603,9 +690,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>论文：Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer<br>
-作者：Colin Raffel et al. (Google Research)<br>
-链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.10683">arXiv:1910.10683</a></p>
+<p>论文：Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer<br>作者：Colin Raffel et al. (Google Research)<br>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.10683">arXiv:1910.10683</a></p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -699,8 +784,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub：<br>
-🔗 https://github.com/QianQing26/MiniViT</p>
+<p>本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub：<br>🔗 <a target="_blank" rel="noopener" href="https://github.com/QianQing26/MiniViT">https://github.com/QianQing26/MiniViT</a></p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -794,7 +878,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p><strong>论文标题</strong>：An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale <strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.11929">arXiv:2010.11929</a></p>
+<p><strong>论文标题</strong>：An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale<br> <strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.11929">arXiv:2010.11929</a></p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1061,102 +1145,6 @@ mjx-container[display="true"] + br {
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/07/09/%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E7%BB%B4%E5%BA%A6%E5%88%86%E6%9E%90/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/07/%E4%BB%8E%E5%AE%9E%E7%8E%B0%E7%9C%8B%E7%90%86%E8%A7%A3%EF%BC%9A%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="千顷QianQing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QianQing's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | QianQing's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/07/07/%E4%BB%8E%E5%AE%9E%E7%8E%B0%E7%9C%8B%E7%90%86%E8%A7%A3%EF%BC%9A%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">从实现看理解：多头注意力机制</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2025-07-07 23:07:30" itemprop="dateCreated datePublished" datetime="2025-07-07T23:07:30+08:00">2025-07-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-09 08:41:30" itemprop="dateModified" datetime="2025-07-09T08:41:30+08:00">2025-07-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%A0%94%E9%9B%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">研零学习记录</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>"We call our model the Transformer. The model architecture is shown in Figure 1."<br>
-—— Attention is All You Need, Vaswani et al., 2017</p>
-</blockquote>
-<p>在 Transformer 中，多头注意力机制（Multi-Head Attention, MHA）是核心组件之一。论文中虽然只用了短短几页进行描述，但其实现中蕴含着大量工程智慧与数学原则。本文将结合我自己复现的transformer和 GPT 模型，<strong>站在一个研零初学者的视角上</strong>，从 <strong>mask 使用</strong>、<strong>softmax 数值稳定性</strong> 角度，学习《Attention is All You Need》中的一些小细节，并结合实际代码加以分析。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/07/07/%E4%BB%8E%E5%AE%9E%E7%8E%B0%E7%9C%8B%E7%90%86%E8%A7%A3%EF%BC%9A%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
