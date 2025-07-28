@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="本篇介绍了汇编指令中如何进行运算，包括加、减、乘、除 前置问题：  怎么做多字节的加减法？ 为什么加减法指令不分有符号数和无符号数，而乘除法的有符号数和无符号数运算分别是不同的指令 如何确定指令执行的是字节操作还是字操作？ 符号扩展指令再什么时候会用到，如何用？ 取负指令NEG为什么执行的是取反加一？">
+    <meta name="description" content="本篇介绍了汇编指令中如何进行运算，包括加、减、乘、除 前置问题：  怎么做多字节的加减法？ 为什么加减法指令不分有符号数和无符号数，而乘除法的有符号数和无符号数运算分别是不同的指令 如何确定指令执行的是字节操作还是字操作？ 符号扩展指令再什么时候会用到，如何用？ 取负指令NEG为什么执行的是取反加一？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="8086指令系统之算数运算指令">
 <meta property="og:url" content="http://example.com/2024/03/18/8086%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E4%B9%8B%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="QianQing&#39;s Blog">
-<meta property="og:description" content="本篇介绍了汇编指令中如何进行运算，包括加、减、乘、除 前置问题：  怎么做多字节的加减法？ 为什么加减法指令不分有符号数和无符号数，而乘除法的有符号数和无符号数运算分别是不同的指令 如何确定指令执行的是字节操作还是字操作？ 符号扩展指令再什么时候会用到，如何用？ 取负指令NEG为什么执行的是取反加一？">
+<meta property="og:description" content="本篇介绍了汇编指令中如何进行运算，包括加、减、乘、除 前置问题：  怎么做多字节的加减法？ 为什么加减法指令不分有符号数和无符号数，而乘除法的有符号数和无符号数运算分别是不同的指令 如何确定指令执行的是字节操作还是字操作？ 符号扩展指令再什么时候会用到，如何用？ 取负指令NEG为什么执行的是取反加一？">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-03-18T11:27:13.000Z">
 <meta property="article:modified_time" content="2024-03-19T08:27:29.379Z">
@@ -226,7 +226,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">加法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ADD-%E5%8A%A0%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">ADD 加法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ADC-%E5%B8%A6%E8%BF%9B%E4%BD%8D%E7%9A%84%E5%8A%A0%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">ADC 带进位的加法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#INC-%E5%A2%9E%E9%87%8F%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">INC 增量指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%8F%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">减法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SUB%E5%87%8F%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">SUB减法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SBB-%E5%B8%A6%E5%80%9F%E4%BD%8D%E7%9A%84%E5%87%8F%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">SBB 带借位的减法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DEC-%E5%87%8F%E9%87%8F%E6%8C%87%E4%BB%A4"><span class="nav-number">2.3.</span> <span class="nav-text">DEC 减量指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NEG-%E5%8F%96%E8%B4%9F%E6%8C%87%E4%BB%A4"><span class="nav-number">2.4.</span> <span class="nav-text">NEG 取负指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMP-%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="nav-number">2.5.</span> <span class="nav-text">CMP 比较指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">乘法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MUL-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%98%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">MUL 无符号数乘法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IMUL-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%98%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">IMUL 有符号数乘法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89MUL%E5%92%8CIMUL%EF%BC%9F"><span class="nav-number">3.2.1.</span> <span class="nav-text">为什么有MUL和IMUL？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%A4%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">除法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DIV-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E9%99%A4%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">DIV 无符号数除法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDIV-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E9%99%A4%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">IDIV 有符号数除法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CBW-%E6%8A%8A%E5%AD%97%E8%8A%82%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%97%E6%8C%87%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">CBW 把字节转换为字指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CWD-%E6%8A%8A%E5%AD%97%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8F%8C%E5%AD%97%E6%8C%87%E4%BB%A4"><span class="nav-number">4.4.</span> <span class="nav-text">CWD 把字转换为双字指令</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">加法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#add-%E5%8A%A0%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">ADD 加法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adc-%E5%B8%A6%E8%BF%9B%E4%BD%8D%E7%9A%84%E5%8A%A0%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">ADC 带进位的加法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inc-%E5%A2%9E%E9%87%8F%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">INC 增量指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%8F%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">减法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sub%E5%87%8F%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">SUB减法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sbb-%E5%B8%A6%E5%80%9F%E4%BD%8D%E7%9A%84%E5%87%8F%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">SBB 带借位的减法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dec-%E5%87%8F%E9%87%8F%E6%8C%87%E4%BB%A4"><span class="nav-number">2.3.</span> <span class="nav-text">DEC 减量指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#neg-%E5%8F%96%E8%B4%9F%E6%8C%87%E4%BB%A4"><span class="nav-number">2.4.</span> <span class="nav-text">NEG 取负指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmp-%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="nav-number">2.5.</span> <span class="nav-text">CMP 比较指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">乘法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mul-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%98%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">MUL 无符号数乘法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#imul-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%98%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">IMUL 有符号数乘法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89mul%E5%92%8Cimul"><span class="nav-number">3.2.1.</span> <span class="nav-text">为什么有MUL和IMUL？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%A4%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">除法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#div-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E9%99%A4%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">DIV 无符号数除法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#idiv-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E9%99%A4%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">IDIV 有符号数除法指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cbw-%E6%8A%8A%E5%AD%97%E8%8A%82%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%97%E6%8C%87%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">CBW 把字节转换为字指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cwd-%E6%8A%8A%E5%AD%97%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8F%8C%E5%AD%97%E6%8C%87%E4%BB%A4"><span class="nav-number">4.4.</span> <span class="nav-text">CWD 把字转换为双字指令</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -241,7 +241,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -252,7 +252,7 @@ mjx-container[display="true"] + br {
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -357,7 +357,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody"><p>本篇介绍了汇编指令中如何进行运算，包括加、减、乘、除</p>
 <p>前置问题：</p>
-<ol>
+<ol type="1">
 <li>怎么做多字节的加减法？</li>
 <li>为什么加减法指令不分有符号数和无符号数，而乘除法的有符号数和无符号数运算分别是不同的指令</li>
 <li>如何确定指令执行的是字节操作还是字操作？</li>
@@ -365,86 +365,105 @@ mjx-container[display="true"] + br {
 <li>取负指令NEG为什么执行的是取反加一？</li>
 </ol>
 <span id="more"></span>
-<h1 id="加法指令"><a href="#加法指令" class="headerlink" title="加法指令"></a>加法指令</h1><h2 id="ADD-加法指令"><a href="#ADD-加法指令" class="headerlink" title="ADD 加法指令"></a>ADD 加法指令</h2><p>指令格式：<code>ADD 目的, 源</code></p>
-<p>指令功能：目的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>源+目的</p>
-<h2 id="ADC-带进位的加法指令"><a href="#ADC-带进位的加法指令" class="headerlink" title="ADC 带进位的加法指令"></a>ADC 带进位的加法指令</h2><p>ADC： Addition with Carry</p>
+<h1 id="加法指令">加法指令</h1>
+<h2 id="add-加法指令">ADD 加法指令</h2>
+<p>指令格式：<code>ADD 目的, 源</code></p>
+<p>指令功能：目的<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>源+目的</p>
+<h2 id="adc-带进位的加法指令">ADC 带进位的加法指令</h2>
+<p>ADC： Addition with Carry</p>
 <p>指令格式：<code>ADC 目的, 源</code></p>
-<p>指令功能：目的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>源+目的+CF</p>
+<p>指令功能：目的<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>源+目的+CF</p>
 <p><strong>用作多字节加法</strong></p>
 <p>注意：</p>
-<ol>
+<ol type="1">
 <li>上面两条指令的源操作数可以是寄存器、存储器或者立即数</li>
 <li>目的操作数只能用寄存器和存储单元</li>
 <li>源和目的操作数不能同时为存储器，而且他们的类型必须一致，同时为字节或者字</li>
 <li><strong>它们影响到的标志位：CF、OF、PF、SF、ZF、AF</strong></li>
 </ol>
-<h2 id="INC-增量指令"><a href="#INC-增量指令" class="headerlink" title="INC 增量指令"></a>INC 增量指令</h2><p>INC： Increment</p>
+<h2 id="inc-增量指令">INC 增量指令</h2>
+<p>INC： Increment</p>
 <p>指令格式：<code>INC 目的</code></p>
-<p>指令功能：目的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>目的+1</p>
+<p>指令功能：目的<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>目的+1</p>
 <p>注意：</p>
-<ol>
+<ol type="1">
 <li>目的操作数可以是通用寄存器或内存。指令执行后影响AF、OF、PF、SF和ZF，但是进位标志CF不受影响</li>
 <li>指令中只有一个操作数，如果是内存单元，则要用PTR操作符说明是字节还是字</li>
 </ol>
-<h1 id="减法指令"><a href="#减法指令" class="headerlink" title="减法指令"></a>减法指令</h1><h2 id="SUB减法指令"><a href="#SUB减法指令" class="headerlink" title="SUB减法指令"></a>SUB减法指令</h2><p>指令格式：<code>SUB 目的, 源</code></p>
-<p>指令功能： 目的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>目的 - 源</p>
-<h2 id="SBB-带借位的减法指令"><a href="#SBB-带借位的减法指令" class="headerlink" title="SBB 带借位的减法指令"></a>SBB 带借位的减法指令</h2><p>指令格式： <code>SBB 目的, 源</code></p>
-<p>指令功能：目的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>目的 - 源 - CF</p>
+<h1 id="减法指令">减法指令</h1>
+<h2 id="sub减法指令">SUB减法指令</h2>
+<p>指令格式：<code>SUB 目的, 源</code></p>
+<p>指令功能： 目的<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>目的 - 源</p>
+<h2 id="sbb-带借位的减法指令">SBB 带借位的减法指令</h2>
+<p>指令格式： <code>SBB 目的, 源</code></p>
+<p>指令功能：目的<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>目的 - 源 - CF</p>
 <p><strong>SBB主要用于多字节减法中</strong></p>
-<h2 id="DEC-减量指令"><a href="#DEC-减量指令" class="headerlink" title="DEC 减量指令"></a>DEC 减量指令</h2><p>DEC： Decrement</p>
+<h2 id="dec-减量指令">DEC 减量指令</h2>
+<p>DEC： Decrement</p>
 <p>指令功能：<code>DEC 目的</code></p>
-<p>指令功能：目的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>目的 - 1</p>
-<h2 id="NEG-取负指令"><a href="#NEG-取负指令" class="headerlink" title="NEG 取负指令"></a>NEG 取负指令</h2><p>指令格式：<code>NEG 目的</code></p>
-<p>指令功能：目的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>0 - 目的（取反加一）</p>
-<h2 id="CMP-比较指令"><a href="#CMP-比较指令" class="headerlink" title="CMP 比较指令"></a>CMP 比较指令</h2><p>CMP： Compare</p>
+<p>指令功能：目的<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>目的 - 1</p>
+<h2 id="neg-取负指令">NEG 取负指令</h2>
+<p>指令格式：<code>NEG 目的</code></p>
+<p>指令功能：目的$$0 - 目的（取反加一）</p>
+<h2 id="cmp-比较指令">CMP 比较指令</h2>
+<p>CMP： Compare</p>
 <p>指令格式：<code>CMP 目的, 源</code></p>
 <p>指令功能：目的 - 源</p>
 <p><strong>实际上是做减法，但是结果不送到目的，只改变标志位</strong></p>
 <p>（一般紧跟条件转移指令实现跳转）</p>
-<h1 id="乘法指令"><a href="#乘法指令" class="headerlink" title="乘法指令"></a>乘法指令</h1><h2 id="MUL-无符号数乘法指令"><a href="#MUL-无符号数乘法指令" class="headerlink" title="MUL 无符号数乘法指令"></a>MUL 无符号数乘法指令</h2><p>指令格式： <code>MUL 源</code></p>
+<h1 id="乘法指令">乘法指令</h1>
+<h2 id="mul-无符号数乘法指令">MUL 无符号数乘法指令</h2>
+<p>指令格式： <code>MUL 源</code></p>
 <p>指令功能：把源操作数和累加器（Accumulater）中的数，都当成无符号数，然后将两数相乘</p>
 <p>注意：</p>
-<ol>
+<ol type="1">
 <li><strong>其中有一个操作数一定是累加器</strong></li>
-<li><strong>如果源操作数是一个字节，那么AX<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>AX*源</strong></li>
-<li><strong>如果源操作数是一个字，那么（DX，AX）<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>AX*源</strong></li>
+<li>**如果源操作数是一个字节，那么AX<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>AX*源**</li>
+<li>**如果源操作数是一个字，那么（DX，AX）<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>AX*源**</li>
 <li>源操作数可以是寄存器或存储单元，不能是立即数</li>
 <li>源操作数是存储单元时，应使用PTR说明是字节还是字</li>
 <li>MUL指令执行后影响CF和OF标志</li>
 <li>如果结果的高半部分不为0，则CF、OF均置1。否则CF、OF清零</li>
 <li>通过测试这两个标志，可以检测并去除结果中的无效前导零</li>
 </ol>
-<h2 id="IMUL-有符号数乘法指令"><a href="#IMUL-有符号数乘法指令" class="headerlink" title="IMUL 有符号数乘法指令"></a>IMUL 有符号数乘法指令</h2><p>指令格式：<code>IMUL 源</code></p>
+<h2 id="imul-有符号数乘法指令">IMUL 有符号数乘法指令</h2>
+<p>指令格式：<code>IMUL 源</code></p>
 <p>指令功能：把源操作数和累加器中的数，都作为带符号数进行相乘</p>
 <p>存放结果的方式与MUL相同，最后给乘积赋予正确的符号</p>
 <p>指令结束后，如果乘积的高半部分不是全0或者全1，则置CF=1，OF=1.若结果高半部分为全0或者全1，则使CF=0，OF=0. 这样来决定是否需要保存积的高半部分</p>
-<h3 id="为什么有MUL和IMUL？"><a href="#为什么有MUL和IMUL？" class="headerlink" title="为什么有MUL和IMUL？"></a>为什么有MUL和IMUL？</h3><p>指令不知道是有符号数还是无符号数，需要程序员赋予其意义</p>
-<h1 id="除法指令"><a href="#除法指令" class="headerlink" title="除法指令"></a>除法指令</h1><h2 id="DIV-无符号数除法指令"><a href="#DIV-无符号数除法指令" class="headerlink" title="DIV 无符号数除法指令"></a>DIV 无符号数除法指令</h2><p>指令格式： <code>DIV 源</code></p>
+<h3 id="为什么有mul和imul">为什么有MUL和IMUL？</h3>
+<p>指令不知道是有符号数还是无符号数，需要程序员赋予其意义</p>
+<h1 id="除法指令">除法指令</h1>
+<h2 id="div-无符号数除法指令">DIV 无符号数除法指令</h2>
+<p>指令格式： <code>DIV 源</code></p>
 <p>指令功能：对两个无符号二进制数进行除法操作。</p>
 <p>如果源操作数是字节，被除数必须放在AX中，并且：</p>
-<ol>
-<li>AL<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>AX/源（字节）的商</li>
-<li>AH<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>AX/源（字节）的余数</li>
+<ol type="1">
+<li>AL<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>AX/源（字节）的商</li>
+<li>AH<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>AX/源（字节）的余数</li>
 <li>要是被除数只有8位，必须将其放在AL中，并将AH清零，然后相除</li>
 </ol>
 <p>如果源操作数是字，被除数必须放在DX和AX中，并且：</p>
-<ol>
-<li>AX<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>（DX，AX）/源（字）的商</li>
-<li>DX<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container>（DX，AX）/源（字）的余数</li>
+<ol type="1">
+<li>AX<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>（DX，AX）/源（字）的商</li>
+<li>DX<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path></g></g></g></svg></mjx-container></span>（DX，AX）/源（字）的余数</li>
 </ol>
 <p>要是被除数只有16位，除数也是16位，则必须将16位被除数送入AX中，再将DX清零，然后相除、</p>
 <p><strong>与被除数和除数一样，商和余数都是无符号数</strong></p>
-<h2 id="IDIV-有符号数除法指令"><a href="#IDIV-有符号数除法指令" class="headerlink" title="IDIV 有符号数除法指令"></a>IDIV 有符号数除法指令</h2><p>指令格式：<code>IDIV 源</code></p>
+<h2 id="idiv-有符号数除法指令">IDIV 有符号数除法指令</h2>
+<p>指令格式：<code>IDIV 源</code></p>
 <p>指令功能：功能与DIV相同，但操作数都必须是带符号数，商和余数也是带符号数，而且规定余数的符号和被除数的符号相同</p>
 <blockquote>
 <p>进行除法时，如果商超过了目标寄存器AL或AX所能存放的数的范围，计算机会自动产生除法错中断，相当于执行了除数为0的运算，得到的商和余数都不确定</p>
 </blockquote>
 <p>对于带符号数的除法指令，字节操作时要求被除数为16位，字操作时要求被除数为32位，如果不能满足这个条件时，不能简单将高位置0/1，而应应该用符号扩展指令，再执行除法指令</p>
-<h2 id="CBW-把字节转换为字指令"><a href="#CBW-把字节转换为字指令" class="headerlink" title="CBW 把字节转换为字指令"></a>CBW 把字节转换为字指令</h2><p>CBW： Convert Byte to Word</p>
+<h2 id="cbw-把字节转换为字指令">CBW 把字节转换为字指令</h2>
+<p>CBW： Convert Byte to Word</p>
 <p>指令格式：<code>CBW</code></p>
 <p>指令功能：把AL中的字节的符号位扩充到AH的所有位，这是AH被称为是AL的符号扩充</p>
 <p>CBW不影响标志位</p>
-<h2 id="CWD-把字转换为双字指令"><a href="#CWD-把字转换为双字指令" class="headerlink" title="CWD 把字转换为双字指令"></a>CWD 把字转换为双字指令</h2><p>CWD： Convert Word to Double Word</p>
+<h2 id="cwd-把字转换为双字指令">CWD 把字转换为双字指令</h2>
+<p>CWD： Convert Word to Double Word</p>
 <p>指令格式：CWD</p>
 <p>指令功能：把AX中字的符号位扩充到DX寄存器的所有位中去</p>
 

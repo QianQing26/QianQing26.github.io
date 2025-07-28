@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub：🔗 https:&#x2F;&#x2F;github.com&#x2F;QianQing26&#x2F;MiniViT">
+    <meta name="description" content="本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub： 🔗 https:&#x2F;&#x2F;github.com&#x2F;QianQing26&#x2F;MiniViT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vision Transformer简化实现与训练记录">
 <meta property="og:url" content="http://example.com/2025/07/15/Vision-Transformer%E7%AE%80%E5%8C%96%E5%AE%9E%E7%8E%B0%E4%B8%8E%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="QianQing&#39;s Blog">
-<meta property="og:description" content="本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub：🔗 https:&#x2F;&#x2F;github.com&#x2F;QianQing26&#x2F;MiniViT">
+<meta property="og:description" content="本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub： 🔗 https:&#x2F;&#x2F;github.com&#x2F;QianQing26&#x2F;MiniViT">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-07-15T08:49:01.000Z">
 <meta property="article:modified_time" content="2025-07-19T01:33:14.854Z">
@@ -225,7 +225,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%A1%B9%E7%9B%AE%E7%9B%AE%E7%9A%84%E4%B8%8E%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">1. 项目目的与背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%EF%BC%88MiniViT%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2. 模型结构设计（MiniViT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">模型参数配置如下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">3. 项目结构与模块划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%AE%AD%E7%BB%83%E4%B8%8E%E9%AA%8C%E8%AF%81%E8%AE%B0%E5%BD%95"><span class="nav-number">4.</span> <span class="nav-text">4. 训练与验证记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E9%85%8D%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">训练配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E9%AA%8C%E8%AF%81%E5%87%86%E7%A1%AE%E7%8E%87"><span class="nav-number">4.2.</span> <span class="nav-text">最佳验证准确率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%8E%A8%E7%90%86%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">5. 推理可视化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82%E4%B8%8E%E7%BB%8F%E9%AA%8C%E8%AE%B0%E5%BD%95"><span class="nav-number">6.</span> <span class="nav-text">6. 技术细节与经验记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">7.</span> <span class="nav-text">7. 项目地址</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%9B%AE%E7%9A%84%E4%B8%8E%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">1. 项目目的与背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1minivit"><span class="nav-number">2.</span> <span class="nav-text">2. 模型结构设计（MiniViT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%A6%82%E4%B8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">模型参数配置如下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">3. 项目结构与模块划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E4%B8%8E%E9%AA%8C%E8%AF%81%E8%AE%B0%E5%BD%95"><span class="nav-number">4.</span> <span class="nav-text">4. 训练与验证记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E9%85%8D%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">训练配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E9%AA%8C%E8%AF%81%E5%87%86%E7%A1%AE%E7%8E%87"><span class="nav-number">4.2.</span> <span class="nav-text">最佳验证准确率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E7%90%86%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">5. 推理可视化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82%E4%B8%8E%E7%BB%8F%E9%AA%8C%E8%AE%B0%E5%BD%95"><span class="nav-number">6.</span> <span class="nav-text">6. 技术细节与经验记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">7.</span> <span class="nav-text">7. 项目地址</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -240,7 +240,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -251,7 +251,7 @@ mjx-container[display="true"] + br {
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -351,23 +351,30 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody"><blockquote>
-<p>本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub：<br>🔗 <a target="_blank" rel="noopener" href="https://github.com/QianQing26/MiniViT">https://github.com/QianQing26/MiniViT</a></p>
+<p>本项目为我在学习 Vision Transformer（ViT）架构时的工程实践记录。目标是从零实现一个简化版的 ViT 模型，并在 CIFAR-10 上进行训练与推理。完整代码已上传至 GitHub：<br>
+🔗 https://github.com/QianQing26/MiniViT</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="1-项目目的与背景"><a href="#1-项目目的与背景" class="headerlink" title="1. 项目目的与背景"></a>1. 项目目的与背景</h2><p>传统图像分类多基于 CNN，而 ViT 作为纯 Transformer 架构，移除了卷积模块，仅靠 attention 建模全局关系。为了深入理解 ViT 的机制，我尝试手动实现一个简化模型，并完成训练、评估、推理与可视化流程。</p>
+<h2 id="项目目的与背景">1. 项目目的与背景</h2>
+<p>传统图像分类多基于 CNN，而 ViT 作为纯 Transformer 架构，移除了卷积模块，仅靠 attention 建模全局关系。为了深入理解 ViT 的机制，我尝试手动实现一个简化模型，并完成训练、评估、推理与可视化流程。</p>
 <hr>
-<h2 id="2-模型结构设计（MiniViT）"><a href="#2-模型结构设计（MiniViT）" class="headerlink" title="2. 模型结构设计（MiniViT）"></a>2. 模型结构设计（MiniViT）</h2><p>模型遵循论文《An Image is Worth 16x16 Words》中的主干结构：</p>
+<h2 id="模型结构设计minivit">2. 模型结构设计（MiniViT）</h2>
+<p>模型遵循论文《An Image is Worth 16x16 Words》中的主干结构：</p>
 <ul>
 <li>输入图像划分为 patch，展平后进行线性映射；</li>
 <li>加入 <code>[CLS]</code> token 与可学习位置编码；</li>
 <li>多层标准 Transformer Encoder（包含 MHSA + MLP）；</li>
 <li>使用 <code>[CLS]</code> token 的输出进行分类。</li>
 </ul>
-<h3 id="模型参数配置如下："><a href="#模型参数配置如下：" class="headerlink" title="模型参数配置如下："></a>模型参数配置如下：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model = MiniViT(</span><br><span class="line">    img_size=<span class="number">32</span>,</span><br><span class="line">    patch_size=<span class="number">4</span>,</span><br><span class="line">    embed_dim=<span class="number">256</span>,</span><br><span class="line">    depth=<span class="number">8</span>,</span><br><span class="line">    heads=<span class="number">8</span>,</span><br><span class="line">    num_classes=<span class="number">10</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="模型参数配置如下">模型参数配置如下：</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model = MiniViT(</span><br><span class="line">    img_size=<span class="number">32</span>,</span><br><span class="line">    patch_size=<span class="number">4</span>,</span><br><span class="line">    embed_dim=<span class="number">256</span>,</span><br><span class="line">    depth=<span class="number">8</span>,</span><br><span class="line">    heads=<span class="number">8</span>,</span><br><span class="line">    num_classes=<span class="number">10</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="3-项目结构与模块划分"><a href="#3-项目结构与模块划分" class="headerlink" title="3. 项目结构与模块划分"></a>3. 项目结构与模块划分</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">MiniViT/</span><br><span class="line">├── models/</span><br><span class="line">│   ├── patch_embed.py       # Patch Embedding 实现</span><br><span class="line">│   ├── transformer.py       # Attention、FFN、Transformer Block</span><br><span class="line">│   └── vit.py               # 主模型结构拼接</span><br><span class="line">├── train.py                 # 包含训练 + 验证 + best model 保存</span><br><span class="line">├── inference.py             # 推理脚本，支持图像与预测可视化</span><br><span class="line">├── utils.py                 # 工具函数：绘图、加载模型等</span><br><span class="line">├── training_log.csv         # 每轮训练记录日志</span><br><span class="line">├── loss.png / acc.png       # 训练曲线图</span><br><span class="line">├── inference_result.png     # 推理可视化结果图</span><br><span class="line">└── README.md                # 仓库介绍</span><br></pre></td></tr></table></figure>
+<h2 id="项目结构与模块划分">3. 项目结构与模块划分</h2>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">MiniViT/</span><br><span class="line">├── models/</span><br><span class="line">│   ├── patch_embed.py       # Patch Embedding 实现</span><br><span class="line">│   ├── transformer.py       # Attention、FFN、Transformer Block</span><br><span class="line">│   └── vit.py               # 主模型结构拼接</span><br><span class="line">├── train.py                 # 包含训练 + 验证 + best model 保存</span><br><span class="line">├── inference.py             # 推理脚本，支持图像与预测可视化</span><br><span class="line">├── utils.py                 # 工具函数：绘图、加载模型等</span><br><span class="line">├── training_log.csv         # 每轮训练记录日志</span><br><span class="line">├── loss.png / acc.png       # 训练曲线图</span><br><span class="line">├── inference_result.png     # 推理可视化结果图</span><br><span class="line">└── README.md                # 仓库介绍</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="4-训练与验证记录"><a href="#4-训练与验证记录" class="headerlink" title="4. 训练与验证记录"></a>4. 训练与验证记录</h2><h3 id="训练配置"><a href="#训练配置" class="headerlink" title="训练配置"></a>训练配置</h3><ul>
+<h2 id="训练与验证记录">4. 训练与验证记录</h2>
+<h3 id="训练配置">训练配置</h3>
+<ul>
 <li>数据集：CIFAR-10</li>
 <li>优化器：AdamW（lr=3e-4）</li>
 <li>batch_size：128</li>
@@ -375,17 +382,20 @@ mjx-container[display="true"] + br {
 <li>patch_size：4 × 4</li>
 <li>embed_dim：256</li>
 </ul>
-<h3 id="最佳验证准确率"><a href="#最佳验证准确率" class="headerlink" title="最佳验证准确率"></a>最佳验证准确率</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Epoch 50: Val Acc = 71.07%</span><br></pre></td></tr></table></figure>
+<h3 id="最佳验证准确率">最佳验证准确率</h3>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Epoch 50: Val Acc = 71.07%</span><br></pre></td></tr></table></figure>
 <p>训练过程中，训练 loss 与 acc 持续平稳提升，验证集表现稳定，整体无过拟合倾向。</p>
 <hr>
-<h2 id="5-推理可视化"><a href="#5-推理可视化" class="headerlink" title="5. 推理可视化"></a>5. 推理可视化</h2><p>推理脚本 <code>inference.py</code> 支持随机抽样若干张测试图像，输出模型预测类别与真实标签。</p>
+<h2 id="推理可视化">5. 推理可视化</h2>
+<p>推理脚本 <code>inference.py</code> 支持随机抽样若干张测试图像，输出模型预测类别与真实标签。</p>
 <ul>
 <li>使用训练完成的 <code>best_model.pt</code> 权重</li>
 <li>支持 matplotlib 保存结果图像 <code>inference_result.png</code></li>
 <li>错误预测以红色标题显示，正确为绿色</li>
 </ul>
 <hr>
-<h2 id="6-技术细节与经验记录"><a href="#6-技术细节与经验记录" class="headerlink" title="6. 技术细节与经验记录"></a>6. 技术细节与经验记录</h2><ul>
+<h2 id="技术细节与经验记录">6. 技术细节与经验记录</h2>
+<ul>
 <li>使用 <code>tqdm</code> 显示训练进度；</li>
 <li>多线程加载数据时需注意 Windows 平台下的 <code>if __name__ == "__main__"</code>；</li>
 <li>解决 <code>libiomp5md.dll</code> 冲突：需在开头加入 <code>os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'</code>；</li>
@@ -394,7 +404,8 @@ mjx-container[display="true"] + br {
 <li>推理时使用 softmax 输出置信度用于可视化结果更直观。</li>
 </ul>
 <hr>
-<h2 id="7-项目地址"><a href="#7-项目地址" class="headerlink" title="7. 项目地址"></a>7. 项目地址</h2><p>📦 GitHub 项目仓库：<a target="_blank" rel="noopener" href="https://github.com/QianQing26/MiniViT">https://github.com/QianQing26/MiniViT</a></p>
+<h2 id="项目地址">7. 项目地址</h2>
+<p>📦 GitHub 项目仓库：https://github.com/QianQing26/MiniViT</p>
 
     </div>
 
