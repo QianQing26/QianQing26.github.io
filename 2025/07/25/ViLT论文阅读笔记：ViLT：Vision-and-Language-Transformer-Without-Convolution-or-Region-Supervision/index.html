@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="原文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2102.03334 作者单位：Kakao Enterprise、Kakao Brain、NAVER AI Lab 会议：ICML 2021  ViLT模型总体结构图">
+    <meta name="description" content="原文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2102.03334 作者单位：Kakao Enterprise、Kakao Brain、NAVER AI Lab 会议：ICML 2021">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ViLT论文阅读笔记：ViLT：Vision-and-Language Transformer Without Convolution or Region Supervision">
 <meta property="og:url" content="http://example.com/2025/07/25/ViLT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AViLT%EF%BC%9AVision-and-Language-Transformer-Without-Convolution-or-Region-Supervision/index.html">
 <meta property="og:site_name" content="QianQing&#39;s Blog">
-<meta property="og:description" content="原文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2102.03334 作者单位：Kakao Enterprise、Kakao Brain、NAVER AI Lab 会议：ICML 2021  ViLT模型总体结构图">
+<meta property="og:description" content="原文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2102.03334 作者单位：Kakao Enterprise、Kakao Brain、NAVER AI Lab 会议：ICML 2021">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://picx.zhimg.com/v2-570a59fcfbdad378381e1a41384fc61d_1440w.jpg">
 <meta property="og:image" content="https://pic2.zhimg.com/v2-c94fc0e580ad16d68bceb535634d93a5_1440w.jpg">
@@ -230,7 +230,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%A0%94%E7%A9%B6%E8%83%8C%E6%99%AF%E4%B8%8E%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">一、研究背景与动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8Cvilt%E6%96%B9%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">二、ViLT方法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 整体结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E7%9B%AE%E6%A0%87"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 预训练目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%9B%9B%E7%B1%BB%E8%A7%86%E8%A7%89-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E7%B1%BB%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">三、四类视觉-语言模型的分类总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9Bwhole-word-maskingwwm"><span class="nav-number">4.</span> <span class="nav-text">四、Whole Word Masking（WWM）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">4.1.</span> <span class="nav-text">背景：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">4.3.</span> <span class="nav-text">效果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94randaugment%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E7%AD%96%E7%95%A5"><span class="nav-number">5.</span> <span class="nav-text">五、RandAugment图像增强策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8vilt%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">5.1.</span> <span class="nav-text">在ViLT中的使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF"><span class="nav-number">5.2.</span> <span class="nav-text">优势：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-1"><span class="nav-number">5.3.</span> <span class="nav-text">效果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E5%AE%9E%E9%AA%8C%E4%BA%AE%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">六、实验亮点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E5%B0%8F%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">七、小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E6%80%9D%E8%80%83%E4%B8%8E%E6%9C%AA%E6%9D%A5%E5%B7%A5%E4%BD%9C"><span class="nav-number">8.</span> <span class="nav-text">八、思考与未来工作</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%A0%94%E7%A9%B6%E8%83%8C%E6%99%AF%E4%B8%8E%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">一、研究背景与动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81ViLT%E6%96%B9%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">二、ViLT方法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 整体结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E9%A2%84%E8%AE%AD%E7%BB%83%E7%9B%AE%E6%A0%87"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 预训练目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9B%9B%E7%B1%BB%E8%A7%86%E8%A7%89-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E7%B1%BB%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">三、四类视觉-语言模型的分类总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Whole-Word-Masking%EF%BC%88WWM%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">四、Whole Word Masking（WWM）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">背景：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%EF%BC%9A"><span class="nav-number">4.3.</span> <span class="nav-text">效果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81RandAugment%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E7%AD%96%E7%95%A5"><span class="nav-number">5.</span> <span class="nav-text">五、RandAugment图像增强策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8ViLT%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">在ViLT中的使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF%EF%BC%9A"><span class="nav-number">5.2.</span> <span class="nav-text">优势：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%EF%BC%9A-1"><span class="nav-number">5.3.</span> <span class="nav-text">效果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%AE%9E%E9%AA%8C%E4%BA%AE%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">六、实验亮点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%B0%8F%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">七、小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%80%9D%E8%80%83%E4%B8%8E%E6%9C%AA%E6%9D%A5%E5%B7%A5%E4%BD%9C"><span class="nav-number">8.</span> <span class="nav-text">八、思考与未来工作</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -245,7 +245,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,7 +256,7 @@ mjx-container[display="true"] + br {
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -349,28 +349,21 @@ mjx-container[display="true"] + br {
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><strong>原文链接</strong>：https://arxiv.org/abs/2102.03334 <strong>作者单位</strong>：Kakao Enterprise、Kakao Brain、NAVER AI Lab <strong>会议</strong>：ICML 2021</p>
-<figure>
-<img src="https://picx.zhimg.com/v2-570a59fcfbdad378381e1a41384fc61d_1440w.jpg" alt="ViLT模型总体结构图"><figcaption aria-hidden="true">ViLT模型总体结构图</figcaption>
-</figure>
+    <div class="post-body" itemprop="articleBody"><p><strong>原文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2102.03334">https://arxiv.org/abs/2102.03334</a><br> <strong>作者单位</strong>：Kakao Enterprise、Kakao Brain、NAVER AI Lab<br> <strong>会议</strong>：ICML 2021</p>
+<p><img src="https://picx.zhimg.com/v2-570a59fcfbdad378381e1a41384fc61d_1440w.jpg" alt="ViLT模型总体结构图"></p>
 <span id="more"></span>
 <hr>
-<h2 id="一研究背景与动机">一、研究背景与动机</h2>
-<p>视觉-语言预训练模型（Vision-and-Language Pre-training，简称VLP）近年来在VQA、图文检索、NLVR等任务上广泛应用。现有主流方法如UNITER、ViLBERT等，普遍采用重型视觉编码器（如Faster R-CNN）来提取区域特征，配合Transformer实现多模态融合。这种方法虽有效，但也存在几个问题：</p>
-<ol type="1">
+<h2 id="一、研究背景与动机"><a href="#一、研究背景与动机" class="headerlink" title="一、研究背景与动机"></a>一、研究背景与动机</h2><p>视觉-语言预训练模型（Vision-and-Language Pre-training，简称VLP）近年来在VQA、图文检索、NLVR等任务上广泛应用。现有主流方法如UNITER、ViLBERT等，普遍采用重型视觉编码器（如Faster R-CNN）来提取区域特征，配合Transformer实现多模态融合。这种方法虽有效，但也存在几个问题：</p>
+<ol>
 <li><strong>视觉编码过程开销大</strong>，常比Transformer模块本身更耗时；</li>
 <li><strong>严重依赖区域监督</strong>（如VG数据集上的检测器）；</li>
 <li><strong>预定义的视觉词表限制表达能力</strong>。</li>
 </ol>
 <p>针对这些问题，ViLT 提出了一个<strong>极简的视觉-语言Transformer框架</strong>，完全<strong>去除卷积网络与区域特征</strong>，仅依赖图像patch投影即可完成视觉编码。</p>
-<p><img src="https://pic2.zhimg.com/v2-c94fc0e580ad16d68bceb535634d93a5_1440w.jpg"></p>
+<p><img src="https://pic2.zhimg.com/v2-c94fc0e580ad16d68bceb535634d93a5_1440w.jpg" alt=""></p>
 <!--more-->
 <hr>
-<h2 id="二vilt方法介绍">二、ViLT方法介绍</h2>
-<h3 id="整体结构">2.1 整体结构</h3>
-<figure>
-<img src="https://picx.zhimg.com/v2-570a59fcfbdad378381e1a41384fc61d_1440w.jpg" alt="ViLT模型总体结构图"><figcaption aria-hidden="true">ViLT模型总体结构图</figcaption>
-</figure>
+<h2 id="二、ViLT方法介绍"><a href="#二、ViLT方法介绍" class="headerlink" title="二、ViLT方法介绍"></a>二、ViLT方法介绍</h2><h3 id="2-1-整体结构"><a href="#2-1-整体结构" class="headerlink" title="2.1 整体结构"></a>2.1 整体结构</h3><p><img src="https://picx.zhimg.com/v2-570a59fcfbdad378381e1a41384fc61d_1440w.jpg" alt="ViLT模型总体结构图"></p>
 <p>ViLT（Vision-and-Language Transformer）基于一个极简思路：<strong>将图像和文本输入都转为序列后，通过同一个Transformer处理</strong>。整体结构包括：</p>
 <ul>
 <li><strong>图像处理</strong>：输入图像按 32×32 大小划分为若干patch，每个patch展平成向量后，使用一个线性层进行投影，作为视觉token；</li>
@@ -379,8 +372,7 @@ mjx-container[display="true"] + br {
 <li><strong>任务头</strong>：对于图文匹配等任务，使用一个池化后的向量接MLP输出结果。</li>
 </ul>
 <p>这种设计与ViT类似，<strong>视觉编码仅需线性投影，无需CNN和检测器</strong>，大大简化了流程。</p>
-<h3 id="预训练目标">2.2 预训练目标</h3>
-<p>ViLT使用了两个经典的VLP预训练任务：</p>
+<h3 id="2-2-预训练目标"><a href="#2-2-预训练目标" class="headerlink" title="2.2 预训练目标"></a>2.2 预训练目标</h3><p>ViLT使用了两个经典的VLP预训练任务：</p>
 <ul>
 <li><strong>Image-Text Matching (ITM)</strong>：判断一对图文是否匹配；</li>
 <li><strong>Masked Language Modeling (MLM)</strong>：遮盖部分词语后预测其原始内容。</li>
@@ -390,81 +382,65 @@ mjx-container[display="true"] + br {
 <li><strong>Word-Patch Alignment (WPA)</strong>：基于最优传输的方式度量词与图像patch之间的对齐质量。</li>
 </ul>
 <hr>
-<h2 id="三四类视觉-语言模型的分类总结">三、四类视觉-语言模型的分类总结</h2>
-<figure>
-<img src="https://pica.zhimg.com/v2-eda11a93af82d3d7a17df87631a77e84_1440w.jpg" alt="Fig2"><figcaption aria-hidden="true">Fig2</figcaption>
-</figure>
+<h2 id="三、四类视觉-语言模型的分类总结"><a href="#三、四类视觉-语言模型的分类总结" class="headerlink" title="三、四类视觉-语言模型的分类总结"></a>三、四类视觉-语言模型的分类总结</h2><p><img src="https://pica.zhimg.com/v2-eda11a93af82d3d7a17df87631a77e84_1440w.jpg" alt="Fig2"></p>
 <p>作者在论文中给出了一个有趣的分类框架，将VLP模型分为以下四类（见上图）：</p>
-<ol type="1">
-<li><strong>VE &gt; TE &gt; MI</strong>（视觉编码开销远大于文本和融合） 代表模型：VSE++, SCAN
-<ul>
+<ol>
+<li><strong>VE &gt; TE &gt; MI</strong>（视觉编码开销远大于文本和融合）<br> 代表模型：VSE++, SCAN<ul>
 <li>图文各自用独立encoder，融合层非常浅（如点积）。</li>
-</ul></li>
-<li><strong>VE = TE &gt; MI</strong>（图文编码复杂但融合浅） 代表模型：CLIP
-<ul>
+</ul>
+</li>
+<li><strong>VE = TE &gt; MI</strong>（图文编码复杂但融合浅）<br> 代表模型：CLIP<ul>
 <li>图文用并行的Transformer编码，融合阶段只用浅层结构（如点积）。</li>
-</ul></li>
-<li><strong>VE &gt; MI &gt; TE</strong>（视觉编码主导，融合较深） 代表模型：UNITER、ViLBERT
-<ul>
+</ul>
+</li>
+<li><strong>VE &gt; MI &gt; TE</strong>（视觉编码主导，融合较深）<br> 代表模型：UNITER、ViLBERT<ul>
 <li>使用CNN提取图像特征，图文通过深层Transformer交互。</li>
-</ul></li>
-<li><strong>MI &gt; VE = TE</strong>（融合模块最重） 代表模型：ViLT
-<ul>
+</ul>
+</li>
+<li><strong>MI &gt; VE = TE</strong>（融合模块最重）<br> 代表模型：ViLT<ul>
 <li>图文编码都很轻量，几乎所有计算资源用于模态间交互。</li>
-</ul></li>
+</ul>
+</li>
 </ol>
 <p>ViLT属于第四类模型，是目前唯一一个<strong>将Transformer的算力集中用于模态交互</strong>的代表。</p>
 <hr>
-<h2 id="四whole-word-maskingwwm">四、Whole Word Masking（WWM）</h2>
-<p>ViLT在MLM中引入了Whole Word Masking技术。</p>
-<h3 id="背景">背景：</h3>
-<p>BERT默认的MLM只遮挡子词级别token，而自然语言中的很多信息跨越整个词。</p>
-<h3 id="方法">方法：</h3>
-<ul>
+<h2 id="四、Whole-Word-Masking（WWM）"><a href="#四、Whole-Word-Masking（WWM）" class="headerlink" title="四、Whole Word Masking（WWM）"></a>四、Whole Word Masking（WWM）</h2><p>ViLT在MLM中引入了Whole Word Masking技术。</p>
+<h3 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h3><p>BERT默认的MLM只遮挡子词级别token，而自然语言中的很多信息跨越整个词。</p>
+<h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><ul>
 <li>将一个单词中所有组成的子词（wordpiece）一起遮盖；</li>
-<li>例如，"giraffe"被分成["gi", "##raf", "##fe"]，WWM会整体mask掉这三个token；</li>
+<li>例如，”giraffe”被分成[“gi”, “##raf”, “##fe”]，WWM会整体mask掉这三个token；</li>
 <li>这样，模型不能仅靠语言上下文复原token，而<strong>必须利用图像提供的信息</strong>。</li>
 </ul>
-<h3 id="效果">效果：</h3>
-<p>WWM显著提高了ViLT在下游任务（如图文检索、NLVR2）上的表现，说明它能有效促进跨模态信息的利用。</p>
+<h3 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h3><p>WWM显著提高了ViLT在下游任务（如图文检索、NLVR2）上的表现，说明它能有效促进跨模态信息的利用。</p>
 <hr>
-<h2 id="五randaugment图像增强策略">五、RandAugment图像增强策略</h2>
-<p>RandAugment是一种自动化的图像增强方法，先前用于纯视觉任务（如DeiT）。</p>
-<h3 id="在vilt中的使用">在ViLT中的使用：</h3>
-<ul>
+<h2 id="五、RandAugment图像增强策略"><a href="#五、RandAugment图像增强策略" class="headerlink" title="五、RandAugment图像增强策略"></a>五、RandAugment图像增强策略</h2><p>RandAugment是一种自动化的图像增强方法，先前用于纯视觉任务（如DeiT）。</p>
+<h3 id="在ViLT中的使用："><a href="#在ViLT中的使用：" class="headerlink" title="在ViLT中的使用："></a>在ViLT中的使用：</h3><ul>
 <li>在微调阶段（fine-tuning）对图像应用RandAugment；</li>
 <li>禁用了某些不适合VLP的策略（如颜色反转和cutout）；</li>
 <li>设置增强强度参数 N=2, M=9。</li>
 </ul>
-<h3 id="优势">优势：</h3>
-<p>由于ViLT不依赖于缓存视觉特征，图像在训练阶段可以灵活增强； 而传统VLP模型由于视觉特征提取器是预先提取好的，无法动态增强图像。</p>
-<h3 id="效果-1">效果：</h3>
-<p>在多个任务中都带来了性能提升，证明了图像增强对视觉-语言模型也有积极影响。</p>
+<h3 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h3><p>由于ViLT不依赖于缓存视觉特征，图像在训练阶段可以灵活增强；<br> 而传统VLP模型由于视觉特征提取器是预先提取好的，无法动态增强图像。</p>
+<h3 id="效果：-1"><a href="#效果：-1" class="headerlink" title="效果："></a>效果：</h3><p>在多个任务中都带来了性能提升，证明了图像增强对视觉-语言模型也有积极影响。</p>
 <hr>
-<h2 id="六实验亮点">六、实验亮点</h2>
-<ul>
+<h2 id="六、实验亮点"><a href="#六、实验亮点" class="headerlink" title="六、实验亮点"></a>六、实验亮点</h2><ul>
 <li>在不使用任何检测器和CNN的前提下，ViLT在VQAv2、NLVR2、Flickr30K等任务中性能与主流模型相当甚至更好；</li>
 <li><strong>推理速度超快</strong>：15ms vs 传统模型900ms；</li>
 <li><strong>参数量和FLOPs更少</strong>，部署更友好；</li>
 <li>Zero-shot检索任务中优于ImageBERT等模型。</li>
 </ul>
-<figure>
-<img src="https://pic3.zhimg.com/v2-7f36ea549c53cecd27facc9acca245c6_1440w.jpg" alt="消融实验"><figcaption aria-hidden="true">消融实验</figcaption>
-</figure>
+<p><img src="https://pic3.zhimg.com/v2-7f36ea549c53cecd27facc9acca245c6_1440w.jpg" alt="消融实验"></p>
 <hr>
-<h2 id="七小结">七、小结</h2>
-<p>ViLT提出了一个极具启发性的VLP新方向：</p>
+<h2 id="七、小结"><a href="#七、小结" class="headerlink" title="七、小结"></a>七、小结</h2><p>ViLT提出了一个极具启发性的VLP新方向：</p>
 <ul>
 <li><strong>图像也可以像文本一样“扁平化处理”</strong>；</li>
 <li>强化模态间交互远比堆叠视觉编码器更重要；</li>
 <li>简化结构≠性能下降，反而让模型具备更强的适应性和推广性。</li>
 </ul>
 <p>官方仓库的代码和预训练权重：</p>
-<p>GitHub 地址：https://github.com/dandelin/vilt</p>
+<p>GitHub 地址：<a target="_blank" rel="noopener" href="https://github.com/dandelin/vilt">https://github.com/dandelin/vilt</a></p>
 <hr>
-<h2 id="八思考与未来工作">八、思考与未来工作</h2>
-<p>论文最后也提出了后续可能探索的方向：</p>
-<ol type="1">
+<h2 id="八、思考与未来工作"><a href="#八、思考与未来工作" class="headerlink" title="八、思考与未来工作"></a>八、思考与未来工作</h2><p>论文最后也提出了后续可能探索的方向：</p>
+<ol>
 <li>更强大的ViLT变体（如ViLT-L、ViLT-H）；</li>
 <li>设计更适合图像patch的masked prediction任务；</li>
 <li>更复杂的图像增强与文本扰动方法；</li>

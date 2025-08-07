@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="主题： Vision-Language Pretraining (VLP) 学习总结：技术脉络、模型对比与未来展望 参考资料：  VLP综述文章：arXiv:2202.09061 ViT、ViLT、CLIP、BLIP、FLAVA 原始论文">
+    <meta name="description" content="主题： Vision-Language Pretraining (VLP) 学习总结：技术脉络、模型对比与未来展望 参考资料：  VLP综述文章：arXiv:2202.09061 ViT、ViLT、CLIP、BLIP、FLAVA 原始论文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vision-Language Pre-training (VLP) 学习小总结">
 <meta property="og:url" content="http://example.com/2025/07/31/Vision-Language-Pre-training-VLP-%E5%AD%A6%E4%B9%A0%E5%B0%8F%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="QianQing&#39;s Blog">
-<meta property="og:description" content="主题： Vision-Language Pretraining (VLP) 学习总结：技术脉络、模型对比与未来展望 参考资料：  VLP综述文章：arXiv:2202.09061 ViT、ViLT、CLIP、BLIP、FLAVA 原始论文">
+<meta property="og:description" content="主题： Vision-Language Pretraining (VLP) 学习总结：技术脉络、模型对比与未来展望 参考资料：  VLP综述文章：arXiv:2202.09061 ViT、ViLT、CLIP、BLIP、FLAVA 原始论文">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-07-30T17:03:50.000Z">
 <meta property="article:modified_time" content="2025-07-30T17:05:52.196Z">
@@ -228,7 +228,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9Avlp"><span class="nav-number">1.</span> <span class="nav-text">1. 引言：为什么要做VLP？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E6%BC%94%E8%BF%9B%E4%BB%8Eearly-fusion%E5%88%B0unified-learning"><span class="nav-number">2.</span> <span class="nav-text">2. 方法演进：从Early Fusion到Unified Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90%E4%BB%A3%E8%A1%A8%E6%A8%A1%E5%9E%8B%E9%80%90%E4%B8%80%E6%8B%86%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">3. 模型对比分析：代表模型逐一拆解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81%E8%9E%8D%E5%90%88%E6%96%B9%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">多模态融合方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%8B%E5%8A%BF%E8%A7%82%E5%AF%9F%E4%BB%8E%E4%BB%BB%E5%8A%A1%E5%AE%9A%E5%88%B6%E5%88%B0%E7%BB%9F%E4%B8%80%E8%A1%A8%E5%BE%81%E7%9A%84%E8%BF%87%E6%B8%A1"><span class="nav-number">4.</span> <span class="nav-text">4. 趋势观察：从任务定制到统一表征的过渡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B6%8B%E5%8A%BF%E4%B8%80%E6%9E%B6%E6%9E%84%E7%BB%9F%E4%B8%80%E5%8C%96"><span class="nav-number">4.1.</span> <span class="nav-text">核心趋势一：架构统一化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B6%8B%E5%8A%BF%E4%BA%8C%E4%BB%8E%E7%9B%91%E7%9D%A3%E5%88%B0%E5%BC%B1%E7%9B%91%E7%9D%A3%E8%87%AA%E7%9B%91%E7%9D%A3"><span class="nav-number">4.2.</span> <span class="nav-text">核心趋势二：从监督到弱监督&#x2F;自监督</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B6%8B%E5%8A%BF%E4%B8%89%E4%BB%8E%E7%90%86%E8%A7%A3%E5%88%B0%E7%94%9F%E6%88%90%E5%B9%B6%E9%87%8D"><span class="nav-number">4.3.</span> <span class="nav-text">核心趋势三：从理解到生成并重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B6%8B%E5%8A%BF%E5%9B%9B%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F%E9%87%8D%E4%BA%8E%E6%95%B0%E6%8D%AE%E8%A7%84%E6%A8%A1"><span class="nav-number">4.4.</span> <span class="nav-text">核心趋势四：数据质量重于数据规模</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%93%E5%89%8D%E6%8C%91%E6%88%98%E4%B8%8E%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="nav-number">5.</span> <span class="nav-text">5. 当前挑战与未来展望</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%91%E6%88%98"><span class="nav-number">5.1.</span> <span class="nav-text">挑战：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E6%96%B9%E5%90%91"><span class="nav-number">5.2.</span> <span class="nav-text">未来方向：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">6.</span> <span class="nav-text">6. 结语</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BC%95%E8%A8%80%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9AVLP%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. 引言：为什么要做VLP？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%96%B9%E6%B3%95%E6%BC%94%E8%BF%9B%EF%BC%9A%E4%BB%8EEarly-Fusion%E5%88%B0Unified-Learning"><span class="nav-number">2.</span> <span class="nav-text">2. 方法演进：从Early Fusion到Unified Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%A3%E8%A1%A8%E6%A8%A1%E5%9E%8B%E9%80%90%E4%B8%80%E6%8B%86%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">3. 模型对比分析：代表模型逐一拆解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81%E8%9E%8D%E5%90%88%E6%96%B9%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">多模态融合方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%B6%8B%E5%8A%BF%E8%A7%82%E5%AF%9F%EF%BC%9A%E4%BB%8E%E4%BB%BB%E5%8A%A1%E5%AE%9A%E5%88%B6%E5%88%B0%E7%BB%9F%E4%B8%80%E8%A1%A8%E5%BE%81%E7%9A%84%E8%BF%87%E6%B8%A1"><span class="nav-number">4.</span> <span class="nav-text">4. 趋势观察：从任务定制到统一表征的过渡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B6%8B%E5%8A%BF%E4%B8%80%EF%BC%9A%E6%9E%B6%E6%9E%84%E7%BB%9F%E4%B8%80%E5%8C%96"><span class="nav-number">4.1.</span> <span class="nav-text">核心趋势一：架构统一化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B6%8B%E5%8A%BF%E4%BA%8C%EF%BC%9A%E4%BB%8E%E7%9B%91%E7%9D%A3%E5%88%B0%E5%BC%B1%E7%9B%91%E7%9D%A3-%E8%87%AA%E7%9B%91%E7%9D%A3"><span class="nav-number">4.2.</span> <span class="nav-text">核心趋势二：从监督到弱监督&#x2F;自监督</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B6%8B%E5%8A%BF%E4%B8%89%EF%BC%9A%E4%BB%8E%E7%90%86%E8%A7%A3%E5%88%B0%E7%94%9F%E6%88%90%E5%B9%B6%E9%87%8D"><span class="nav-number">4.3.</span> <span class="nav-text">核心趋势三：从理解到生成并重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B6%8B%E5%8A%BF%E5%9B%9B%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F%E9%87%8D%E4%BA%8E%E6%95%B0%E6%8D%AE%E8%A7%84%E6%A8%A1"><span class="nav-number">4.4.</span> <span class="nav-text">核心趋势四：数据质量重于数据规模</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%BD%93%E5%89%8D%E6%8C%91%E6%88%98%E4%B8%8E%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="nav-number">5.</span> <span class="nav-text">5. 当前挑战与未来展望</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%91%E6%88%98%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">挑战：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E6%96%B9%E5%90%91%EF%BC%9A"><span class="nav-number">5.2.</span> <span class="nav-text">未来方向：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%BB%93%E8%AF%AD"><span class="nav-number">6.</span> <span class="nav-text">6. 结语</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -243,7 +243,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -254,7 +254,7 @@ mjx-container[display="true"] + br {
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -348,63 +348,52 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody"><hr>
-<p><strong>主题：</strong> <em>Vision-Language Pretraining (VLP) 学习总结：技术脉络、模型对比与未来展望</em> <strong>参考资料：</strong></p>
+<p><strong>主题：</strong> <em>Vision-Language Pretraining (VLP) 学习总结：技术脉络、模型对比与未来展望</em><br> <strong>参考资料：</strong></p>
 <ul>
 <li>VLP综述文章：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2202.09061">arXiv:2202.09061</a></li>
 <li>ViT、ViLT、CLIP、BLIP、FLAVA 原始论文</li>
 </ul>
 <span id="more"></span>
 <hr>
-<h2 id="引言为什么要做vlp">1. 引言：为什么要做VLP？</h2>
-<p>在自然语言与计算机视觉逐渐走向深度融合的今天，多模态预训练（Vision-Language Pretraining, VLP）成为推动AI通用智能的重要路径。VLP通过大规模图文对进行预训练，学习视觉与语言之间的统一语义空间表示，为下游任务（如图文检索、VQA、图像描述等）提供强大的迁移能力。</p>
+<h2 id="1-引言：为什么要做VLP？"><a href="#1-引言：为什么要做VLP？" class="headerlink" title="1. 引言：为什么要做VLP？"></a>1. 引言：为什么要做VLP？</h2><p>在自然语言与计算机视觉逐渐走向深度融合的今天，多模态预训练（Vision-Language Pretraining, VLP）成为推动AI通用智能的重要路径。VLP通过大规模图文对进行预训练，学习视觉与语言之间的统一语义空间表示，为下游任务（如图文检索、VQA、图像描述等）提供强大的迁移能力。</p>
 <hr>
-<h2 id="方法演进从early-fusion到unified-learning">2. 方法演进：从Early Fusion到Unified Learning</h2>
-<p>VLP方法自2019年以来呈现出从“任务定制”到“通用学习”的明显演进路径：</p>
+<h2 id="2-方法演进：从Early-Fusion到Unified-Learning"><a href="#2-方法演进：从Early-Fusion到Unified-Learning" class="headerlink" title="2. 方法演进：从Early Fusion到Unified Learning"></a>2. 方法演进：从Early Fusion到Unified Learning</h2><p>VLP方法自2019年以来呈现出从“任务定制”到“通用学习”的明显演进路径：</p>
 <ul>
-<li><strong>第一阶段：早期融合 + 目标检测特征</strong>
-<ul>
+<li><strong>第一阶段：早期融合 + 目标检测特征</strong><ul>
 <li>代表模型：ViLBERT、LXMERT</li>
 <li>特征提取基于Faster R-CNN，图文分别编码后通过cross-attention融合</li>
 <li>优点：性能强；缺点：依赖重视觉主干、推理慢、不统一</li>
-</ul></li>
-<li><strong>第二阶段：轻量统一建模尝试</strong>
-<ul>
+</ul>
+</li>
+<li><strong>第二阶段：轻量统一建模尝试</strong><ul>
 <li>代表模型：ViLT</li>
 <li>抛弃视觉主干，直接用图像patch参与Transformer，与文本一起进入Encoder</li>
 <li>优点：轻量、推理快；缺点：视觉理解弱、依赖良好训练技巧</li>
-</ul></li>
-<li><strong>第三阶段：弱监督大数据驱动的对比学习</strong>
-<ul>
+</ul>
+</li>
+<li><strong>第三阶段：弱监督大数据驱动的对比学习</strong><ul>
 <li>代表模型：CLIP、ALIGN</li>
 <li>使用数亿网页图文对，通过对比学习构建视觉语言共享表示</li>
 <li>优点：zero-shot泛化强；缺点：生成能力弱、对齐粒度粗</li>
-</ul></li>
-<li><strong>第四阶段：理解+生成统一模型的探索</strong>
-<ul>
+</ul>
+</li>
+<li><strong>第四阶段：理解+生成统一模型的探索</strong><ul>
 <li>代表模型：BLIP</li>
 <li>提出MED统一结构，支持ITC（对比）、ITM（匹配）、LM（生成）多任务训练</li>
 <li>创新点在于<strong>数据自举策略 CapFilt</strong>，提升数据质量</li>
-</ul></li>
-<li><strong>第五阶段：向通用多模态表示扩展</strong>
-<ul>
+</ul>
+</li>
+<li><strong>第五阶段：向通用多模态表示扩展</strong><ul>
 <li>代表模型：FLAVA</li>
 <li>学习支持图像、文本、图文混合输入的统一表征，具备结构化架构（Modality Expert + Fusion Transformer）</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <hr>
-<h2 id="模型对比分析代表模型逐一拆解">3. 模型对比分析：代表模型逐一拆解</h2>
-<table style="width:100%;">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 20%">
-<col style="width: 14%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 18%">
-<col style="width: 14%">
-</colgroup>
+<h2 id="3-模型对比分析：代表模型逐一拆解"><a href="#3-模型对比分析：代表模型逐一拆解" class="headerlink" title="3. 模型对比分析：代表模型逐一拆解"></a>3. 模型对比分析：代表模型逐一拆解</h2><div class="table-container">
+<table>
 <thead>
-<tr class="header">
+<tr>
 <th>模型</th>
 <th>架构类型</th>
 <th>特征提取</th>
@@ -415,7 +404,7 @@ mjx-container[display="true"] + br {
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>ViLT</strong></td>
 <td>单流Transformer</td>
 <td>图像patch+文本token</td>
@@ -424,7 +413,7 @@ mjx-container[display="true"] + br {
 <td>高效轻量</td>
 <td>视觉建模弱</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>CLIP</strong></td>
 <td>双流Encoder</td>
 <td>ViT + Transformer</td>
@@ -433,7 +422,7 @@ mjx-container[display="true"] + br {
 <td>Zero-shot强、训练简单</td>
 <td>无生成能力、需大数据</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>BLIP</strong></td>
 <td>统一结构 (Encoder + Decoder)</td>
 <td>ViT + MED</td>
@@ -442,7 +431,7 @@ mjx-container[display="true"] + br {
 <td>理解+生成一体、多任务共享</td>
 <td>实现复杂</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>FLAVA</strong></td>
 <td>三阶段模块化</td>
 <td>专属encoder + fusion</td>
@@ -453,41 +442,32 @@ mjx-container[display="true"] + br {
 </tr>
 </tbody>
 </table>
-<h3 id="多模态融合方式">多模态融合方式</h3>
-<ul>
+</div>
+<h3 id="多模态融合方式"><a href="#多模态融合方式" class="headerlink" title="多模态融合方式"></a>多模态融合方式</h3><ul>
 <li><strong>单流（Single-stream）</strong>：文本与图像拼接后输入同一Transformer（如ViLT、BLIP）</li>
 <li><strong>双流（Dual-stream）</strong>：两个Encoder分别编码后在对比空间对齐（如CLIP）</li>
 <li><strong>多模块统一融合</strong>：FLAVA结合单模态专家与统一融合模块，更适合复杂场景</li>
 </ul>
 <hr>
-<h2 id="趋势观察从任务定制到统一表征的过渡">4. 趋势观察：从任务定制到统一表征的过渡</h2>
-<h3 id="核心趋势一架构统一化">核心趋势一：<strong>架构统一化</strong></h3>
-<p>VLP模型逐步从分裂架构（双流）转向可切换的统一模型（如BLIP的MED），提升多任务共享能力与参数效率。</p>
-<h3 id="核心趋势二从监督到弱监督自监督">核心趋势二：<strong>从监督到弱监督/自监督</strong></h3>
-<p>CLIP、ALIGN使用网页图文作为弱标注数据，大幅降低对人工标注依赖，BLIP通过自举生成高质量训练样本，展现了未来方向。</p>
-<h3 id="核心趋势三从理解到生成并重">核心趋势三：<strong>从理解到生成并重</strong></h3>
-<p>从只做匹配/检索的CLIP到同时兼顾理解与生成的BLIP，说明VLP逐渐具备语言生成能力，有助于多模态对话与推理等场景。</p>
-<h3 id="核心趋势四数据质量重于数据规模">核心趋势四：<strong>数据质量重于数据规模</strong></h3>
-<p>BLIP中的CapFilt策略显示：合理利用少量高质量标注引导数据清洗生成，比盲目堆叠海量噪声数据更有效。</p>
+<h2 id="4-趋势观察：从任务定制到统一表征的过渡"><a href="#4-趋势观察：从任务定制到统一表征的过渡" class="headerlink" title="4. 趋势观察：从任务定制到统一表征的过渡"></a>4. 趋势观察：从任务定制到统一表征的过渡</h2><h3 id="核心趋势一：架构统一化"><a href="#核心趋势一：架构统一化" class="headerlink" title="核心趋势一：架构统一化"></a>核心趋势一：<strong>架构统一化</strong></h3><p>VLP模型逐步从分裂架构（双流）转向可切换的统一模型（如BLIP的MED），提升多任务共享能力与参数效率。</p>
+<h3 id="核心趋势二：从监督到弱监督-自监督"><a href="#核心趋势二：从监督到弱监督-自监督" class="headerlink" title="核心趋势二：从监督到弱监督/自监督"></a>核心趋势二：<strong>从监督到弱监督/自监督</strong></h3><p>CLIP、ALIGN使用网页图文作为弱标注数据，大幅降低对人工标注依赖，BLIP通过自举生成高质量训练样本，展现了未来方向。</p>
+<h3 id="核心趋势三：从理解到生成并重"><a href="#核心趋势三：从理解到生成并重" class="headerlink" title="核心趋势三：从理解到生成并重"></a>核心趋势三：<strong>从理解到生成并重</strong></h3><p>从只做匹配/检索的CLIP到同时兼顾理解与生成的BLIP，说明VLP逐渐具备语言生成能力，有助于多模态对话与推理等场景。</p>
+<h3 id="核心趋势四：数据质量重于数据规模"><a href="#核心趋势四：数据质量重于数据规模" class="headerlink" title="核心趋势四：数据质量重于数据规模"></a>核心趋势四：<strong>数据质量重于数据规模</strong></h3><p>BLIP中的CapFilt策略显示：合理利用少量高质量标注引导数据清洗生成，比盲目堆叠海量噪声数据更有效。</p>
 <hr>
-<h2 id="当前挑战与未来展望">5. 当前挑战与未来展望</h2>
-<h3 id="挑战">挑战：</h3>
-<ul>
+<h2 id="5-当前挑战与未来展望"><a href="#5-当前挑战与未来展望" class="headerlink" title="5. 当前挑战与未来展望"></a>5. 当前挑战与未来展望</h2><h3 id="挑战："><a href="#挑战：" class="headerlink" title="挑战："></a>挑战：</h3><ul>
 <li><strong>模态对齐误差</strong>：图像和文本对齐误差对下游任务影响极大，尤其在弱监督数据中更难控制；</li>
 <li><strong>训练资源消耗大</strong>：大模型+大数据的训练门槛高，难以复现；</li>
 <li><strong>缺乏知识推理能力</strong>：目前VLP多数仍停留在“表层对齐”，不具备深层语义推理；</li>
 <li><strong>任务泛化能力不足</strong>：在非训练任务/领域迁移中仍存在显著性能下降</li>
 </ul>
-<h3 id="未来方向">未来方向：</h3>
-<ol type="1">
+<h3 id="未来方向："><a href="#未来方向：" class="headerlink" title="未来方向："></a>未来方向：</h3><ol>
 <li><strong>多模态联合学习扩展</strong>：加入音频、语义图谱，向更泛化的多模态表示前进（如MERLOT、VATT）</li>
 <li><strong>知识增强的VLP</strong>：通过接入常识图谱，增强模型的认知推理能力</li>
 <li><strong>Prompt Tuning 与轻量迁移</strong>：减少每个任务都需微调的负担，实现更高效迁移学习</li>
 <li><strong>跨模态生成能力提升</strong>：图像→文本、文本→图像双向生成将成为VLP的重要评估能力</li>
 </ol>
 <hr>
-<h2 id="结语">6. 结语</h2>
-<p>VLP正走在从“表征对齐”向“通用理解生成”演化的道路上。ViLT代表了极致轻量化的探索，CLIP开启了弱监督大规模预训练的大门，BLIP提出任务统一结构并重塑数据构建方式，FLAVA则指向多模态统一世界的曙光。未来，具备跨模态理解、生成、推理和交互能力的通用模型，将逐步成为多模态智能的核心基石。</p>
+<h2 id="6-结语"><a href="#6-结语" class="headerlink" title="6. 结语"></a>6. 结语</h2><p>VLP正走在从“表征对齐”向“通用理解生成”演化的道路上。ViLT代表了极致轻量化的探索，CLIP开启了弱监督大规模预训练的大门，BLIP提出任务统一结构并重塑数据构建方式，FLAVA则指向多模态统一世界的曙光。未来，具备跨模态理解、生成、推理和交互能力的通用模型，将逐步成为多模态智能的核心基石。</p>
 
     </div>
 

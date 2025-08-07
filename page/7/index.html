@@ -233,7 +233,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -244,7 +244,7 @@ mjx-container[display="true"] + br {
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -269,6 +269,110 @@ mjx-container[display="true"] + br {
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A003%EF%BC%9A%E9%99%8D%E7%BB%B4-DimensionReduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="千顷QianQing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | QianQing's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/02/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A003%EF%BC%9A%E9%99%8D%E7%BB%B4-DimensionReduction/" class="post-title-link" itemprop="url">机器学习03：降维(DimensionReduction)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-02-04 19:33:35" itemprop="dateCreated datePublished" datetime="2024-02-04T19:33:35+08:00">2024-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-06-30 19:36:44" itemprop="dateModified" datetime="2024-06-30T19:36:44+08:00">2024-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">机器学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本篇博客通过数据分布的角度引入降维的思路，并围绕PCA讨论降维的几种方法。</p>
+<hr>
+<p>我们知道，解决过拟合的问题除了正则化和添加数据之外，降维就是最好的方法。降维的思路来源于维度灾难的问题，我们知道 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.357ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 600 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 维球的体积为：</p>
+<script type="math/tex; mode=display">
+CR^n</script><p>那么在球体积与边长为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.048ex;" xmlns="http://www.w3.org/2000/svg" width="2.848ex" height="1.593ex" role="img" focusable="false" viewBox="0 -683 1259 704"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(500,0)"><path data-c="1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path></g></g></g></svg></mjx-container> 的超立方体比值为：</p>
+<script type="math/tex; mode=display">
+\lim\limits_{n\rightarrow0}\frac{CR^n}{2^nR^n}=0</script><p>这就是所谓的维度灾难，在高维数据中，主要样本都分布在立方体的边缘，所以数据集更加稀疏。</p>
+<p>降维的算法分为：</p>
+<ol>
+<li>直接降维，特征选择</li>
+<li>线性降维，PCA，MDS等</li>
+<li>分线性，流形包括 Isomap，LLE 等</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/02/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A003%EF%BC%9A%E9%99%8D%E7%BB%B4-DimensionReduction/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -431,21 +535,21 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
           <p>本篇博客引入并介绍了几种线性分类模型。</p>
 <p>对于分类任务，线性回归模型就无能为力了，但是我们可以在线性模型的函数进行后再加入一层激活函数，这个函数是非线性的，激活函数的反函数叫做链接函数。我们有两种线性分类的方式：</p>
-<ol type="1">
-<li>硬分类，我们直接需要输出观测对应的分类。这类模型的代表为：
-<ol type="1">
+<ol>
+<li>硬分类，我们直接需要输出观测对应的分类。这类模型的代表为：<ol>
 <li>线性判别分析（Fisher 判别）</li>
 <li>感知机</li>
-</ol></li>
-<li>软分类，产生不同类别的概率，这类算法根据概率方法的不同分为两种
-<ol type="1">
-<li>生成式（根据贝叶斯定理先计算参数后验，再进行推断）：高斯判别分析（GDA）和朴素贝叶斯等为代表
-<ol type="1">
+</ol>
+</li>
+<li>软分类，产生不同类别的概率，这类算法根据概率方法的不同分为两种<ol>
+<li>生成式（根据贝叶斯定理先计算参数后验，再进行推断）：高斯判别分析（GDA）和朴素贝叶斯等为代表<ol>
 <li>GDA</li>
 <li>Naive Bayes</li>
-</ol></li>
+</ol>
+</li>
 <li>判别式（直接对条件概率进行建模）：Logistic 回归</li>
-</ol></li>
+</ol>
+</li>
 </ol>
           <!--noindex-->
             <div class="post-button">
@@ -538,7 +642,7 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/disjoint-set.png"></p>
+          <p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/disjoint-set.png" alt=""></p>
 <p>并查集是一种用于管理元素所属集合的数据结构，实现为一个森林，其中每棵树表示一个集合，树中的节点表示对应集合中的元素。</p>
 <p>顾名思义，并查集支持两种操作：</p>
 <ul>
@@ -637,7 +741,7 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/hashtable.png"></p>
+          <p><img src="https://raw.githubusercontent.com/QianQing26/MyPic/main/hashtable.png" alt=""></p>
 <p>哈希表又称散列表，一种以「key-value」形式存储数据的数据结构。所谓以「key-value」形式存储数据，是指任意的键值 key 都唯一对应到内存中的某个位置。只需要输入查找的键值，就可以快速地找到其对应的 value。可以把哈希表理解为一种高级的数组，这种数组的下标可以是很大的整数，浮点数，字符串甚至结构体。</p>
           <!--noindex-->
             <div class="post-button">
@@ -731,7 +835,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>本篇博客介绍了最简单的一种机器学习模型——线性回归，主要包含以下内容：</p>
-<ol type="1">
+<ol>
 <li>从解析和几何的角度去说明最小二乘法，</li>
 <li>引入高斯分布的噪声先验，从概率的视角解释线性回归</li>
 <li>承袭引入先验的思路，介绍正则化的处理方法</li>
@@ -1119,102 +1223,6 @@ mjx-container[display="true"] + br {
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/01/10/%E5%87%B8%E4%BC%98%E5%8C%9623%EF%BC%9A%E6%8B%9F%E5%87%B8%E5%87%BD%E6%95%B02/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/09/%E5%87%B8%E4%BC%98%E5%8C%9622%EF%BC%9A%E6%8B%9F%E5%87%B8%E5%87%BD%E6%95%B01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="千顷QianQing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QianQing's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | QianQing's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/01/09/%E5%87%B8%E4%BC%98%E5%8C%9622%EF%BC%9A%E6%8B%9F%E5%87%B8%E5%87%BD%E6%95%B01/" class="post-title-link" itemprop="url">凸优化22：拟凸函数1</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-01-09 00:32:12" itemprop="dateCreated datePublished" datetime="2024-01-09T00:32:12+08:00">2024-01-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-16 16:58:43" itemprop="dateModified" datetime="2024-03-16T16:58:43+08:00">2024-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">凸优化</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">凸函数</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在凸性质的基础上介绍一个较弱的条件——拟凸</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/01/09/%E5%87%B8%E4%BC%98%E5%8C%9622%EF%BC%9A%E6%8B%9F%E5%87%B8%E5%87%BD%E6%95%B01/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
