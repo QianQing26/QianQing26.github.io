@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="关于wire在Verilog中，wire可以看作一个导线（或则任意位宽的总线），需要注意的几点是：  wire可以用于将实例化时的输入输出端口连接到电路的其他地方 wire类型必须被其他东西驱动而不能用于储存其他数据 wire类型在always@块中不能作为&#x3D;和&lt;&#x3D;的左值 wire是assign语句的左值唯一合法的类型 wire只能用于组合逻辑电路  关于regreg和wire比较类似，但是">
+    <meta name="description" content="关于wire 在Verilog中，wire可以看作一个导线（或则任意位宽的总线），需要注意的几点是：  wire可以用于将实例化时的输入输出端口连接到电路的其他地方 wire类型必须被其他东西驱动而不能用于储存其他数据 wire类型在always@块中不能作为&#x3D;和&lt;&#x3D;的左值 wire是assign语句的左值唯一合法的类型 wire只能用于组合逻辑电路  关于reg reg">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Verilog：reg和wire的区别">
 <meta property="og:url" content="http://example.com/2023/12/22/Verilog%EF%BC%9Areg%E5%92%8Cwire%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="QianQing&#39;s Blog">
-<meta property="og:description" content="关于wire在Verilog中，wire可以看作一个导线（或则任意位宽的总线），需要注意的几点是：  wire可以用于将实例化时的输入输出端口连接到电路的其他地方 wire类型必须被其他东西驱动而不能用于储存其他数据 wire类型在always@块中不能作为&#x3D;和&lt;&#x3D;的左值 wire是assign语句的左值唯一合法的类型 wire只能用于组合逻辑电路  关于regreg和wire比较类似，但是">
+<meta property="og:description" content="关于wire 在Verilog中，wire可以看作一个导线（或则任意位宽的总线），需要注意的几点是：  wire可以用于将实例化时的输入输出端口连接到电路的其他地方 wire类型必须被其他东西驱动而不能用于储存其他数据 wire类型在always@块中不能作为&#x3D;和&lt;&#x3D;的左值 wire是assign语句的左值唯一合法的类型 wire只能用于组合逻辑电路  关于reg reg">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-22T01:06:39.000Z">
 <meta property="article:modified_time" content="2023-12-22T01:21:50.000Z">
@@ -343,16 +343,18 @@ mjx-container[display="true"] + br {
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="关于wire"><a href="#关于wire" class="headerlink" title="关于wire"></a>关于<code>wire</code></h3><p>在Verilog中，<code>wire</code>可以看作一个导线（或则任意位宽的总线），需要注意的几点是：</p>
-<ol>
+    <div class="post-body" itemprop="articleBody"><h3 id="关于wire">关于<code>wire</code></h3>
+<p>在Verilog中，<code>wire</code>可以看作一个导线（或则任意位宽的总线），需要注意的几点是：</p>
+<ol type="1">
 <li><code>wire</code>可以用于将实例化时的输入输出端口连接到电路的其他地方</li>
 <li><code>wire</code>类型必须被其他东西驱动而不能用于储存其他数据</li>
 <li><code>wire</code>类型在<code>always@</code>块中不能作为<code>=</code>和<code>&lt;=</code>的左值</li>
 <li><code>wire</code>是<code>assign</code>语句的左值唯一合法的类型</li>
 <li><code>wire</code>只能用于组合逻辑电路</li>
 </ol>
-<h3 id="关于reg"><a href="#关于reg" class="headerlink" title="关于reg"></a>关于<code>reg</code></h3><p><code>reg</code>和<code>wire</code>比较类似，但是能够储存信息，类似寄存器，需要注意的几点是：</p>
-<ol>
+<h3 id="关于reg">关于<code>reg</code></h3>
+<p><code>reg</code>和<code>wire</code>比较类似，但是能够储存信息，类似寄存器，需要注意的几点是：</p>
+<ol type="1">
 <li><code>reg</code>可以在实例化模块时连接其输入</li>
 <li><code>reg</code>不可以再实例化模块时连接其输出</li>
 <li><code>reg</code>可以在声明模块时作为其输出</li>
@@ -362,7 +364,8 @@ mjx-container[display="true"] + br {
 <li><code>reg</code>类型可以创建寄存器，以用于类似于<code>always@(posedge)</code>的块</li>
 <li><code>reg</code>可以描述组合逻辑也可以描述时序逻辑</li>
 </ol>
-<h3 id="reg和wire的共性"><a href="#reg和wire的共性" class="headerlink" title="reg和wire的共性"></a><code>reg</code>和<code>wire</code>的共性</h3><ol>
+<h3 id="reg和wire的共性"><code>reg</code>和<code>wire</code>的共性</h3>
+<ol type="1">
 <li>都可以作为实例化模块时的输入</li>
 <li>都可以作为<code>always@</code>块中<code>=</code>,<code>&lt;=</code>的右值以及<code>assign</code>的右值</li>
 </ol>

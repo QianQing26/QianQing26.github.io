@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="本项目实现了 DETR（DEtection TRansformer）模型的一个简化版本，并最终发布在了 GitHub 上：MiniDETR 项目地址。 这是一个目标检测模型的完整训练框架。 本篇博客总结了我对 DETR 的理解、模型的核心模块、关键实现细节、训练调优策略，以及一些工程实践经验。">
+    <meta name="description" content="本项目实现了 DETR（DEtection TRansformer）模型的一个简化版本，并最终发布在了 GitHub 上：MiniDETR 项目地址。 这是一个目标检测模型的完整训练框架。 本篇博客总结了我对 DETR 的理解、模型的核心模块、关键实现细节、训练调优策略，以及一些工程实践经验。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MiniDETR:简化DETR实现">
 <meta property="og:url" content="http://example.com/2025/07/25/MiniDETR-%E7%AE%80%E5%8C%96DETR%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="QianQing&#39;s Blog">
-<meta property="og:description" content="本项目实现了 DETR（DEtection TRansformer）模型的一个简化版本，并最终发布在了 GitHub 上：MiniDETR 项目地址。 这是一个目标检测模型的完整训练框架。 本篇博客总结了我对 DETR 的理解、模型的核心模块、关键实现细节、训练调优策略，以及一些工程实践经验。">
+<meta property="og:description" content="本项目实现了 DETR（DEtection TRansformer）模型的一个简化版本，并最终发布在了 GitHub 上：MiniDETR 项目地址。 这是一个目标检测模型的完整训练框架。 本篇博客总结了我对 DETR 的理解、模型的核心模块、关键实现细节、训练调优策略，以及一些工程实践经验。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-07-25T08:58:06.000Z">
 <meta property="article:modified_time" content="2025-07-25T09:04:54.794Z">
@@ -224,7 +224,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DETR%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">DETR核心思想简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88"><span class="nav-number">2.</span> <span class="nav-text">实现结构概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">项目结构设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%85%B3%E9%94%AE%E7%BB%86%E8%8A%82%E5%88%86%E4%BA%AB"><span class="nav-number">4.</span> <span class="nav-text">实现关键细节分享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8C%88%E7%89%99%E5%88%A9%E5%8C%B9%E9%85%8D%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.1.</span> <span class="nav-text">1. 匈牙利匹配的理解与实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%EF%BC%88Positional-Embedding%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">2. 位置编码（Positional Embedding）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Transformer%E6%A8%A1%E5%9D%97%E8%87%AA%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.3.</span> <span class="nav-text">3. Transformer模块自实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%94%AF%E6%8C%81-warmup-%E4%B8%8E%E5%B7%AE%E5%88%86%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="nav-number">4.4.</span> <span class="nav-text">4. 支持 warmup 与差分学习率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-mAP-%E8%AF%84%E4%BC%B0%E5%B7%A5%E5%85%B7"><span class="nav-number">4.5.</span> <span class="nav-text">5. mAP 评估工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">成果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">6.</span> <span class="nav-text">项目地址</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#detr%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">DETR核心思想简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88"><span class="nav-number">2.</span> <span class="nav-text">实现结构概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">项目结构设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%85%B3%E9%94%AE%E7%BB%86%E8%8A%82%E5%88%86%E4%BA%AB"><span class="nav-number">4.</span> <span class="nav-text">实现关键细节分享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%88%E7%89%99%E5%88%A9%E5%8C%B9%E9%85%8D%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.1.</span> <span class="nav-text">1. 匈牙利匹配的理解与实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81positional-embedding"><span class="nav-number">4.2.</span> <span class="nav-text">2. 位置编码（Positional Embedding）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transformer%E6%A8%A1%E5%9D%97%E8%87%AA%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.3.</span> <span class="nav-text">3. Transformer模块自实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%AF%E6%8C%81-warmup-%E4%B8%8E%E5%B7%AE%E5%88%86%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="nav-number">4.4.</span> <span class="nav-text">4. 支持 warmup 与差分学习率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-%E8%AF%84%E4%BC%B0%E5%B7%A5%E5%85%B7"><span class="nav-number">4.5.</span> <span class="nav-text">5. mAP 评估工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">成果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">6.</span> <span class="nav-text">项目地址</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -348,7 +348,8 @@ mjx-container[display="true"] + br {
 <p>本篇博客总结了我对 DETR 的理解、模型的核心模块、关键实现细节、训练调优策略，以及一些工程实践经验。</p>
 <span id="more"></span>
 <hr>
-<h2 id="DETR核心思想简述"><a href="#DETR核心思想简述" class="headerlink" title="DETR核心思想简述"></a>DETR核心思想简述</h2><p>传统目标检测模型（如 Faster R-CNN、YOLO）通常依赖 anchor box、NMS 等启发式方法。而 DETR 的创新点在于：</p>
+<h2 id="detr核心思想简述">DETR核心思想简述</h2>
+<p>传统目标检测模型（如 Faster R-CNN、YOLO）通常依赖 anchor box、NMS 等启发式方法。而 DETR 的创新点在于：</p>
 <ul>
 <li><strong>目标检测 = 集合预测问题</strong>，由匈牙利匹配直接解决框-目标对齐问题</li>
 <li><strong>用 Transformer 进行全局建模</strong>，输入图像特征后输出一组固定长度的 object queries，代表可能的目标</li>
@@ -356,7 +357,8 @@ mjx-container[display="true"] + br {
 </ul>
 <p>这使得 DETR 的架构极度简洁统一，同时也为 Transformer 在视觉领域开辟了新的道路。</p>
 <hr>
-<h2 id="实现结构概览"><a href="#实现结构概览" class="headerlink" title="实现结构概览"></a>实现结构概览</h2><p>我实现的 Mini-DETR 模型保留了 DETR 的核心思路，并针对小显存设备（≤8GB）进行了简化与优化：</p>
+<h2 id="实现结构概览">实现结构概览</h2>
+<p>我实现的 Mini-DETR 模型保留了 DETR 的核心思路，并针对小显存设备（≤8GB）进行了简化与优化：</p>
 <ul>
 <li>使用 <strong>ResNet50</strong> 作为 backbone，输出 feature map</li>
 <li>用 1×1 Conv 将 channel 压缩至 <code>hidden_dim=256</code></li>
@@ -366,7 +368,8 @@ mjx-container[display="true"] + br {
 <li>损失包括：<strong>CrossEntropy + L1 + GIoU</strong></li>
 </ul>
 <hr>
-<h2 id="项目结构设计"><a href="#项目结构设计" class="headerlink" title="项目结构设计"></a>项目结构设计</h2><p>工程采用主流 PyTorch 项目结构划分，具备良好的模块化和可扩展性：</p>
+<h2 id="项目结构设计">项目结构设计</h2>
+<p>工程采用主流 PyTorch 项目结构划分，具备良好的模块化和可扩展性：</p>
 <ul>
 <li><code>models/</code>: 模型主干与 Transformer 组件</li>
 <li><code>data/</code>: VOC数据加载、自定义 JSON 格式解析、图像增广</li>
@@ -376,15 +379,21 @@ mjx-container[display="true"] + br {
 </ul>
 <p>这次我特别注重代码组织清晰与注释完整，每个模块都可以独立理解与运行调试。</p>
 <hr>
-<h2 id="实现关键细节分享"><a href="#实现关键细节分享" class="headerlink" title="实现关键细节分享"></a>实现关键细节分享</h2><h3 id="1-匈牙利匹配的理解与实现"><a href="#1-匈牙利匹配的理解与实现" class="headerlink" title="1. 匈牙利匹配的理解与实现"></a>1. 匈牙利匹配的理解与实现</h3><p>DETR的精髓在于将检测任务视为集合预测，使用匈牙利算法做 bipartite matching。<br> 我实现了一个简化版本，匹配代价由分类差异（CE）+ 回归差异（L1）组成，输出预测-目标的一一对应关系。</p>
-<h3 id="2-位置编码（Positional-Embedding）"><a href="#2-位置编码（Positional-Embedding）" class="headerlink" title="2. 位置编码（Positional Embedding）"></a>2. 位置编码（Positional Embedding）</h3><p>我使用了与原文一致的 <strong>正弦-余弦编码</strong>，编码二维位置，并添加到特征上。位置编码模块是完全手写的。</p>
-<h3 id="3-Transformer模块自实现"><a href="#3-Transformer模块自实现" class="headerlink" title="3. Transformer模块自实现"></a>3. Transformer模块自实现</h3><h3 id="4-支持-warmup-与差分学习率"><a href="#4-支持-warmup-与差分学习率" class="headerlink" title="4. 支持 warmup 与差分学习率"></a>4. 支持 warmup 与差分学习率</h3><p>在训练阶段，我加入了：</p>
+<h2 id="实现关键细节分享">实现关键细节分享</h2>
+<h3 id="匈牙利匹配的理解与实现">1. 匈牙利匹配的理解与实现</h3>
+<p>DETR的精髓在于将检测任务视为集合预测，使用匈牙利算法做 bipartite matching。 我实现了一个简化版本，匹配代价由分类差异（CE）+ 回归差异（L1）组成，输出预测-目标的一一对应关系。</p>
+<h3 id="位置编码positional-embedding">2. 位置编码（Positional Embedding）</h3>
+<p>我使用了与原文一致的 <strong>正弦-余弦编码</strong>，编码二维位置，并添加到特征上。位置编码模块是完全手写的。</p>
+<h3 id="transformer模块自实现">3. Transformer模块自实现</h3>
+<h3 id="支持-warmup-与差分学习率">4. 支持 warmup 与差分学习率</h3>
+<p>在训练阶段，我加入了：</p>
 <ul>
 <li><strong>学习率 warmup</strong>（前1000步线性增长）</li>
 <li><strong>backbone 冻结 / 解冻机制</strong></li>
 <li><strong>backbone</strong> 与 <strong>transformer</strong> 使用不同的学习率</li>
 </ul>
-<h3 id="5-mAP-评估工具"><a href="#5-mAP-评估工具" class="headerlink" title="5. mAP 评估工具"></a>5. mAP 评估工具</h3><p>没有使用 pycocotools，自己实现了 mAP（IoU=0.5）计算逻辑，包括：</p>
+<h3 id="map-评估工具">5. mAP 评估工具</h3>
+<p>没有使用 pycocotools，自己实现了 mAP（IoU=0.5）计算逻辑，包括：</p>
 <ul>
 <li>IoU计算</li>
 <li>TP/FP判定</li>
@@ -392,11 +401,13 @@ mjx-container[display="true"] + br {
 <li>11-point mAP 计算</li>
 </ul>
 <hr>
-<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><p>在VOC训练集上训练约50 epochs，模型能够初步检测出常见目标，mAP 在 0.4~0.5 左右（IoU=0.5）。<br> 虽然精度不高，但这个结果已经验证了模型的通路是正确的，对于学习和调试是完全可用的。</p>
+<h2 id="成果">成果</h2>
+<p>在VOC训练集上训练约50 epochs，模型能够初步检测出常见目标，mAP 在 0.4~0.5 左右（IoU=0.5）。 虽然精度不高，但这个结果已经验证了模型的通路是正确的，对于学习和调试是完全可用的。</p>
 <p>更重要的是，我从零构建出了一个完整检测框架，这比直接套用库要收获大得多</p>
 <hr>
-<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p>完整代码已开源在 GitHub：</p>
-<p> <a target="_blank" rel="noopener" href="https://github.com/QianQing26/MiniDETR">https://github.com/QianQing26/MiniDETR</a></p>
+<h2 id="项目地址">项目地址</h2>
+<p>完整代码已开源在 GitHub：</p>
+<p>https://github.com/QianQing26/MiniDETR</p>
 
     </div>
 
